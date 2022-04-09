@@ -129,4 +129,22 @@ public class Utilisateur {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", promo=" + promo +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", date_naissance=" + date_naissance +
+                ", email='" + email + '\'' +
+                ", num_tel='" + num_tel + '\'' +
+                ", admis_stage=" + admis_stage +
+                ", sexe='" + sexe + '\'' +
+                ", mot_de_passe='" + mot_de_passe + '\'' +
+                ", est_admin=" + est_admin +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }
