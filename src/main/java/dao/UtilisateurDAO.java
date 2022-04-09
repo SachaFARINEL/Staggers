@@ -100,8 +100,43 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
     @Override
     public boolean update(Utilisateur obj) {
+        boolean succes=true;
 
-        return false;
+        int promo = obj.getPromo();
+        String nom = obj.getNom();
+        String prenom = obj.getPrenom();
+        Date date_naissance = obj.getDate_naissance();
+        String email = obj.getEmail();
+        String num_tel = obj.getNum_tel();
+        boolean admis_stage = obj.isAdmis_stage();
+        String sexe = obj.getSexe();
+        String mot_de_passe = obj.getMot_de_passe();
+        boolean est_admin = obj.isEst_admin();
+        String role = obj.getRole();
+        int id = obj.getId();
+
+        try {
+            String requete = "UPDATE "+TABLE+" SET "+PROMO+" = ?, "+NOM+" = ?, "+PRENOM+" = ? , "+DATE_NAISSANCE+" = ?, "+EMAIL+" = ?, "+NUM_TEL+" = ?, "+ADMIS_STAGE+" = ?, "+SEXE+" = ?,  "+MOT_DE_PASSE+" = ?, "+EST_ADMIN+" = ?, "+ROLE+" = ? WHERE "+CLE_PRIMAIRE+" = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
+            pst.setInt(1, obj.getPromo());
+            pst.setString(2, obj.getNom());
+            pst.setString(3, obj.getPrenom());
+            pst.setDate(4, obj.getDate_naissance());
+            pst.setString(5, obj.getEmail());
+            pst.setString(6, obj.getNum_tel());
+            pst.setBoolean(7, obj.isAdmis_stage());
+            pst.setString(8, obj.getSexe());
+            pst.setString(9, obj.getMot_de_passe());
+            pst.setBoolean(10, obj.isEst_admin());
+            pst.setString(11, obj.getRole());
+            pst.setInt(12, id) ;
+            pst.executeUpdate() ;
+            donnees.put(id, obj);
+        } catch (SQLException e) {
+            succes = false;
+            e.printStackTrace();
+        }
+        return succes;
     }
 
     @Override
