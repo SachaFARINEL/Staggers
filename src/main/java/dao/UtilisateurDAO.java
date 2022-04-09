@@ -3,8 +3,10 @@ package dao;
 import staggers.Utilisateur;
 
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 public class UtilisateurDAO extends DAO<Utilisateur> {
@@ -38,9 +40,45 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         super();
     }
 
+
     @Override
     public boolean create(Utilisateur obj) {
-        return false;
+
+        boolean succes=true;
+        try {
+            String requete = "INSERT INTO "+TABLE+" ("+PROMO+","+NOM+","+PRENOM+","+DATE_NAISSANCE+","+EMAIL+","+NUM_TEL+"," +
+                    ""+ADMIS_STAGE+","+SEXE+","+MOT_DE_PASSE+","+EST_ADMIN+","+ROLE+") " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+            // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
+            pst.setInt(1, obj.getPromo());
+            pst.setString(2, obj.getNom());
+            pst.setString(3, obj.getPrenom());
+            pst.setDate(4, obj.getDate_naissance());
+            pst.setString(5, obj.getEmail());
+            pst.setString(6, obj.getNum_tel());
+            pst.setBoolean(7, obj.isAdmis_stage());
+            pst.setString(8, obj.getSexe());
+            pst.setString(9, obj.getMot_de_passe());
+            pst.setBoolean(10, obj.isEst_admin());
+            pst.setString(11, obj.getRole());
+
+            // on exécute la mise à jour
+            pst.executeUpdate();
+
+            //Récupérer la clé qui a été générée et la pousser dans l'objet initial
+            ResultSet rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                obj.setId(rs.getInt(1));
+            }
+            donnees.put(obj.getId(), obj);
+
+        } catch (SQLException e) {
+            succes=false;
+            e.printStackTrace();
+        }
+
+        return succes;
     }
 
     @Override
@@ -50,6 +88,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
     @Override
     public boolean update(Utilisateur obj) {
+
         return false;
     }
 
@@ -76,7 +115,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 String mot_de_passe = rs.getString(MOT_DE_PASSE);
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
-                utilisateur = new Utilisateur (id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role);
+                utilisateur = new Utilisateur (id, promo, nom, prenom, (java.sql.Date) date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role);
                 donnees.put(id, utilisateur);
 
             } catch (SQLException e) {

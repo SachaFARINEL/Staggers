@@ -1,5 +1,7 @@
 package dao;
 
+import staggers.Utilisateur;
+
 import java.sql.*;
 
 public class Connexion {
@@ -61,12 +63,4 @@ public class Connexion {
         }
     }
 
-
-
-    public static void main(String[] args) {
-        //System.out.println(UtilisateurDAO.getInstance().read(1));
-        System.out.println(EntrepriseDAO.getInstance().read(1));
-
-        Connexion.fermer();
-    }
 }
