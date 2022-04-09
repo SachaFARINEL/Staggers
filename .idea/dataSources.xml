@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="51dfbda5-a4f7-4d75-b4ea-96c79fc39074">
+    <data-source source="LOCAL" name="dbstage@localhost" uuid="6175aa6d-cb29-42c7-8d5f-64939e922f02">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://localhost\SQLEXPRESS</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://localhost\SQLEXPRESS;database=dbstage</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
