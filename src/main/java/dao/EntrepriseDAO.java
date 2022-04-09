@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class EntrepriseDAO extends DAO<Entreprise> {
 
-        private static final String TABLE = "UTILISATEUR";
+        private static final String TABLE = "ENTREPRISE";
         private static final String CLE_PRIMAIRE = "id";
 
         private static final String NOM = "nom";
@@ -70,12 +70,10 @@ public class EntrepriseDAO extends DAO<Entreprise> {
                     String num_contact = rs.getString(NUM_CONTACT);
                     int nb_salarie = rs.getInt(NB_SALARIE);
                     int nb_stagiaire_max = rs.getInt(NB_STAGIAIRE_MAX);
-                    boolean est_favoris = rs.getBoolean(EST_FAVORIS);
                     String description = rs.getString(DESCRIPTION);
+                    boolean est_favoris = rs.getBoolean(EST_FAVORIS);
 
-
-
-                    entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, est_favoris, description);
+                    entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
                     donnees.put(id, entreprise);
 
                 } catch (SQLException e) {

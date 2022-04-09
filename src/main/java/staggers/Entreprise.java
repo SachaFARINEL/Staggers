@@ -13,12 +13,13 @@ import java.util.Date;
         private String email_contact;
         private String num_contact;
         private int nb_salarie;
-        private int nb_stagiaire;
-        private boolean est_favoris;
+        private int nb_stagiaire_max;
         private String description;
+        private boolean est_favoris;
 
 
-        public Entreprise(int id, String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire, boolean est_favoris, String description) {
+
+        public Entreprise(int id, String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire_max, String description, boolean est_favoris) {
             this.id = id;
             this.nom = nom;
             this.email = email;
@@ -27,7 +28,7 @@ import java.util.Date;
             this.email_contact = email_contact;
             this.num_contact = num_contact;
             this.nb_salarie = nb_salarie;
-            this.nb_stagiaire = nb_stagiaire;
+            this.nb_stagiaire_max = nb_stagiaire_max;
             this.est_favoris = est_favoris;
             this.description = description;
         }
@@ -64,11 +65,11 @@ import java.util.Date;
             this.num_tel = num_tel;
         }
 
-        public String getNom_contact() {
+        public String getnom_contact() {
             return nom_contact;
         }
 
-        public void setNom_contact(String nom_contact) {
+        public void setnom_contact(String nom_contact) {
             this.nom_contact = nom_contact;
         }
 
@@ -96,12 +97,12 @@ import java.util.Date;
             this.nb_salarie = nb_salarie;
         }
 
-        public int getNb_stagiaire() {
-            return nb_stagiaire;
+        public int getnb_stagiaire_max() {
+            return nb_stagiaire_max;
         }
 
-        public void setNb_stagiaire(int nb_stagiaire) {
-            this.nb_stagiaire = nb_stagiaire;
+        public void setnb_stagiaire_max(int nb_stagiaire_max) {
+            this.nb_stagiaire_max = nb_stagiaire_max;
         }
 
         public boolean isEst_favoris() {
@@ -131,7 +132,7 @@ import java.util.Date;
                     ", email_contact='" + email_contact + '\'' +
                     ", num_contact='" + num_contact + '\'' +
                     ", nb_salarie=" + nb_salarie +
-                    ", nb_stagiaire=" + nb_stagiaire +
+                    ", nb_stagiaire_max=" + nb_stagiaire_max +
                     ", est_favoris=" + est_favoris +
                     ", description='" + description + '\'' +
                     '}';
