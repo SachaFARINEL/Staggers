@@ -3,11 +3,7 @@ package dao;
 import staggers.Utilisateur;
 
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
+import java.sql.*;
 
 public class UtilisateurDAO extends DAO<Utilisateur> {
 
@@ -43,7 +39,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
     @Override
     public boolean create(Utilisateur obj) {
-        boolean succes = true;
+        boolean success = true;
         try {
             String requete = "INSERT INTO " + TABLE + " (" + PROMO + "," + NOM + "," + PRENOM + "," + DATE_NAISSANCE + "," + EMAIL + "," + NUM_TEL + "," +
                     "" + ADMIS_STAGE + "," + SEXE + "," + MOT_DE_PASSE + "," + EST_ADMIN + "," + ROLE + ") " +
@@ -70,15 +66,15 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             }
             donnees.put(obj.getId(), obj);
         } catch (SQLException e) {
-            succes = false;
+            success = false;
             e.printStackTrace();
         }
-        return succes;
+        return success;
     }
 
     @Override
     public boolean delete(Utilisateur obj) {
-        boolean succes = true;
+        boolean success = true;
         try {
             int id = obj.getId();
             String requete = "DELETE FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = ?";
@@ -87,29 +83,16 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.executeUpdate();
             donnees.remove(id);
         } catch (SQLException e) {
-            succes = false;
+            success = false;
             e.printStackTrace();
         }
-        return succes;
+        return success;
     }
 
     @Override
     public boolean update(Utilisateur obj) {
-        boolean succes = true;
-
-        int promo = obj.getPromo();
-        String nom = obj.getNom();
-        String prenom = obj.getPrenom();
-        Date date_naissance = obj.getDate_naissance();
-        String email = obj.getEmail();
-        String num_tel = obj.getNum_tel();
-        boolean admis_stage = obj.isAdmis_stage();
-        String sexe = obj.getSexe();
-        String mot_de_passe = obj.getMot_de_passe();
-        boolean est_admin = obj.isEst_admin();
-        String role = obj.getRole();
+        boolean success = true;
         int id = obj.getId();
-
         try {
             String requete = "UPDATE " + TABLE + " SET " + PROMO + " = ?, " + NOM + " = ?, " + PRENOM + " = ? , " + DATE_NAISSANCE + " = ?, " + EMAIL + " = ?, " + NUM_TEL + " = ?, " + ADMIS_STAGE + " = ?, " + SEXE + " = ?,  " + MOT_DE_PASSE + " = ?, " + EST_ADMIN + " = ?, " + ROLE + " = ? WHERE " + CLE_PRIMAIRE + " = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
@@ -128,10 +111,10 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.executeUpdate();
             donnees.put(id, obj);
         } catch (SQLException e) {
-            succes = false;
+            success = false;
             e.printStackTrace();
         }
-        return succes;
+        return success;
     }
 
     @Override
@@ -157,7 +140,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 String mot_de_passe = rs.getString(MOT_DE_PASSE);
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
-                utilisateur = new Utilisateur(id, promo, nom, prenom, (java.sql.Date) date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role);
+                utilisateur = new Utilisateur(id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role);
                 donnees.put(id, utilisateur);
 
             } catch (SQLException e) {

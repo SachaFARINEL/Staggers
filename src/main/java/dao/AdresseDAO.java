@@ -1,11 +1,9 @@
 package dao;
 
 import staggers.Adresse;
+import staggers.Utilisateur;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class AdresseDAO extends DAO<Adresse> {
@@ -72,17 +70,78 @@ public class AdresseDAO extends DAO<Adresse> {
 
     @Override
     public boolean delete(Adresse obj) {
-        return false;
+        boolean success = true;
+        try {
+            int id = obj.getId();
+            String requete = "DELETE FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            donnees.remove(id);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
     }
 
     @Override
     public boolean update(Adresse obj) {
-        return false;
+        boolean success = true;
+        int id = obj.getId();
+        try {
+            String requete = "UPDATE " + TABLE + " SET " + NUMERO + " = ?, " + TYPE_DE_VOIE + " = ?, " + ADRESSE + " = ? , " + VILLE + " = ?, " + CODE_POSTAL + " = ?, " + DEPARTEMENT + " = ?, " + PAYS + " = ?, " + ID_UTILISATEUR + " = ?,  " + ID_ENTREPRISE + " = ? " +
+                    "WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setInt(1, obj.getNumero());
+            pst.setString(2, obj.getType_de_voie());
+            pst.setString(3, obj.getAdresse());
+            pst.setString(4, obj.getVille());
+            pst.setInt(5, obj.getCode_postal());
+            pst.setString(6, obj.getDepartement());
+            pst.setString(7, obj.getPays());
+            pst.setInt(8, obj.getId_utilisateur());
+            pst.setInt(9, obj.getId_entreprise());
+            pst.setInt(10, id);
+            pst.executeUpdate();
+            donnees.put(id, obj);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
     }
 
     @Override
     public Adresse read(int id) {
-        return null;
+        Adresse adresse = null;
+        if (donnees.containsKey(id)) {
+            System.out.println("récupéré");
+            adresse = donnees.get(id);
+        } else {
+            System.out.println("Recherche dans la BD");
+            try {
+                String requete = "SELECT * FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = " + id;
+                ResultSet rs = Connexion.executeQuery(requete);
+                rs.next();
+                int numero = rs.getInt(NUMERO);
+                String type_de_voie = rs.getString(TYPE_DE_VOIE);
+                String adresses = rs.getString(ADRESSE);
+                String ville = rs.getString(VILLE);
+                int code_postal = rs.getInt(CODE_POSTAL);
+                String departement = rs.getString(DEPARTEMENT);
+                String pays = rs.getString(PAYS);
+                int id_utilisateur = rs.getInt(ID_UTILISATEUR);
+                int id_entreprise = rs.getInt(ID_ENTREPRISE);
+
+                adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, departement, pays, id_utilisateur, id_entreprise);
+                donnees.put(id, adresse);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return adresse;
     }
 
 }
