@@ -6,3 +6,4 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/libraries/mssql_jdbc_10_2_0_jre17.xml
