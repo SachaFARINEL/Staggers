@@ -1,9 +1,10 @@
-module com.example.staggers {
+module ihm {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
 
 
-    opens com.example.staggers to javafx.fxml;
-    exports com.example.staggers;
+    exports ihm;
+    opens ihm to javafx.fxml;
+
 }
