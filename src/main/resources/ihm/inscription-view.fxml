@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.inscriptionController">
+   <children>
+      <AnchorPane prefHeight="146.0" prefWidth="1064.0">
+         <children>
+            <ImageView fitHeight="89.0" fitWidth="1064.0" layoutY="-6.0" rotate="180.0">
+               <image>
+                  <Image url="@../../../../../../../Téléchargements/Vectors.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="108.0" prefHeight="499.0" prefWidth="223.0">
+         <children>
+            <ImageView fitHeight="338.0" fitWidth="279.0" layoutY="161.0">
+               <image>
+                  <Image url="@../img/User%2006b.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="841.0" layoutY="101.0" prefHeight="499.0" prefWidth="223.0">
+         <children>
+            <ImageView fitHeight="338.0" fitWidth="279.0" layoutX="-55.0" layoutY="161.0">
+               <image>
+                  <Image url="@../img/User%2007a.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="282.0" layoutY="101.0" prefHeight="499.0" prefWidth="483.0">
+         <children>
+            <Label alignment="CENTER" layoutX="-7.0" prefHeight="44.0" prefWidth="498.0" text="Inscription" textAlignment="CENTER" textFill="#224957" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="48.0" />
+               </font>
+            </Label>
+            <Button layoutX="176.0" layoutY="446.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #20DF7F;" text="Valider">
+               <font>
+                  <Font name="Roboto Condensed" size="18.0" />
+               </font>
+            </Button>
+            <ChoiceBox layoutX="26.0" layoutY="91.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #224957;" />
+            <ChoiceBox layoutX="307.0" layoutY="91.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #224957; " />
+            <ChoiceBox layoutX="129.0" layoutY="91.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #224957;"/>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
