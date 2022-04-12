@@ -1,8 +1,11 @@
 package dao;
 
 import staggers.Utilisateur;
+import utils.Utils;
 
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 
 public class UtilisateurDAO extends DAO<Utilisateur> {
@@ -54,7 +57,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
             pst.setString(8, obj.getSexe());
-            pst.setString(9, obj.getMot_de_passe());
+            pst.setString(9, Utils.hashPass(obj.getMot_de_passe()));
             pst.setBoolean(10, obj.isEst_admin());
             pst.setString(11, obj.getRole());
             // on exécute la mise à jour
@@ -65,7 +68,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 obj.setId(rs.getInt(1));
             }
             donnees.put(obj.getId(), obj);
-        } catch (SQLException e) {
+        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             success = false;
             e.printStackTrace();
         }
