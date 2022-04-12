@@ -51,6 +51,8 @@
                </font>
             </Button>
             <ChoiceBox fx:id="sexe" layoutX="26.0" layoutY="91.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #224957;" />
+            <ChoiceBox fx:id="prenom" layoutX="307.0" layoutY="91.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #224957; " />
+            <ChoiceBox fx:id="nom" layoutX="129.0" layoutY="91.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #224957;" />
          </children>
       </AnchorPane>
    </children>
