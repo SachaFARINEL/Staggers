@@ -153,5 +153,23 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return utilisateur;
     }
 
+    public String getPasswordWithEmail(String mail) {
+        String mdpUser = null;
+            System.out.println("Recherche dans la BD");
+            try {
+                String requete = "SELECT " + MOT_DE_PASSE + " FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
+
+                ResultSet rs = Connexion.executeQuery(requete);
+                rs.next();
+
+
+                mdpUser = rs.getString(MOT_DE_PASSE);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return mdpUser;
+    }
+
 
 }

@@ -51,7 +51,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="errorLogin" layoutX="511.0" layoutY="42.0" />
+            <Label fx:id="errorLogin" layoutX="400.0" layoutY="39.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" />
             <TextField fx:id="username" alignment="CENTER" layoutX="397.0" layoutY="110.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant" style="-fx-background-color: #224957;">
                <font>
                   <Font name="Roboto Condensed" size="18.0" />

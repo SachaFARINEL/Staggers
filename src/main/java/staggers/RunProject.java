@@ -12,12 +12,14 @@ public class RunProject {
 
         /* Utilisateur */
 
-        Utilisateur test = new Utilisateur(4, 2020, "BOLLORE", "Clément", null, "farinel.sacha@gmail.com",
+        Utilisateur test = new Utilisateur(4, 2020, "BOLLORE", "Clément", null, "test",
                 "0688972850", true, "masculin", "root", false, "étudiant");
-        System.out.println(UtilisateurDAO.getInstance().create(test));
+        //System.out.println(UtilisateurDAO.getInstance().create(test));
         //System.out.println(UtilisateurDAO.getInstance().read(1));
         //System.out.println(UtilisateurDAO.getInstance().update(test));
         //System.out.println(UtilisateurDAO.getInstance().delete(test));
+
+        //System.out.println(UtilisateurDAO.getInstance().getPasswordWithEmail("test"));
 
         /* Entreprise */
 
