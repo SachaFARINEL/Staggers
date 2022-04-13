@@ -36,8 +36,9 @@ public class logginController {
     private TextField username;
 
     @FXML
-    void sendForgotPassword(MouseEvent event) {
-
+    void sendForgotPassword(MouseEvent event) throws IOException {
+        Main main = new Main();
+        main.nextScene("recuperation-view.fxml");
     }
 
     @FXML
@@ -55,9 +56,10 @@ public class logginController {
         Main main = new Main();
         String usernameSent = username.getText().toString();
         String passwordSent = password.getText().toString();
-        String passwordInDatabase = UtilisateurDAO.getInstance().getPasswordWithEmail(usernameSent);
+        String passwordInDatabase = UtilisateurDAO.getInstance().getWithEmail("mot_de_passe", usernameSent);
         if (isPasswordCorrect(passwordSent, passwordInDatabase)) {
             errorLogin.setText("Authentification réussie !");
+            main.nextScene("accueil-view.fxml");
         } else {
             errorLogin.setText("Identifiant/Mot de passe incorrect !");
         }

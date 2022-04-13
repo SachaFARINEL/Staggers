@@ -8,6 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 
+import static utils.Utils.hashPass;
+
 public class UtilisateurDAO extends DAO<Utilisateur> {
 
 
@@ -25,6 +27,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     private static final String MOT_DE_PASSE = "mot_de_passe";
     private static final String EST_ADMIN = "est_admin";
     private static final String ROLE = "role";
+    private static final String QUESTION_SECRETE = "question_secrete";
 
     private static UtilisateurDAO instance = null;
 
@@ -45,8 +48,8 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         boolean success = true;
         try {
             String requete = "INSERT INTO " + TABLE + " (" + PROMO + "," + NOM + "," + PRENOM + "," + DATE_NAISSANCE + "," + EMAIL + "," + NUM_TEL + "," +
-                    "" + ADMIS_STAGE + "," + SEXE + "," + MOT_DE_PASSE + "," + EST_ADMIN + "," + ROLE + ") " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "" + ADMIS_STAGE + "," + SEXE + "," + MOT_DE_PASSE + "," + EST_ADMIN + "," + ROLE + "," + QUESTION_SECRETE + ") " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
             // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
             pst.setInt(1, obj.getPromo());
@@ -57,9 +60,11 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
             pst.setString(8, obj.getSexe());
-            pst.setString(9, Utils.hashPass(obj.getMot_de_passe()));
+            pst.setString(9, hashPass(obj.getMot_de_passe()));
             pst.setBoolean(10, obj.isEst_admin());
             pst.setString(11, obj.getRole());
+            pst.setString(12, obj.getQuestion_secrete());
+
             // on exécute la mise à jour
             pst.executeUpdate();
             //Récupérer la clé qui a été générée et la pousser dans l'objet initial
@@ -97,7 +102,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         boolean success = true;
         int id = obj.getId();
         try {
-            String requete = "UPDATE " + TABLE + " SET " + PROMO + " = ?, " + NOM + " = ?, " + PRENOM + " = ? , " + DATE_NAISSANCE + " = ?, " + EMAIL + " = ?, " + NUM_TEL + " = ?, " + ADMIS_STAGE + " = ?, " + SEXE + " = ?,  " + MOT_DE_PASSE + " = ?, " + EST_ADMIN + " = ?, " + ROLE + " = ? WHERE " + CLE_PRIMAIRE + " = ?";
+            String requete = "UPDATE " + TABLE + " SET " + PROMO + " = ?, " + NOM + " = ?, " + PRENOM + " = ? , " + DATE_NAISSANCE + " = ?, " + EMAIL + " = ?, " + NUM_TEL + " = ?, " + ADMIS_STAGE + " = ?, " + SEXE + " = ?,  " + MOT_DE_PASSE + " = ?, " + EST_ADMIN + " = ?, " + ROLE + " = ?, " + QUESTION_SECRETE + " = ? WHERE " + CLE_PRIMAIRE + " = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
             pst.setInt(1, obj.getPromo());
             pst.setString(2, obj.getNom());
@@ -110,7 +115,8 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setString(9, obj.getMot_de_passe());
             pst.setBoolean(10, obj.isEst_admin());
             pst.setString(11, obj.getRole());
-            pst.setInt(12, id);
+            pst.setString(12, obj.getQuestion_secrete());
+            pst.setInt(13, id);
             pst.executeUpdate();
             donnees.put(id, obj);
         } catch (SQLException e) {
@@ -143,7 +149,8 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 String mot_de_passe = rs.getString(MOT_DE_PASSE);
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
-                utilisateur = new Utilisateur(id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role);
+                String question_secrete = rs.getString(QUESTION_SECRETE);
+                utilisateur = new Utilisateur(id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
                 donnees.put(id, utilisateur);
 
             } catch (SQLException e) {
@@ -153,7 +160,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return utilisateur;
     }
 
-    public String getPasswordWithEmail(String mail) {
+    /* public String getPasswordWithEmail(String mail) {
         String mdpUser = null;
             System.out.println("Recherche dans la BD");
             try {
@@ -170,6 +177,38 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             }
         return mdpUser;
     }
+
+     */
+
+    public String getWithEmail(String recherche,  String mail) {
+        String reponseRequete = null;
+        System.out.println("Recherche dans la BD");
+        try {
+            String requete = "SELECT " + recherche + " FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
+            ResultSet rs = Connexion.executeQuery(requete);
+            rs.next();
+            reponseRequete = rs.getString(recherche);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reponseRequete;
+    }
+
+    public boolean updatePassword(String newMotDePasse, String email) {
+            boolean success = true;
+            try {
+                String requete = "UPDATE " + TABLE + " SET " + MOT_DE_PASSE + " = ?" + " WHERE " + EMAIL + " = ?";
+                PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+                pst.setString(1, hashPass(newMotDePasse));
+                pst.setString(2, email);
+                pst.executeUpdate();
+            } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        return success;
+    }
+
 
 
 }
