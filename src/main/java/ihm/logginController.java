@@ -48,7 +48,7 @@ public class logginController {
     @FXML
     void sendInscription(MouseEvent event) throws IOException {
         Main main = new Main();
-        main.afficherInscription("inscription-view.fxml");
+        main.nextScene("inscription-view.fxml");
     }
 
     private void checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {

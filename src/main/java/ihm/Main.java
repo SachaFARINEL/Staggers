@@ -18,13 +18,13 @@ public class Main extends Application {
         stg = stage;
         stage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("loggin-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1024, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1064, 600);
         stage.setTitle("Connexion");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void afficherInscription (String fxml) throws IOException {
+    public void nextScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         stg.getScene().setRoot(pane);
     }

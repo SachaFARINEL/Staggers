@@ -36,6 +36,15 @@
                   <Image url="@../img/User%2007a.png" />
                </image>
             </ImageView>
+            <AnchorPane fx:id="retourLoggin" layoutX="68.0" layoutY="20.0" onMouseClicked="#sendLoggin" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;">
+               <children>
+                  <ImageView fx:id="retourLogginArrow" fitHeight="25.0" fitWidth="100.0" layoutX="16.0" layoutY="9.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../img/Arrow%2012.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="282.0" layoutY="101.0" prefHeight="499.0" prefWidth="483.0">

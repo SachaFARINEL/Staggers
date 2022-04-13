@@ -10,23 +10,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.logginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.logginController">
    <bottom>
       <AnchorPane prefHeight="231.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <ImageView fitHeight="89.0" fitWidth="1024.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="142.0">
+         <ImageView fitHeight="119.0" fitWidth="1064.0" layoutX="44.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="144.0">
             <Image url="@../img/Vectors.png" />
          </ImageView>
-         <Button fx:id="connexion" alignment="CENTER" layoutX="397.0" layoutY="87.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Connexion" textAlignment="CENTER">
+         <Button fx:id="connexion" alignment="CENTER" layoutX="417.0" layoutY="87.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Connexion" textAlignment="CENTER">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>
          </Button>
-         <Label fx:id="createAccount" layoutX="452.0" layoutY="34.0" onMouseClicked="#sendInscription" style="-fx-cursor: hand;" text="Créer un compte" textFill="#224957">
+         <Label fx:id="createAccount" layoutX="472.0" layoutY="34.0" onMouseClicked="#sendInscription" style="-fx-cursor: hand;" text="Créer un compte" textFill="#224957">
             <font>
                <Font name="Roboto Condensed Bold" size="18.0" />
             </font>
          </Label>
-         <Label fx:id="forgotPassword" layoutX="452.0" onMouseClicked="#sendForgotPassword" style="-fx-cursor: hand;" text="Mot de passe oublié ?" textFill="#224957">
+         <Label fx:id="forgotPassword" layoutX="472.0" onMouseClicked="#sendForgotPassword" style="-fx-cursor: hand;" text="Mot de passe oublié ?" textFill="#224957">
             <font>
                <Font name="Roboto Condensed" size="14.0" />
             </font>
@@ -35,15 +35,15 @@
    </bottom>
    <top>
       <AnchorPane prefHeight="156.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-         <ImageView fitHeight="137.0" fitWidth="219.0" layoutX="403.0" layoutY="14.0">
+         <ImageView fitHeight="137.0" fitWidth="219.0" layoutX="412.0" layoutY="10.0">
             <Image url="@../img/Logo.png" />
          </ImageView>
-         <Label layoutX="396.0" layoutY="21.0" prefWidth="271.0" text="Staggers" textFill="#224957">
+         <Label layoutX="417.0" layoutY="39.0" text="Staggers" textFill="#224957">
             <font>
                <Font name="Roboto Condensed Bold" size="64.0" />
             </font>
          </Label>
-         <Label layoutX="392.0" layoutY="99.0" text="Des offres à votre portée" textFill="#224957">
+         <Label layoutX="412.0" layoutY="112.0" text="Des offres à votre portée" textFill="#224957">
             <font>
                <Font name="Roboto Condensed Bold" size="24.0" />
             </font>
@@ -53,12 +53,12 @@
    <center>
       <AnchorPane prefHeight="150.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <Label fx:id="errorLogin" layoutX="400.0" layoutY="22.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" />
-         <TextField fx:id="username" alignment="CENTER" layoutX="397.0" layoutY="55.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+         <TextField fx:id="username" alignment="CENTER" layoutX="417.0" layoutY="56.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>
          </TextField>
-         <PasswordField fx:id="password" alignment="CENTER" layoutX="397.0" layoutY="124.0" prefHeight="40.0" prefWidth="230.0" promptText="Mot de passe" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+         <PasswordField fx:id="password" alignment="CENTER" layoutX="417.0" layoutY="126.0" prefHeight="40.0" prefWidth="230.0" promptText="Mot de passe" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>
