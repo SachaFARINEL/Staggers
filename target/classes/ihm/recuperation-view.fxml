@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.recuperationController">
+   <bottom>
+      <AnchorPane prefHeight="239.0" prefWidth="1064.0" BorderPane.alignment="CENTER">
+         <ImageView fitHeight="119.0" fitWidth="1064.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-2.0">
+            <Image url="@../img/Vectors.png" />
+         </ImageView>
+         <Button fx:id="valider" alignment="CENTER" layoutX="417.0" layoutY="87.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Valider" textAlignment="CENTER">
+            <font>
+               <Font name="Roboto Condensed" size="18.0" />
+            </font>
+         </Button>
+         <TextField fx:id="newPassword" alignment="CENTER" layoutX="417.0" layoutY="20.0" prefHeight="40.0" prefWidth="230.0" promptText="Nouveau mot de passe" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+            <font>
+               <Font name="Roboto Condensed" size="18.0" />
+            </font>
+         </TextField>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <AnchorPane prefHeight="156.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <ImageView fitHeight="137.0" fitWidth="219.0" layoutX="412.0" layoutY="10.0">
+            <Image url="@../img/Logo.png" />
+         </ImageView>
+         <Label layoutX="417.0" layoutY="39.0" text="Staggers" textFill="#224957">
+            <font>
+               <Font name="Roboto Condensed Bold" size="64.0" />
+            </font>
+         </Label>
+         <Label layoutX="412.0" layoutY="112.0" text="Des offres à votre portée" textFill="#224957">
+            <font>
+               <Font name="Roboto Condensed Bold" size="24.0" />
+            </font>
+         </Label>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="1064.0" BorderPane.alignment="CENTER">
+         <TextField fx:id="identifiant" alignment="CENTER" layoutX="417.0" layoutY="56.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+            <font>
+               <Font name="Roboto Condensed" size="18.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="reponse" alignment="CENTER" layoutX="417.0" layoutY="151.0" prefHeight="40.0" prefWidth="230.0" promptText="Votre réponse" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+            <font>
+               <Font name="Roboto Condensed" size="18.0" />
+            </font>
+         </TextField>
+         <Label fx:id="question" alignment="CENTER" layoutY="113.0" prefHeight="17.0" prefWidth="642.0" text="Quel est le nom de votre premier animal de compagnie ?" textFill="#224957" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+         <Label fx:id="errorLogin" alignment="CENTER" layoutX="533.0" layoutY="14.0" prefHeight="17.0" prefWidth="13.0" textFill="RED" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+      </AnchorPane>
+   </center>
+</BorderPane>

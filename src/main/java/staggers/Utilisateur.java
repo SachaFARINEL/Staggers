@@ -17,10 +17,11 @@ public class Utilisateur {
     private String mot_de_passe;
     private boolean est_admin;
     private String role;
+    private String question_secrete;
 
 
     public Utilisateur(int id, int promo, String nom, String prenom, Date date_naissance, String email, String num_tel,
-                       boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role) {
+                       boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role, String question_secrete) {
         this.id = id;
         this.promo = promo;
         this.nom = nom;
@@ -33,6 +34,7 @@ public class Utilisateur {
         this.mot_de_passe = mot_de_passe;
         this.est_admin = est_admin;
         this.role = role;
+        this.question_secrete = question_secrete;
     }
 
     public int getId() {
@@ -131,6 +133,14 @@ public class Utilisateur {
         this.role = role;
     }
 
+    public String getQuestion_secrete() {
+        return question_secrete;
+    }
+
+    public void setQuestion_secrete(String question_secrete) {
+        this.question_secrete = question_secrete;
+    }
+
     @Override
     public String toString() {
         return "Utilisateur{" +
@@ -146,6 +156,7 @@ public class Utilisateur {
                 ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", est_admin=" + est_admin +
                 ", role='" + role + '\'' +
+                ", question_secrete='" + question_secrete + '\'' +
                 '}';
     }
 }
