@@ -56,7 +56,7 @@
             <font>
                <Font size="14.0" />
             </font></Label>
-         <TextField fx:id="username" alignment="CENTER" layoutX="417.0" layoutY="56.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+         <TextField fx:id="username" alignment="CENTER" layoutX="417.0" layoutY="56.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>

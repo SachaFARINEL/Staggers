@@ -12,15 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.sql.SQLException;
+
 
 import static utils.Utils.isPasswordCorrect;
 
 public class logginController {
+
 
     @FXML
     private Button connexion;
@@ -58,7 +58,6 @@ public class logginController {
             checkLogin();
         }
     }
-
 
     @FXML
     void sendInscription(MouseEvent event) throws IOException {

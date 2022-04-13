@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class inscriptionController implements Initializable {
 
 
-    private final String[] arraySexe = {"M", "Mme", "Autre"};
+    private final String[] arraySexe = {"Monsieur", "Madame", "Autre"};
 
     @FXML
     private ChoiceBox<String> sexe;
