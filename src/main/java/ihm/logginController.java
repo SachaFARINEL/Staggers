@@ -7,7 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -19,7 +21,13 @@ public class logginController {
     private Button connexion;
 
     @FXML
+    private Label createAccount;
+
+    @FXML
     private Label errorLogin;
+
+    @FXML
+    private Label forgotPassword;
 
     @FXML
     private PasswordField password;
@@ -28,22 +36,30 @@ public class logginController {
     private TextField username;
 
     @FXML
-    void sendForm(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    void sendForgotPassword(MouseEvent event) {
+
+    }
+
+    @FXML
+    void sendForm(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         checkLogin();
     }
 
-    private void getPassword() {
-
-
+    @FXML
+    void sendInscription(MouseEvent event) throws IOException {
+        Main main = new Main();
+        main.afficherInscription("inscription-view.fxml");
     }
 
-    private void checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException {
+    private void checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         Main main = new Main();
         String usernameSent = username.getText().toString();
         String passwordSent = password.getText().toString();
         String passwordInDatabase = UtilisateurDAO.getInstance().getPasswordWithEmail(usernameSent);
-        if (isPasswordCorrect(passwordSent,passwordInDatabase)) {
-            errorLogin.setText("Success !");
+        if (isPasswordCorrect(passwordSent, passwordInDatabase)) {
+            errorLogin.setText("Authentification réussie !");
+        } else {
+            errorLogin.setText("Identifiant/Mot de passe incorrect !");
         }
 
     }

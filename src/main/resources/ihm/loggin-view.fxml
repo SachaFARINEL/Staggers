@@ -16,17 +16,17 @@
          <ImageView fitHeight="89.0" fitWidth="1024.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="142.0">
             <Image url="@../img/Vectors.png" />
          </ImageView>
-         <Button fx:id="connexion" alignment="CENTER" layoutX="397.0" layoutY="87.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #20DF7F;" text="Connexion" textAlignment="CENTER">
+         <Button fx:id="connexion" alignment="CENTER" layoutX="397.0" layoutY="87.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Connexion" textAlignment="CENTER">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>
          </Button>
-         <Label layoutX="452.0" layoutY="34.0" text="Créer un compte" textFill="#224957">
+         <Label fx:id="createAccount" layoutX="452.0" layoutY="34.0" onMouseClicked="#sendInscription" style="-fx-cursor: hand;" text="Créer un compte" textFill="#224957">
             <font>
                <Font name="Roboto Condensed Bold" size="18.0" />
             </font>
          </Label>
-         <Label layoutX="452.0" text="Mot de passe oublié ?" textFill="#224957">
+         <Label fx:id="forgotPassword" layoutX="452.0" onMouseClicked="#sendForgotPassword" style="-fx-cursor: hand;" text="Mot de passe oublié ?" textFill="#224957">
             <font>
                <Font name="Roboto Condensed" size="14.0" />
             </font>
