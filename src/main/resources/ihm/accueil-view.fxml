@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="-3.0" prefHeight="106.0" prefWidth="1072.0" style="-fx-background-color: #496874;">
+         <children>
+            <ImageView fitHeight="86.0" fitWidth="200.0" layoutX="420.0" layoutY="11.0">
+               <image>
+                  <Image url="@../img/Logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="fil_actualite" layoutX="14.0" layoutY="31.0" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="annuaire" layoutX="245.0" layoutY="31.0" style="-fx-cursor: hand;" text="Annuaire" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="conseils" layoutX="687.0" layoutY="31.0" style="-fx-cursor: hand;" text="Conseils" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="profil" layoutX="882.0" layoutY="30.0" style="-fx-cursor: hand;" text="Mon profil" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="514.0" prefHeight="86.0" prefWidth="1064.0">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="1064.0" layoutY="14.0">
+               <image>
+                  <Image url="@../img/Vectors.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
