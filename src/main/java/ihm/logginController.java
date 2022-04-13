@@ -51,7 +51,7 @@ public class logginController {
         checkLogin();
     }
 
-/*
+
     @FXML
     public void buttonPressed(KeyEvent e) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         if (e.getCode().toString().equals("ENTER")) {
@@ -59,7 +59,6 @@ public class logginController {
         }
     }
 
- */
 
     @FXML
     void sendInscription(MouseEvent event) throws IOException {
