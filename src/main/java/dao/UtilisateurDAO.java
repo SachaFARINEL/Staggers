@@ -1,7 +1,6 @@
 package dao;
 
 import staggers.Utilisateur;
-import utils.Utils;
 
 
 import java.security.NoSuchAlgorithmException;
@@ -194,7 +193,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return reponseRequete;
     }
 
-    public boolean updatePassword(String newMotDePasse, String email) {
+    public void updatePassword (String newMotDePasse, String email) {
             boolean success = true;
             try {
                 String requete = "UPDATE " + TABLE + " SET " + MOT_DE_PASSE + " = ?" + " WHERE " + EMAIL + " = ?";
@@ -206,7 +205,6 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 success = false;
                 e.printStackTrace();
             }
-        return success;
     }
 
 
