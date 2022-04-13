@@ -42,6 +42,15 @@
                <Font name="Roboto Condensed Bold" size="24.0" />
             </font>
          </Label>
+         <AnchorPane layoutX="916.0" layoutY="54.0" onMouseClicked="#sendLoggin" prefHeight="50.0" prefWidth="53.0" style="-fx-cursor: hand;">
+            <children>
+               <ImageView fx:id="retourLogginArrow" fitHeight="45.0" fitWidth="45.0" layoutX="4.0" layoutY="5.0" rotate="195.0">
+                  <image>
+                     <Image url="@../../../../../../../Téléchargements/Group%201.png" />
+                  </image>
+               </ImageView>
+            </children>
+         </AnchorPane>
       </AnchorPane>
    </top>
    <center>

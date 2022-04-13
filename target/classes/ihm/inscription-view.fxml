@@ -36,11 +36,11 @@
                   <Image url="@../img/User%2007a.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="retourLoggin" layoutX="68.0" layoutY="20.0" onMouseClicked="#sendLoggin" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;">
+            <AnchorPane fx:id="retourLoggin" layoutX="53.0" layoutY="5.0" onMouseClicked="#sendLoggin" prefHeight="51.0" prefWidth="57.0" style="-fx-cursor: hand;">
                <children>
-                  <ImageView fx:id="retourLogginArrow" fitHeight="25.0" fitWidth="100.0" layoutX="16.0" layoutY="9.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="retourLogginArrow" fitHeight="45.0" fitWidth="45.0" layoutX="7.0" layoutY="8.0" rotate="195.0">
                      <image>
-                        <Image url="@../img/Arrow%2012.png" />
+                        <Image url="@../../../../../../../Téléchargements/Group%201.png" />
                      </image>
                   </ImageView>
                </children>

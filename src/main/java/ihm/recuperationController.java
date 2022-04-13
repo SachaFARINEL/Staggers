@@ -8,13 +8,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
 
-import static utils.Utils.isPasswordCorrect;
-
 public class recuperationController {
+
+    @FXML
+    void sendLoggin(MouseEvent event) throws IOException {
+        Main main = new Main();
+        main.nextScene("loggin-view.fxml");
+    }
 
     @FXML
     private Label errorLogin;
