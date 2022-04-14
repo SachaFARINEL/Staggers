@@ -37,7 +37,7 @@ public class AdresseDAO extends DAO<Adresse> {
         try {
             String requete = "INSERT INTO " + TABLE + " (" + NUMERO + "," + TYPE_DE_VOIE + "," + ADRESSE + "," + VILLE + "," + CODE_POSTAL + "," +
                     "" + ID_UTILISATEUR + "," + ID_ENTREPRISE + ") " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
             // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
             pst.setInt(1, obj.getNumero());
@@ -45,8 +45,8 @@ public class AdresseDAO extends DAO<Adresse> {
             pst.setString(3, obj.getAdresse());
             pst.setString(4, obj.getVille());
             pst.setInt(5, obj.getCode_postal());
-            pst.setInt(8, obj.getId_utilisateur());
-            pst.setInt(9, obj.getId_entreprise());
+            pst.setLong(6, obj.getId_utilisateur());
+            pst.setObject(7, obj.getId_entreprise());
 
             // on exécute la mise à jour
             pst.executeUpdate();
@@ -93,8 +93,8 @@ public class AdresseDAO extends DAO<Adresse> {
             pst.setString(3, obj.getAdresse());
             pst.setString(4, obj.getVille());
             pst.setInt(5, obj.getCode_postal());
-            pst.setInt(6, obj.getId_utilisateur());
-            pst.setInt(7, obj.getId_entreprise());
+            pst.setLong(6, obj.getId_utilisateur());
+            pst.setLong(7, obj.getId_entreprise());
             pst.setInt(8, id);
             pst.executeUpdate();
             donnees.put(id, obj);
@@ -122,8 +122,8 @@ public class AdresseDAO extends DAO<Adresse> {
                 String adresses = rs.getString(ADRESSE);
                 String ville = rs.getString(VILLE);
                 int code_postal = rs.getInt(CODE_POSTAL);
-                int id_utilisateur = rs.getInt(ID_UTILISATEUR);
-                int id_entreprise = rs.getInt(ID_ENTREPRISE);
+                Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
+                Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
 
                 adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
                 donnees.put(id, adresse);

@@ -1,5 +1,6 @@
 package ihm;
 
+import dao.AdresseDAO;
 import dao.UtilisateurDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import staggers.Adresse;
 import staggers.Utilisateur;
 
 import java.io.IOException;
@@ -133,36 +135,74 @@ public class inscriptionController implements Initializable {
 
         if (sexeSent.isEmpty()) {
             isNotEmpty = false;
-        } else if (nomSent.isEmpty()) {
+        }
+        if (nomSent.isEmpty()) {
             wrongNom.setText("Nom obligatoire");
             isNotEmpty = false;
-        } else if (prenomSent.isEmpty()) {
+        } else {
+            wrongNom.setText("");
+        }
+        if (prenomSent.isEmpty()) {
             wrongPrenom.setText("Prenom obligatoire");
             isNotEmpty = false;
-        } else if (dateNaissanceSent.isEmpty()) {
+        } else {
+            wrongPassword.setText("");
+
+        }
+        if (dateNaissanceSent.isEmpty()) {
             wrongDate.setText("Date de naissance obligatoire");
             isNotEmpty = false;
-        } else if (emailSent.isEmpty()) {
+        } else {
+            wrongDate.setText("");
+
+        }
+        if (emailSent.isEmpty()) {
             wrongEmail.setText("Email obligatoire");
             isNotEmpty = false;
-        } else if (telephoneSent.isEmpty()) {
+        } else {
+            wrongEmail.setText("");
+
+        }
+        if (telephoneSent.isEmpty()) {
             wrongTelephone.setText("Téléphone obligatoire");
             isNotEmpty = false;
-        } else if (passwordSent.isEmpty() || confirmationPasswordSent.isEmpty()) {
+        } else {
+            wrongTelephone.setText("");
+
+        }
+        if (passwordSent.isEmpty() || confirmationPasswordSent.isEmpty()) {
             wrongPassword.setText("Mot de passe obligatoire");
             isNotEmpty = false;
-        } else if (numeroSent.isEmpty() || voieSent.isEmpty() || adresseSent.isEmpty()) {
+        } else {
+            wrongPassword.setText("");
+
+        }
+        if (numeroSent.isEmpty() || voieSent.isEmpty() || adresseSent.isEmpty()) {
             wrongAdresse.setText("Adresse complète obligatoire");
             isNotEmpty = false;
-        } else if (codePostalSent.isEmpty()) {
+        } else {
+            wrongAdresse.setText("");
+
+        }
+        if (codePostalSent.isEmpty()) {
             wrongCodePostal.setText("Code postal obligatoire");
             isNotEmpty = false;
-        } else if (villeSent.isEmpty()) {
+        } else {
+            wrongCodePostal.setText(null);
+
+        }
+        if (villeSent.isEmpty()) {
             wrongVille.setText("Ville obligatoire");
             isNotEmpty = false;
-        } else if (reponseSent.isEmpty()) {
+        } else {
+            wrongVille.setText("");
+
+        }
+        if (reponseSent.isEmpty()) {
             wrongReponse.setText("Réponse à la question obligatoire");
             isNotEmpty = false;
+        } else {
+            wrongReponse.setText("");
         }
         return isNotEmpty;
     }
@@ -170,8 +210,8 @@ public class inscriptionController implements Initializable {
 
     @FXML
     void sendInscription(ActionEvent event) throws ParseException {
-        String sexeSent = sexe.getValue().toString();
-        String nomSent = nom.getText().toString();
+        String sexeSent = sexe.getValue();
+        String nomSent = nom.getText();
         String prenomSent = prenom.getText().toString();
         String dateNaissanceSent = dateNaissance.getValue().toString();
         //Date dateNaissanceSentToDate = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(dateNaissanceSent);
@@ -179,17 +219,20 @@ public class inscriptionController implements Initializable {
         String emailSent = email.getText().toString();
         String telephoneSent = telephone.getText().toString();
         String passwordSent = password.getText().toString();
-        String confirmationPasswordSent = passwordConfirmation.getText().toString();
-        String numeroSent = numero.getText().toString();
+        int numeroSent = Integer.parseInt(numero.getText().toString());
         String voieSent = typeDeVoie.getText().toString();
         String adresseSent = adresse.getText().toString();
-        String codePostalSent = codePostal.getText().toString();
+        int codePostalSent = Integer.parseInt(codePostal.getText().toString());
         String villeSent = ville.getText().toString();
         String reponseSent = reponseQuestion.getText().toString();
         if (checkIfEmpty()) {
-            Utilisateur user = new Utilisateur(1, 21 / 22, nomSent, prenomSent, null, emailSent, telephoneSent,
+            Utilisateur user = new Utilisateur(21 / 22, nomSent, prenomSent, null, emailSent, telephoneSent,
                     false, sexeSent, passwordSent, false, "stagiaire", reponseSent);
             UtilisateurDAO.getInstance().create(user);
+
+            Integer idUser = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
+            Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idUser, null);
+            AdresseDAO.getInstance().create(userAdresse);
         }
     }
 
