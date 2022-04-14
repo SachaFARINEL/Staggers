@@ -1,7 +1,6 @@
 package dao;
 
 import staggers.Utilisateur;
-import utils.Utils;
 
 
 import java.security.NoSuchAlgorithmException;
@@ -160,26 +159,6 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return utilisateur;
     }
 
-    /* public String getPasswordWithEmail(String mail) {
-        String mdpUser = null;
-            System.out.println("Recherche dans la BD");
-            try {
-                String requete = "SELECT " + MOT_DE_PASSE + " FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
-
-                ResultSet rs = Connexion.executeQuery(requete);
-                rs.next();
-
-
-                mdpUser = rs.getString(MOT_DE_PASSE);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        return mdpUser;
-    }
-
-     */
-
     public String getWithEmail(String recherche,  String mail) {
         String reponseRequete = null;
         System.out.println("Recherche dans la BD");
@@ -194,7 +173,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return reponseRequete;
     }
 
-    public boolean updatePassword(String newMotDePasse, String email) {
+    public void updatePassword (String newMotDePasse, String email) {
             boolean success = true;
             try {
                 String requete = "UPDATE " + TABLE + " SET " + MOT_DE_PASSE + " = ?" + " WHERE " + EMAIL + " = ?";
@@ -206,7 +185,6 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 success = false;
                 e.printStackTrace();
             }
-        return success;
     }
 
 

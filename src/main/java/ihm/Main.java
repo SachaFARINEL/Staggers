@@ -19,7 +19,8 @@ public class Main extends Application {
         stage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("loggin-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1064, 600);
-        stage.setTitle("Connexion");
+        scene.getStylesheets().add("styles.css");
+        stage.setTitle("Staggers");
         stage.setScene(scene);
         stage.show();
     }

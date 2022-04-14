@@ -52,13 +52,16 @@
    </top>
    <center>
       <AnchorPane prefHeight="150.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-         <Label fx:id="errorLogin" layoutX="400.0" layoutY="22.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" />
-         <TextField fx:id="username" alignment="CENTER" layoutX="417.0" layoutY="56.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+         <Label fx:id="errorLogin" alignment="CENTER" layoutX="400.0" layoutY="22.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="username" alignment="CENTER" layoutX="417.0" layoutY="56.0" prefHeight="40.0" prefWidth="230.0" promptText="Identifiant">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>
          </TextField>
-         <PasswordField fx:id="password" alignment="CENTER" layoutX="417.0" layoutY="126.0" prefHeight="40.0" prefWidth="230.0" promptText="Mot de passe" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
+         <PasswordField fx:id="password" alignment="CENTER" layoutX="417.0" layoutY="126.0" prefHeight="40.0" prefWidth="230.0" promptText="Mot de passe" onKeyPressed="#buttonPressed" style="-fx-background-color: #224957; -fx-text-inner-color: #FFFFFF;">
             <font>
                <Font name="Roboto Condensed" size="18.0" />
             </font>
