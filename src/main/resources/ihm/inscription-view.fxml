@@ -61,13 +61,38 @@
                   <Font name="Roboto Condensed" size="18.0" />
                </font>
             </Button>
-            <DatePicker layoutX="26.0" layoutY="145.0" prefHeight="29.0" prefWidth="149.0" />
-            <ChoiceBox fx:id="promo" layoutX="198.0" layoutY="145.0" prefHeight="23.0" prefWidth="263.0" value="Session : 21/22" />
-            <AnchorPane layoutX="-1.0" layoutY="86.0" prefHeight="25.0" prefWidth="483.0">
+            <AnchorPane layoutX="-1.0" layoutY="86.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <children>
-                  <ChoiceBox fx:id="sexe" layoutX="6.0" layoutY="2.0" prefHeight="23.0" prefWidth="115.0" value="Monsieur" AnchorPane.topAnchor="2.0" />
-                  <TextField fx:id="nom" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="150.0" promptText="Nom" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="prenom" layoutX="333.0" prefHeight="29.0" prefWidth="150.0" promptText="Prenom" AnchorPane.topAnchor="3.0" />
+                  <ChoiceBox fx:id="sexe" layoutX="6.0" layoutY="2.0" prefHeight="25.0" prefWidth="230.0" style="-fx-cursor: hand;" value="Monsieur" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.0" />
+                  <TextField fx:id="nom" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Nom" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-2.0" layoutY="145.0" prefHeight="32.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+               <children>
+                  <DatePicker prefHeight="29.0" prefWidth="230.0" promptText="Date de naissance" style="-fx-cursor: hand;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="248.0" />
+                  <TextField fx:id="prenom" layoutX="190.0" prefHeight="29.0" prefWidth="230.0" promptText="Prenom" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-2.0" layoutY="194.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+               <children>
+                  <TextField fx:id="email" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse e-mail" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="telephone" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="N° de téléphone" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-2.0" layoutY="247.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+               <children>
+                  <TextField fx:id="password" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Mot de passe" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="passwordConfirmation" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Confirmation du mot de passe" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="325.0" prefHeight="70.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <TextField fx:id="password1" layoutX="86.0" layoutY="42.0" prefHeight="29.0" prefWidth="312.0" promptText="Réponse à la question" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="42.0" />
+                  <Label alignment="CENTER" layoutX="228.0" layoutY="14.0" text="Quel est le nom de votre premier animal de compagnie ?" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

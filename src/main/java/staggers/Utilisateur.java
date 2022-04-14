@@ -23,6 +23,7 @@ public class Utilisateur {
     public Utilisateur(int id, int promo, String nom, String prenom, Date date_naissance, String email, String num_tel,
                        boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role, String question_secrete) {
         this.id = id;
+        // Gérer le numéro de promo autrement, avec la date d'inscription.
         this.promo = promo;
         this.nom = nom;
         this.prenom = prenom;
