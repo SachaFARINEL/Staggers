@@ -46,7 +46,7 @@
             <children>
                <ImageView fx:id="retourLogginArrow" fitHeight="45.0" fitWidth="45.0" layoutX="4.0" layoutY="5.0" rotate="195.0">
                   <image>
-                     <Image url="@../../../../../../../Téléchargements/Group%201.png" />
+                     <Image url="@../img/Group%201.png" />
                   </image>
                </ImageView>
             </children>
