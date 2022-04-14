@@ -27,8 +27,7 @@ public class RunProject {
 
         /* Adresse */
 
-        Adresse testAdresse = new Adresse(0, 7, "place", "Marianne", "Plescop", 56890, "Morbihan",
-                "France", 1, 1);
+        Adresse testAdresse = new Adresse(0, 7, "place", "Marianne", "Plescop", 56890,  1, 1);
         //System.out.println(AdresseDAO.getInstance().create(testAdresse));
         //System.out.println(AdresseDAO.getInstance().update(testAdresse));
         //System.out.println(AdresseDAO.getInstance().read(2));
