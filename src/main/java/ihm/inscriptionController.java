@@ -1,5 +1,6 @@
 package ihm;
 
+import dao.UtilisateurDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,12 +8,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import staggers.Utilisateur;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 public class inscriptionController implements Initializable {
+
 
     private final String[] arraySexe = {"Monsieur", "Madame", "Autre"};
 
@@ -33,9 +39,6 @@ public class inscriptionController implements Initializable {
 
     @FXML
     private TextField password;
-
-    @FXML
-    private TextField password1;
 
     @FXML
     private DatePicker dateNaissance;
@@ -101,13 +104,17 @@ public class inscriptionController implements Initializable {
     @FXML
     private Button valider;
 
+    public inscriptionController() throws ParseException {
+    }
+
     @FXML
     void retourLoggin(MouseEvent event) throws IOException {
         Main main = new Main();
         main.nextScene("loggin-view.fxml");
     }
 
-    private boolean checkIfEmpty() {
+
+    private boolean checkIfEmpty() throws ParseException {
         boolean isNotEmpty = true;
         String sexeSent = sexe.getValue().toString();
         String nomSent = nom.getText().toString();
@@ -160,10 +167,32 @@ public class inscriptionController implements Initializable {
         return isNotEmpty;
     }
 
+
     @FXML
-    void sendInscription(ActionEvent event) {
-        checkIfEmpty();
+    void sendInscription(ActionEvent event) throws ParseException {
+        String sexeSent = sexe.getValue().toString();
+        String nomSent = nom.getText().toString();
+        String prenomSent = prenom.getText().toString();
+        String dateNaissanceSent = dateNaissance.getValue().toString();
+        //Date dateNaissanceSentToDate = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(dateNaissanceSent);
+
+        String emailSent = email.getText().toString();
+        String telephoneSent = telephone.getText().toString();
+        String passwordSent = password.getText().toString();
+        String confirmationPasswordSent = passwordConfirmation.getText().toString();
+        String numeroSent = numero.getText().toString();
+        String voieSent = typeDeVoie.getText().toString();
+        String adresseSent = adresse.getText().toString();
+        String codePostalSent = codePostal.getText().toString();
+        String villeSent = ville.getText().toString();
+        String reponseSent = reponseQuestion.getText().toString();
+        if (checkIfEmpty()) {
+            Utilisateur user = new Utilisateur(1, 21 / 22, nomSent, prenomSent, null, emailSent, telephoneSent,
+                    false, sexeSent, passwordSent, false, "stagiaire", reponseSent);
+            UtilisateurDAO.getInstance().create(user);
+        }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
