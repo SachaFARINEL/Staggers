@@ -149,7 +149,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
                 String question_secrete = rs.getString(QUESTION_SECRETE);
-                utilisateur = new Utilisateur(id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+                utilisateur = new Utilisateur(promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
                 donnees.put(id, utilisateur);
 
             } catch (SQLException e) {

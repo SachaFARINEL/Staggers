@@ -38,7 +38,7 @@
                   <Image url="@../img/User%2007a.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="retourLoggin" layoutX="53.0" layoutY="5.0" onMouseClicked="#sendLoggin" prefHeight="51.0" prefWidth="57.0" style="-fx-cursor: hand;">
+            <AnchorPane fx:id="retourLoggin" layoutX="53.0" layoutY="5.0" onMouseClicked="#retourLoggin" prefHeight="51.0" prefWidth="57.0" style="-fx-cursor: hand;">
                <children>
                   <ImageView fx:id="retourLogginArrow" fitHeight="45.0" fitWidth="45.0" layoutX="7.0" layoutY="8.0" rotate="195.0">
                      <image>
@@ -49,27 +49,75 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="282.0" layoutY="101.0" prefHeight="499.0" prefWidth="483.0">
+      <AnchorPane layoutX="282.0" layoutY="85.0" prefHeight="529.0" prefWidth="483.0">
          <children>
             <Label alignment="CENTER" layoutX="-7.0" prefHeight="44.0" prefWidth="498.0" text="Inscription" textAlignment="CENTER" textFill="#224957" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Roboto Condensed Bold" size="48.0" />
                </font>
             </Label>
-            <Button layoutX="176.0" layoutY="446.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #20DF7F;" text="Valider">
+            <Button fx:id="valider" layoutX="176.0" layoutY="456.0" mnemonicParsing="false" onAction="#sendInscription" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Valider">
                <font>
                   <Font name="Roboto Condensed" size="18.0" />
                </font>
             </Button>
-            <DatePicker layoutX="26.0" layoutY="145.0" prefHeight="29.0" prefWidth="149.0" />
-            <ChoiceBox fx:id="promo" layoutX="198.0" layoutY="145.0" prefHeight="23.0" prefWidth="263.0" value="Session : 21/22" />
-            <AnchorPane layoutX="-1.0" layoutY="86.0" prefHeight="25.0" prefWidth="483.0">
+            <AnchorPane layoutY="74.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
                <children>
-                  <ChoiceBox fx:id="sexe" layoutX="6.0" layoutY="2.0" prefHeight="23.0" prefWidth="115.0" value="Monsieur" AnchorPane.topAnchor="2.0" />
-                  <TextField fx:id="nom" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="150.0" promptText="Nom" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="prenom" layoutX="333.0" prefHeight="29.0" prefWidth="150.0" promptText="Prenom" AnchorPane.topAnchor="3.0" />
+                  <ChoiceBox fx:id="sexe" layoutX="6.0" layoutY="2.0" prefHeight="25.0" prefWidth="230.0" style="-fx-cursor: hand;" value="Monsieur" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.0" />
+                  <TextField fx:id="nom" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Nom" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
                </children>
             </AnchorPane>
+            <AnchorPane layoutX="-2.0" layoutY="145.0" prefHeight="32.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+               <children>
+                  <DatePicker fx:id="dateNaissance" prefHeight="29.0" prefWidth="230.0" promptText="Date de naissance" style="-fx-cursor: hand;" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="5.0" />
+                  <TextField fx:id="prenom" layoutX="190.0" prefHeight="29.0" prefWidth="230.0" promptText="Prenom" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="248.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="172.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
+               <children>
+                  <TextField fx:id="email" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse e-mail" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="telephone" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="N° de téléphone" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="223.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="225.0">
+               <children>
+                  <TextField fx:id="password" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Mot de passe" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="passwordConfirmation" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Confirmation du mot de passe" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="1.0" layoutY="363.0" prefHeight="70.0" prefWidth="483.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+               <children>
+                  <TextField fx:id="reponseQuestion" layoutX="86.0" layoutY="42.0" prefHeight="29.0" prefWidth="312.0" promptText="Réponse à la question" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="42.0" />
+                  <Label alignment="CENTER" layoutX="228.0" layoutY="14.0" text="Quel est le nom de votre premier animal de compagnie ?" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="293.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.topAnchor="275.0">
+               <children>
+                  <TextField fx:id="numero" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="83.0" promptText="N° de voie" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="typeDeVoie" layoutX="97.0" layoutY="1.0" prefHeight="29.0" prefWidth="137.0" promptText="Type de voie" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="adresse" layoutX="252.0" layoutY="4.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="331.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.topAnchor="325.0">
+               <children>
+                  <TextField fx:id="codePostal" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Code postal" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="ville" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Ville" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+               </children>
+            </AnchorPane>
+            <Label fx:id="wrongDate" alignment="CENTER" layoutX="99.0" layoutY="107.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" />
+            <Label fx:id="wrongEmail" alignment="CENTER" layoutX="4.0" layoutY="166.0" prefWidth="230.0" textFill="RED" AnchorPane.topAnchor="160.0" />
+            <Label fx:id="wrongTelephone" alignment="CENTER" layoutX="243.0" layoutY="166.0" prefWidth="230.0" textFill="RED" AnchorPane.topAnchor="160.0" />
+            <Label fx:id="wrongPassword" alignment="CENTER" layoutX="120.0" layoutY="217.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="210.0" />
+            <Label fx:id="wrongCodePostal" alignment="CENTER" layoutX="5.0" layoutY="307.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="310.0" />
+            <Label fx:id="wrongNom" alignment="CENTER" layoutX="248.0" layoutY="58.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="60.0" />
+            <Label fx:id="wrongPrenom" alignment="CENTER" layoutX="253.0" layoutY="107.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" />
+            <Label fx:id="wrongAdresse" alignment="CENTER" layoutX="129.0" layoutY="256.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="260.0" />
+            <Label fx:id="wrongVille" alignment="CENTER" layoutX="248.0" layoutY="310.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" />
+            <Label fx:id="wrongReponse" alignment="CENTER" layoutX="89.0" layoutY="434.0" prefHeight="17.0" prefWidth="312.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>
