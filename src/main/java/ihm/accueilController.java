@@ -3,6 +3,7 @@ package ihm;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 public class accueilController  {
 
     @FXML
-    private Label deco;
+    private Button deco;
 
     @FXML
     private Label fil_actualite;
