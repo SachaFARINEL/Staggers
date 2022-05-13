@@ -3,6 +3,8 @@ package dao;
 import staggers.Entreprise;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class EntrepriseDAO extends DAO<Entreprise> {
@@ -62,24 +64,48 @@ public class EntrepriseDAO extends DAO<Entreprise> {
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
 
-                String nom = rs.getString(NOM);
-                String email = rs.getString(EMAIL);
-                String num_tel = rs.getString(NUM_TEL);
-                String nom_contact = rs.getString(NOM_CONTACT);
-                String email_contact = rs.getString(EMAIL_CONTACT);
-                String num_contact = rs.getString(NUM_CONTACT);
-                int nb_salarie = rs.getInt(NB_SALARIE);
-                int nb_stagiaire_max = rs.getInt(NB_STAGIAIRE_MAX);
-                String description = rs.getString(DESCRIPTION);
-                boolean est_favoris = rs.getBoolean(EST_FAVORIS);
-
-                entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
+                entreprise = getEntreprise(rs);
                 donnees.put(id, entreprise);
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+        return entreprise;
+    }
+
+    public List<Entreprise> readAll() {
+        Entreprise entreprise = null;
+        List<Entreprise> listeEntreprise =null;
+        try {
+            String requete = "SELECT * FROM " + TABLE;
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeEntreprise = new ArrayList<Entreprise>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                entreprise = getEntreprise(rs);
+                listeEntreprise.add(entreprise);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeEntreprise;
+    }
+
+    private Entreprise getEntreprise(ResultSet rs) throws SQLException {
+        Entreprise entreprise;
+        String nom = rs.getString(NOM);
+        String email = rs.getString(EMAIL);
+        String num_tel = rs.getString(NUM_TEL);
+        String nom_contact = rs.getString(NOM_CONTACT);
+        String email_contact = rs.getString(EMAIL_CONTACT);
+        String num_contact = rs.getString(NUM_CONTACT);
+        int nb_salarie = rs.getInt(NB_SALARIE);
+        int nb_stagiaire_max = rs.getInt(NB_STAGIAIRE_MAX);
+        String description = rs.getString(DESCRIPTION);
+        boolean est_favoris = rs.getBoolean(EST_FAVORIS);
+        entreprise = new Entreprise(nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
         return entreprise;
     }
 }

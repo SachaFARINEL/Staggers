@@ -19,8 +19,7 @@ import java.util.Date;
 
 
 
-        public Entreprise(int id, String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire_max, String description, boolean est_favoris) {
-            this.id = id;
+        public Entreprise(String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire_max, String description, boolean est_favoris) {
             this.nom = nom;
             this.email = email;
             this.num_tel = num_tel;
