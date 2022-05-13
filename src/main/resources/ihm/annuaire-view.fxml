@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.accueilController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.accueilController">
     <children>
         <AnchorPane prefHeight="106.0" prefWidth="1064.0" style="-fx-background-color: #496874;">
             <children>
@@ -22,9 +23,9 @@
                         <Font size="29.0" />
                     </font>
                 </Label>
-                <Label fx:id="annuaire" layoutX="245.0" layoutY="31.0" onMouseClicked="#versAnnuaire" style="-fx-cursor: hand;" text="Annuaire" textFill="WHITE">
+                <Label fx:id="annuaire" layoutX="245.0" layoutY="31.0" onMouseClicked="#versAnnuaire" style="-fx-cursor: hand;" text="Annuaire" textFill="#0d0404">
                     <font>
-                        <Font size="29.0" />
+                        <Font name="System Bold" size="29.0" />
                     </font>
                 </Label>
                 <Label fx:id="conseils" layoutX="668.0" layoutY="31.0" onMouseClicked="#versConseil" style="-fx-cursor: hand;" text="Conseils" textFill="WHITE">
@@ -49,5 +50,18 @@
                 </ImageView>
             </children>
         </AnchorPane>
+      <Pane layoutX="177.0" layoutY="147.0" prefHeight="123.0" prefWidth="691.0">
+         <children>
+            <Button fx:id="details" layoutX="320.0" layoutY="88.0" mnemonicParsing="false" onAction="#detailsEntreprise" text="Détails" />
+            <Label fx:id="nomEntreprise" layoutX="274.0" layoutY="45.0" prefHeight="34.0" prefWidth="143.0" text="Entreprise" />
+            <Label fx:id="villeEntreprise" layoutX="511.0" layoutY="45.0" prefHeight="34.0" prefWidth="143.0" text="Ville" />
+            <ImageView fx:id="img_ent_default" layoutX="42.0" layoutY="9.0">
+               <image>
+                  <Image url="@../img/entreprise_default.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Slider layoutX="1043.0" layoutY="110.0" orientation="VERTICAL" prefHeight="421.0" prefWidth="14.0" />
     </children>
 </Pane>
