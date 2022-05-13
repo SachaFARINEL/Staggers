@@ -50,7 +50,7 @@
                 </ImageView>
             </children>
         </AnchorPane>
-      <Pane layoutX="177.0" layoutY="147.0" prefHeight="123.0" prefWidth="691.0">
+      <Pane fx:id="tableauEnt" layoutX="177.0" layoutY="147.0" prefHeight="123.0" prefWidth="691.0">
          <children>
             <Label fx:id="nomEntreprise" layoutX="199.0" layoutY="22.0" prefHeight="79.0" prefWidth="254.0" text="Entreprise" textAlignment="JUSTIFY">
                <font>

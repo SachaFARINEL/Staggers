@@ -3,19 +3,13 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 public class annuaireControleur {
 
-    @FXML
-    private Label deco;
-
-    @FXML
-    private Label fil_actualite;
-
-    @FXML
-    private Label profil;
 
     @FXML
     private Label annuaire;
@@ -24,35 +18,52 @@ public class annuaireControleur {
     private Label conseils;
 
     @FXML
+    private Label deco;
+
+    @FXML
     private Button details;
 
     @FXML
-    void versActualite(MouseEvent event) throws IOException {
-        Main main = new Main();
-        main.nextScene("actualite-view.fxml");
-    }
+    private Label fil_actualite;
+
     @FXML
-    void versAnnuaire(MouseEvent event) throws IOException {
-        Main main = new Main();
-        main.nextScene("annuaire-view.fxml");
-    }
+    private ImageView img_ent_default;
+
     @FXML
-    void versConseil(MouseEvent event) throws IOException {
-        Main main = new Main();
-        main.nextScene("conseil-view.fxml");
-    }
+    private Label nomEntreprise;
+
     @FXML
-    void versProfil(MouseEvent event) throws IOException {
-        Main main = new Main();
-        main.nextScene("profil-view.fxml");
-    }
+    private Label profil;
+
     @FXML
-    void deconnexion(MouseEvent event) throws IOException {
-        Main main = new Main();
-        main.nextScene("loggin-view.fxml");
+    private Pane tableauEnt;
+
+    @FXML
+    private Label villeEntreprise;
+
+    @FXML
+    void deconnexion(MouseEvent event) {
+
     }
 
+    @FXML
+    void versActualite(MouseEvent event) {
 
+    }
 
+    @FXML
+    void versAnnuaire(MouseEvent event) {
+
+    }
+
+    @FXML
+    void versConseil(MouseEvent event) {
+
+    }
+
+    @FXML
+    void versProfil(MouseEvent event) {
+
+    }
 
 }
