@@ -12,7 +12,7 @@
    <children>
       <AnchorPane prefHeight="81.0" prefWidth="1064.0" style="-fx-background-color: #4C6B77;">
          <children>
-            <Label fx:id="fil_actualite" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
+            <Label fx:id="fil_actualite" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="#20df7f">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="deco" layoutX="934.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Se déconnecter" textFill="WHITE">
+            <Button fx:id="deco" layoutX="934.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#deconnexion" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Se déconnecter" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>

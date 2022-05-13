@@ -12,62 +12,61 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.accueilController">
     <children>
-        <AnchorPane prefHeight="106.0" prefWidth="1064.0" style="-fx-background-color: #496874;">
-            <children>
-                <ImageView fitHeight="86.0" fitWidth="200.0" layoutX="420.0" layoutY="11.0">
-                    <image>
-                        <Image url="@../img/Logo.png" />
-                    </image>
-                </ImageView>
-                <Label fx:id="fil_actualite" layoutX="14.0" layoutY="31.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
-                    <font>
-                        <Font size="29.0" />
-                    </font>
-                </Label>
-                <Label fx:id="annuaire" layoutX="245.0" layoutY="31.0" onMouseClicked="#versAnnuaire" style="-fx-cursor: hand;" text="Annuaire" textFill="#0d0404">
-                    <font>
-                        <Font name="System Bold" size="29.0" />
-                    </font>
-                </Label>
-                <Label fx:id="conseils" layoutX="668.0" layoutY="31.0" onMouseClicked="#versConseil" style="-fx-cursor: hand;" text="Conseils" textFill="WHITE">
-                    <font>
-                        <Font size="29.0" />
-                    </font>
-                </Label>
-                <Label fx:id="profil" layoutX="815.0" layoutY="33.0" onMouseClicked="#versProfil" style="-fx-cursor: hand;" text="Mon profil" textFill="WHITE">
-                    <font>
-                        <Font size="28.0" />
-                    </font>
-                </Label>
-                <Label fx:id="deco" layoutX="988.0" layoutY="14.0" onMouseClicked="#deconnexion" style="-fx-cursor: hand;" text="Déconnexion" textFill="WHITE" />
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutY="514.0" prefHeight="86.0" prefWidth="1064.0">
-            <children>
-                <ImageView fitHeight="73.0" fitWidth="1064.0" layoutY="14.0">
-                    <image>
-                        <Image url="@../img/Vectors.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
-      <Slider layoutX="1043.0" layoutY="124.0" orientation="VERTICAL" prefHeight="435.0" prefWidth="14.0" rotate="180.0" />
-      <ListView layoutX="211.0" layoutY="158.0" prefHeight="200.0" prefWidth="627.0" />
-
-      <ImageView fx:id="img_ent_default" layoutX="242.0" layoutY="194.0">
-         <image>
-            <Image url="@../img/entreprise_default.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="nomEntreprise" layoutX="398.0" layoutY="208.0" prefHeight="79.0" prefWidth="254.0" text="Entreprise" textAlignment="JUSTIFY">
-         <font>
-            <Font size="49.0" />
-         </font>
-      </Label>
-      <Label fx:id="villeEntreprise" layoutX="652.0" layoutY="191.0" prefHeight="35.0" prefWidth="169.0" text="Ville" textAlignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>           <Button fx:id="details" layoutX="701.0" layoutY="317.0" mnemonicParsing="false" text="Détails" />
+      <Slider layoutX="1043.0" layoutY="91.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="14.0" rotate="180.0" />
+      <AnchorPane prefHeight="81.0" prefWidth="1064.0" style="-fx-background-color: #4C6B77;">
+         <children>
+            <Label fx:id="fil_actualite" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="conseils" layoutX="612.0" layoutY="26.0" onMouseClicked="#versConseil" style="-fx-cursor: hand;" text="Conseils" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="profil" layoutX="736.0" layoutY="26.0" onMouseClicked="#versProfil" style="-fx-cursor: hand;" text="Mon profil" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="93.0" layoutX="469.0" layoutY="13.0">
+               <image>
+                  <Image url="@../img/Logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="annuaire" layoutX="337.0" layoutY="26.0" onMouseClicked="#versAnnuaire" style="-fx-cursor: hand;" text="Annuaire" textFill="#20df7f">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="deco" layoutX="934.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#deconnexion" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Se déconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="241.0" layoutY="139.0" prefHeight="186.0" prefWidth="583.0">
+         <children>
+            <ListView prefHeight="186.0" prefWidth="583.0" />
+      
+                  <ImageView fx:id="img_ent_default" fitHeight="136.0" fitWidth="155.0" layoutX="24.0" layoutY="25.0">
+               <image>
+                  <Image url="@../img/entreprise_default.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nomEntreprise" alignment="CENTER" layoutX="266.0" layoutY="33.0" prefHeight="79.0" prefWidth="254.0" text="Entreprise" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="49.0" />
+               </font>
+            </Label>
+            <Label fx:id="villeEntreprise" alignment="CENTER" layoutX="309.0" layoutY="119.0" prefHeight="35.0" prefWidth="169.0" text="Ville" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>           <Button fx:id="details" layoutX="508.0" layoutY="150.0" mnemonicParsing="false" text="Détails" />
+         </children>
+      </AnchorPane>
     </children>
 </Pane>
