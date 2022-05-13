@@ -154,21 +154,18 @@ public class inscriptionController implements Initializable {
             wrongPassword.setText("");
 
         }
-        /*
-        if (dateNaissanceSent.isEmpty()) {
+        if (dateNaissanceSent == null) {
             wrongDate.setText("Date de naissance obligatoire");
             isNotEmpty = false;
         } else {
             wrongDate.setText("");
 
         }
-         */
         if (emailSent.isEmpty()) {
             wrongEmail.setText("Email obligatoire");
             isNotEmpty = false;
         } else {
             wrongEmail.setText("");
-
         }
         if (telephoneSent.isEmpty()) {
             wrongTelephone.setText("Téléphone obligatoire");
@@ -214,10 +211,21 @@ public class inscriptionController implements Initializable {
         return isNotEmpty;
     }
 
+    private boolean isMotDePasseConfirmed() {
+        boolean mdpConfirmed = true;
+        if (!password.getText().toString().equals(passwordConfirmation.getText().toString())) {
+            mdpConfirmed = false;
+            wrongPassword.setText("Les mots de passe ne sont pas identiques");
+        } else {
+            wrongPassword.setText("");
+        }
+        return mdpConfirmed;
+    }
+
 
     @FXML
     void sendInscription(ActionEvent event) throws ParseException {
-        if (checkIfEmpty()) {
+        if (isMotDePasseConfirmed() && checkIfEmpty()) {
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText();
             String prenomSent = prenom.getText().toString();

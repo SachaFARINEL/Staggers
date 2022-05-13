@@ -90,9 +90,11 @@ public class logginController {
                                 }
                             }));
                     timeline.play();
+                } else {
+                    errorLogin.setText("Mot de passe incorrect");
                 }
             } else {
-                errorLogin.setText("Identifiant ou mot de passe incorrect");
+                errorLogin.setText("Identifiant incorrect");
             }
         }
     }
