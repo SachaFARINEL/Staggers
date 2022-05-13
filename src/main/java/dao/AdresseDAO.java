@@ -40,11 +40,11 @@ public class AdresseDAO extends DAO<Adresse> {
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
             // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
-            pst.setInt(1, obj.getNumero());
+            pst.setString(1, obj.getNumero());
             pst.setString(2, obj.getType_de_voie());
             pst.setString(3, obj.getAdresse());
             pst.setString(4, obj.getVille());
-            pst.setInt(5, obj.getCode_postal());
+            pst.setString(5, obj.getCode_postal());
             pst.setLong(6, obj.getId_utilisateur());
             pst.setObject(7, obj.getId_entreprise());
 
@@ -88,11 +88,11 @@ public class AdresseDAO extends DAO<Adresse> {
             String requete = "UPDATE " + TABLE + " SET " + NUMERO + " = ?, " + TYPE_DE_VOIE + " = ?, " + ADRESSE + " = ? , " + VILLE + " = ?, " + CODE_POSTAL + " = ?, " + ID_UTILISATEUR + " = ?,  " + ID_ENTREPRISE + " = ? " +
                     "WHERE " + CLE_PRIMAIRE + " = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
-            pst.setInt(1, obj.getNumero());
+            pst.setString(1, obj.getNumero());
             pst.setString(2, obj.getType_de_voie());
             pst.setString(3, obj.getAdresse());
             pst.setString(4, obj.getVille());
-            pst.setInt(5, obj.getCode_postal());
+            pst.setString(5, obj.getCode_postal());
             pst.setLong(6, obj.getId_utilisateur());
             pst.setLong(7, obj.getId_entreprise());
             pst.setInt(8, id);
@@ -117,11 +117,11 @@ public class AdresseDAO extends DAO<Adresse> {
                 String requete = "SELECT * FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = " + id;
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
-                int numero = rs.getInt(NUMERO);
+                String numero = rs.getString(NUMERO);
                 String type_de_voie = rs.getString(TYPE_DE_VOIE);
                 String adresses = rs.getString(ADRESSE);
                 String ville = rs.getString(VILLE);
-                int code_postal = rs.getInt(CODE_POSTAL);
+                String code_postal = rs.getString(CODE_POSTAL);
                 Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
                 Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
 

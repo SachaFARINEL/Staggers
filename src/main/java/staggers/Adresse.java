@@ -3,15 +3,15 @@ package staggers;
 public class Adresse {
     //test
     private int id;
-    private int numero;
+    private String numero;
     private String type_de_voie;
     private String adresse;
     private String ville;
-    private int code_postal;
+    private String code_postal;
     private Integer id_utilisateur;
     private Integer id_entreprise;
 
-    public Adresse(int id, int numero, String type_de_voie, String adresse, String ville, int code_postal,
+    public Adresse(int id, String numero, String type_de_voie, String adresse, String ville, String code_postal,
                    Integer id_utilisateur, Integer id_entreprise) {
         this.id = id;
         this.numero = numero;
@@ -31,11 +31,11 @@ public class Adresse {
         this.id = id;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -63,11 +63,11 @@ public class Adresse {
         this.ville = ville;
     }
 
-    public int getCode_postal() {
+    public String getCode_postal() {
         return code_postal;
     }
 
-    public void setCode_postal(int code_postal) {
+    public void setCode_postal(String code_postal) {
         this.code_postal = code_postal;
     }
 

@@ -2,6 +2,8 @@ package ihm;
 
 import dao.AdresseDAO;
 import dao.UtilisateurDAO;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Utilisateur;
 
@@ -123,12 +126,12 @@ public class inscriptionController implements Initializable {
         String sexeSent = sexe.getValue().toString();
         String nomSent = nom.getText().toString();
         String prenomSent = prenom.getText().toString();
-        String dateNaissanceSent = dateNaissance.getValue().toString();
-        String emailSent = email.getText().toString();
+        LocalDate dateNaissanceSent = dateNaissance.getValue();
+        String emailSent = email.getText();
         String telephoneSent = telephone.getText().toString();
-        String passwordSent = password.getText().toString();
+        String passwordSent = password.getText();
         String confirmationPasswordSent = passwordConfirmation.getText().toString();
-        String numeroSent = numero.getText().toString();
+        String numeroSent = numero.getText();
         String voieSent = typeDeVoie.getText().toString();
         String adresseSent = adresse.getText().toString();
         String codePostalSent = codePostal.getText().toString();
@@ -151,6 +154,7 @@ public class inscriptionController implements Initializable {
             wrongPassword.setText("");
 
         }
+        /*
         if (dateNaissanceSent.isEmpty()) {
             wrongDate.setText("Date de naissance obligatoire");
             isNotEmpty = false;
@@ -158,6 +162,7 @@ public class inscriptionController implements Initializable {
             wrongDate.setText("");
 
         }
+         */
         if (emailSent.isEmpty()) {
             wrongEmail.setText("Email obligatoire");
             isNotEmpty = false;
@@ -212,22 +217,23 @@ public class inscriptionController implements Initializable {
 
     @FXML
     void sendInscription(ActionEvent event) throws ParseException {
-        String sexeSent = sexe.getValue();
-        String nomSent = nom.getText();
-        String prenomSent = prenom.getText().toString();
-        LocalDate dateNaissanceSent = dateNaissance.getValue();
-        LocalDateTime dateNaiss = dateNaissanceSent.atTime(0,0);
+        if (checkIfEmpty()) {
+            String sexeSent = sexe.getValue();
+            String nomSent = nom.getText();
+            String prenomSent = prenom.getText().toString();
+            LocalDate dateNaissanceSent = dateNaissance.getValue();
+            LocalDateTime dateNaiss = dateNaissanceSent.atTime(0,0);
 
-        String emailSent = email.getText().toString();
-        String telephoneSent = telephone.getText().toString();
-        String passwordSent = password.getText().toString();
-        int numeroSent = Integer.parseInt(numero.getText().toString());
-        String voieSent = typeDeVoie.getText().toString();
-        String adresseSent = adresse.getText().toString();
-        int codePostalSent = Integer.parseInt(codePostal.getText().toString());
-        String villeSent = ville.getText().toString();
-        String reponseSent = reponseQuestion.getText().toString();
-        //if (checkIfEmpty()) {
+            String emailSent = email.getText().toString();
+            String telephoneSent = telephone.getText().toString();
+            String passwordSent = password.getText().toString();
+            String numeroSent = numero.getText().toString();
+            String voieSent = typeDeVoie.getText().toString();
+            String adresseSent = adresse.getText().toString();
+            String codePostalSent = codePostal.getText().toString();
+            String villeSent = ville.getText().toString();
+            String reponseSent = reponseQuestion.getText().toString();
+
             Utilisateur user = new Utilisateur(21 / 22, nomSent, prenomSent, dateNaiss, emailSent, telephoneSent,
                     false, sexeSent, passwordSent, false, "stagiaire", reponseSent);
             UtilisateurDAO.getInstance().create(user);
@@ -235,7 +241,18 @@ public class inscriptionController implements Initializable {
             Integer idUser = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
             Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idUser, null);
             AdresseDAO.getInstance().create(userAdresse);
-        //}
+
+            try {
+                Main main = new Main();
+                main.nextScene("loggin-view.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+        }
+
+
+
+
     }
 
 
