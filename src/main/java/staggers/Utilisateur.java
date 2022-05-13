@@ -1,7 +1,6 @@
 package staggers;
 
-
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class Utilisateur {
 
@@ -9,7 +8,7 @@ public class Utilisateur {
     private int promo;
     private String nom;
     private String prenom;
-    private Date date_naissance;
+    private LocalDateTime date_naissance;
     private String email;
     private String num_tel;
     private boolean admis_stage;
@@ -20,7 +19,7 @@ public class Utilisateur {
     private String question_secrete;
 
 
-    public Utilisateur(int promo, String nom, String prenom, Date date_naissance, String email, String num_tel,
+    public Utilisateur(int promo, String nom, String prenom, LocalDateTime date_naissance, String email, String num_tel,
                        boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role, String question_secrete) {
         // Gérer le numéro de promo autrement, avec la date d'inscription.
         this.promo = promo;
@@ -69,11 +68,11 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public Date getDate_naissance() {
+    public LocalDateTime getDate_naissance() {
         return date_naissance;
     }
 
-    public void setDate_naissance(Date date_naissance) {
+    public void setDate_naissance(LocalDateTime date_naissance) {
         this.date_naissance = date_naissance;
     }
 

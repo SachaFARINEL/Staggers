@@ -17,6 +17,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class inscriptionController implements Initializable {
@@ -213,8 +215,8 @@ public class inscriptionController implements Initializable {
         String sexeSent = sexe.getValue();
         String nomSent = nom.getText();
         String prenomSent = prenom.getText().toString();
-        String dateNaissanceSent = dateNaissance.getValue().toString();
-        //Date dateNaissanceSentToDate = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(dateNaissanceSent);
+        LocalDate dateNaissanceSent = dateNaissance.getValue();
+        LocalDateTime dateNaiss = dateNaissanceSent.atTime(0,0);
 
         String emailSent = email.getText().toString();
         String telephoneSent = telephone.getText().toString();
@@ -225,15 +227,15 @@ public class inscriptionController implements Initializable {
         int codePostalSent = Integer.parseInt(codePostal.getText().toString());
         String villeSent = ville.getText().toString();
         String reponseSent = reponseQuestion.getText().toString();
-        if (checkIfEmpty()) {
-            Utilisateur user = new Utilisateur(21 / 22, nomSent, prenomSent, null, emailSent, telephoneSent,
+        //if (checkIfEmpty()) {
+            Utilisateur user = new Utilisateur(21 / 22, nomSent, prenomSent, dateNaiss, emailSent, telephoneSent,
                     false, sexeSent, passwordSent, false, "stagiaire", reponseSent);
             UtilisateurDAO.getInstance().create(user);
 
             Integer idUser = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
             Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idUser, null);
             AdresseDAO.getInstance().create(userAdresse);
-        }
+        //}
     }
 
 

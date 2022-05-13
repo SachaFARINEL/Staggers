@@ -6,6 +6,7 @@ import staggers.Utilisateur;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
+import java.time.LocalDateTime;
 
 import static utils.Utils.hashPass;
 
@@ -54,7 +55,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setInt(1, obj.getPromo());
             pst.setString(2, obj.getNom());
             pst.setString(3, obj.getPrenom());
-            pst.setDate(4, obj.getDate_naissance());
+            pst.setObject(4, obj.getDate_naissance());
             pst.setString(5, obj.getEmail());
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
@@ -106,7 +107,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setInt(1, obj.getPromo());
             pst.setString(2, obj.getNom());
             pst.setString(3, obj.getPrenom());
-            pst.setDate(4, obj.getDate_naissance());
+            pst.setObject(4, obj.getDate_naissance());
             pst.setString(5, obj.getEmail());
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
@@ -140,7 +141,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 int promo = rs.getInt(PROMO);
                 String nom = rs.getString(NOM);
                 String prenom = rs.getString(PRENOM);
-                Date date_naissance = rs.getDate(DATE_NAISSANCE);
+                LocalDateTime date_naissance = rs.getObject(DATE_NAISSANCE, LocalDateTime.class);
                 String email = rs.getString(EMAIL);
                 String num_tel = rs.getString(NUM_TEL);
                 boolean admis_stage = rs.getBoolean(ADMIS_STAGE);
