@@ -1,17 +1,15 @@
 package ihm;
-import javafx.fxml.FXML;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-
 import java.io.IOException;
-public class annuaireControleur {
 
-
-
+public class annuaireController {
+    Main main = new Main();
     @FXML
     private Label annuaire;
 
@@ -19,7 +17,7 @@ public class annuaireControleur {
     private Label conseils;
 
     @FXML
-    private Label deco;
+    private Button deco;
 
     @FXML
     private Button details;
@@ -40,13 +38,13 @@ public class annuaireControleur {
     private Label villeEntreprise;
 
     @FXML
-    void deconnexion(MouseEvent event) {
-
+    void deconnexion(MouseEvent event) throws IOException {
+        main.nextScene("loggin-view.fxml");
     }
 
     @FXML
-    void versActualite(MouseEvent event) {
-
+    void versActualite(MouseEvent event) throws IOException {
+        main.nextScene("accueil-view.fxml");
     }
 
     @FXML
