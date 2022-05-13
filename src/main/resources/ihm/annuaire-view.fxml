@@ -52,16 +52,22 @@
         </AnchorPane>
       <Pane layoutX="177.0" layoutY="147.0" prefHeight="123.0" prefWidth="691.0">
          <children>
-            <Button fx:id="details" layoutX="320.0" layoutY="88.0" mnemonicParsing="false" onAction="#detailsEntreprise" text="Détails" />
-            <Label fx:id="nomEntreprise" layoutX="274.0" layoutY="45.0" prefHeight="34.0" prefWidth="143.0" text="Entreprise" />
-            <Label fx:id="villeEntreprise" layoutX="511.0" layoutY="45.0" prefHeight="34.0" prefWidth="143.0" text="Ville" />
-            <ImageView fx:id="img_ent_default" layoutX="42.0" layoutY="9.0">
+            <Label fx:id="nomEntreprise" layoutX="199.0" layoutY="22.0" prefHeight="79.0" prefWidth="254.0" text="Entreprise" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="49.0" />
+               </font></Label>
+            <Label fx:id="villeEntreprise" layoutX="495.0" layoutY="14.0" prefHeight="35.0" prefWidth="169.0" text="Ville" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>           <Button fx:id="details" layoutX="541.0" layoutY="69.0" mnemonicParsing="false" text="Détails" />
+
+            <ImageView fx:id="img_ent_default" layoutX="23.0" layoutY="9.0">
                <image>
                   <Image url="@../img/entreprise_default.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Slider layoutX="1043.0" layoutY="110.0" orientation="VERTICAL" prefHeight="421.0" prefWidth="14.0" />
+      <Slider layoutX="1043.0" layoutY="124.0" orientation="VERTICAL" prefHeight="435.0" prefWidth="14.0" rotate="180.0" />
     </children>
 </Pane>
