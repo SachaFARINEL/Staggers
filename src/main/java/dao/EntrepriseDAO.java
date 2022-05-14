@@ -95,6 +95,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
 
     private Entreprise getEntreprise(ResultSet rs) throws SQLException {
         Entreprise entreprise;
+        int id = rs.getInt((CLE_PRIMAIRE));
         String nom = rs.getString(NOM);
         String email = rs.getString(EMAIL);
         String num_tel = rs.getString(NUM_TEL);
@@ -105,7 +106,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         int nb_stagiaire_max = rs.getInt(NB_STAGIAIRE_MAX);
         String description = rs.getString(DESCRIPTION);
         boolean est_favoris = rs.getBoolean(EST_FAVORIS);
-        entreprise = new Entreprise(nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
+        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
         return entreprise;
     }
 }

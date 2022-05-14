@@ -18,7 +18,7 @@ public class Utilisateur {
     private String role;
     private String question_secrete;
 
-
+    //Remettre l'id dans le constructeur
     public Utilisateur(int promo, String nom, String prenom, LocalDateTime date_naissance, String email, String num_tel,
                        boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role, String question_secrete) {
         // Gérer le numéro de promo autrement, avec la date d'inscription.

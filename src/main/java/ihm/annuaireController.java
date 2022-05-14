@@ -1,15 +1,22 @@
 package ihm;
 
+import dao.EntrepriseDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import staggers.Entreprise;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class annuaireController {
     Main main = new Main();
+
     @FXML
     private Label annuaire;
 
@@ -53,7 +60,7 @@ public class annuaireController {
     }
 
     @FXML
-    void versConseil(MouseEvent event) {
+    void versConseil(MouseEvent event) throws IOException {
 
     }
 
@@ -61,5 +68,11 @@ public class annuaireController {
     void versProfil(MouseEvent event) {
 
     }
+
+
+
+
+
+
 
 }
