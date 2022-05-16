@@ -27,7 +27,6 @@ public class EntrepriseDAO extends DAO<Entreprise> {
     private static final String NB_SALARIE = "nb_salarie";
     private static final String NB_STAGIAIRE_MAX = "nb_stagiaire_max";
     private static final String DESCRIPTION = "description";
-    private static final String EST_FAVORIS = "est_favoris";
     private static final String LANGAGE = "langage";
 
 
@@ -49,8 +48,8 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         boolean success = true;
         try {
             String requete = "INSERT INTO " + TABLE + " (" + NOM + "," + EMAIL + "," + NUM_TEL + "," + NOM_CONTACT + "," + EMAIL_CONTACT + "," +
-                    "" + NUM_CONTACT + "," + NB_SALARIE + "," + NB_STAGIAIRE_MAX + "," + DESCRIPTION + "," + EST_FAVORIS + "," + LANGAGE + ") " +
-                    "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "" + NUM_CONTACT + "," + NB_SALARIE + "," + NB_STAGIAIRE_MAX + "," + DESCRIPTION + "," + LANGAGE + ") " +
+                    "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
             // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
             pst.setString(1, obj.getNom());
@@ -62,8 +61,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
             pst.setString(7, obj.getNb_salarie());
             pst.setString(8, obj.getnb_stagiaire_max());
             pst.setString(9, obj.getDescription());
-            pst.setBoolean(10, obj.isEst_favoris());
-            pst.setString(11, obj.getLangage());
+            pst.setString(10, obj.getLangage());
 
             // on exécute la mise à jour
             pst.executeUpdate();
@@ -145,9 +143,8 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         String nb_salarie = rs.getString(NB_SALARIE);
         String nb_stagiaire_max = rs.getString(NB_STAGIAIRE_MAX);
         String description = rs.getString(DESCRIPTION);
-        boolean est_favoris = rs.getBoolean(EST_FAVORIS);
         String langage = rs.getString(LANGAGE);
-        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris, langage);
+        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, langage);
         return entreprise;
     }
     public String getWithEmail(String recherche,  String mail) {

@@ -15,12 +15,11 @@ import java.util.Date;
         private String nb_salarie;
         private String nb_stagiaire_max;
         private String description;
-        private boolean est_favoris;
         private String langage;
 
 
 
-        public Entreprise(int id,String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, boolean est_favoris, String langage) {
+        public Entreprise(int id,String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, String langage) {
             this.id = id;
             this.nom = nom;
             this.email = email;
@@ -30,12 +29,11 @@ import java.util.Date;
             this.num_contact = num_contact;
             this.nb_salarie = nb_salarie;
             this.nb_stagiaire_max = nb_stagiaire_max;
-            this.est_favoris = est_favoris;
             this.description = description;
             this.langage = langage;
         }
 
-        public Entreprise(String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, boolean est_favoris, String langage) {
+        public Entreprise(String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, String langage) {
             this.nom = nom;
             this.email = email;
             this.num_tel = num_tel;
@@ -44,7 +42,6 @@ import java.util.Date;
             this.num_contact = num_contact;
             this.nb_salarie = nb_salarie;
             this.nb_stagiaire_max = nb_stagiaire_max;
-            this.est_favoris = est_favoris;
             this.description = description;
             this.langage = langage;
         }
@@ -121,14 +118,6 @@ import java.util.Date;
             this.nb_stagiaire_max = nb_stagiaire_max;
         }
 
-        public boolean isEst_favoris() {
-            return est_favoris;
-        }
-
-        public void setEst_favoris(boolean est_favoris) {
-            this.est_favoris = est_favoris;
-        }
-
         public String getDescription() {
             return description;
         }
@@ -158,7 +147,6 @@ import java.util.Date;
                     ", nb_salarie=" + nb_salarie +
                     ", nb_stagiaire_max=" + nb_stagiaire_max +
                     ", description='" + description + '\'' +
-                    ", est_favoris=" + est_favoris +
                     ", langage='" + langage + '\'' +
                     '}';
         }
