@@ -189,5 +189,32 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
 
 
+    public Utilisateur getUserWithMail(String mail) {
+        Utilisateur utilisateur = null;
+            try {
+                String requete = "SELECT * FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
+                ResultSet rs = Connexion.executeQuery(requete);
+                rs.next();
+                int promo = rs.getInt(PROMO);
+                String nom = rs.getString(NOM);
+                String prenom = rs.getString(PRENOM);
+                LocalDateTime date_naissance = rs.getObject(DATE_NAISSANCE, LocalDateTime.class);
+                String email = rs.getString(EMAIL);
+                String num_tel = rs.getString(NUM_TEL);
+                boolean admis_stage = rs.getBoolean(ADMIS_STAGE);
+                String sexe = rs.getString(SEXE);
+                String mot_de_passe = rs.getString(MOT_DE_PASSE);
+                boolean est_admin = rs.getBoolean(EST_ADMIN);
+                String role = rs.getString(ROLE);
+                String question_secrete = rs.getString(QUESTION_SECRETE);
+                utilisateur = new Utilisateur(promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return utilisateur;
+    }
+
+
 
 }

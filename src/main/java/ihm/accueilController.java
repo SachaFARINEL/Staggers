@@ -43,7 +43,6 @@ public class accueilController {
 
     @FXML
     void versConseil(MouseEvent event) {
-
     }
 
     @FXML

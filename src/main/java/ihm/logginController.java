@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import staggers.Utilisateur;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -19,7 +21,7 @@ import java.security.spec.InvalidKeySpecException;
 
 import static utils.Utils.isPasswordCorrect;
 
-public class logginController {
+public class logginController extends Main {
 
 
     @FXML
@@ -80,6 +82,7 @@ public class logginController {
                 if (isPasswordCorrect(passwordSent, passwordInDatabase)) {
                     errorLogin.setStyle("-fx-text-fill: #20DF7F;");
                     errorLogin.setText("Authentification réussie !");
+                    connectedUser = UtilisateurDAO.getInstance().getUserWithMail(usernameSent);
                     Timeline timeline = new Timeline(new KeyFrame(
                             Duration.millis(1000),
                             ae -> {

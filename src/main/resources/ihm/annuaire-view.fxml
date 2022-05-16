@@ -54,7 +54,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ListView fx:id="myListView" layoutX="232.0" layoutY="129.0" prefHeight="380.0" prefWidth="600.0" />
+      <ListView fx:id="myListView" layoutX="232.0" layoutY="129.0" onMouseClicked="#handleMouseClick" prefHeight="380.0" prefWidth="600.0" />
       <ImageView fitHeight="262.0" fitWidth="116.0" layoutX="70.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Hotel.png" />

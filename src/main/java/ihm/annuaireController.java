@@ -13,11 +13,12 @@ import staggers.Entreprise;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class annuaireController implements Initializable {
+import static java.lang.Integer.parseInt;
+
+public class annuaireController extends Main implements Initializable  {
 
     Main main = new Main();
 
@@ -43,7 +44,8 @@ public class annuaireController implements Initializable {
     }
 
     @FXML
-    void versActualite(MouseEvent event) {
+    void versActualite(MouseEvent event) throws IOException {
+        main.nextScene("accueil-view.fxml");
 
     }
 
@@ -67,7 +69,18 @@ public class annuaireController implements Initializable {
     @FXML
     private ListView<?> myListView;
 
-    int currentId;
+    public void getEntrepriseIdSelected() {
+        String textSelectedCellule = (String) myListView.getSelectionModel().getSelectedItem();
+        String[] listViewSelectedEntreprise = textSelectedCellule.split(" ");
+        int idSelectedEntreprise =  parseInt(listViewSelectedEntreprise[0]);
+        selectedEntreprise = EntrepriseDAO.getInstance().read(idSelectedEntreprise);
+    }
+
+    public void handleMouseClick(MouseEvent mouseEvent) {
+        getEntrepriseIdSelected();
+        System.out.println(selectedEntreprise.getId());
+    }
+
     List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
 
     private String[] getEntreprise(List<Entreprise> listeEntreprise) {
@@ -77,7 +90,7 @@ public class annuaireController implements Initializable {
         String adresseEntreprise;
         for (Entreprise entreprise : listeEntreprise) {
             adresseEntreprise = (AdresseDAO.readWithId("id_entreprise", entreprise.getId())).getCode_postal() + ", " + (AdresseDAO.readWithId("id_entreprise", entreprise.getId())).getVille();
-            informationsEntreprise = entreprise.getNom() + " - " + adresseEntreprise + " - " + entreprise.getLangage();
+            informationsEntreprise = entreprise.getId() + " - " + entreprise.getNom() + " - " + adresseEntreprise + " - " + entreprise.getLangage();
             nomEntreprise[compteur++] = informationsEntreprise;
         }
         return nomEntreprise;
@@ -89,6 +102,7 @@ public class annuaireController implements Initializable {
 
         maListe.addAll(getEntreprise(listeEntreprise));
     }
+
 
 
 }

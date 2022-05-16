@@ -21,7 +21,7 @@
                <Font size="14.0" />
             </font>
          </Button>
-         <Label fx:id="question" alignment="CENTER" layoutY="-11.0" prefHeight="17.0" prefWidth="642.0" text="Quel est le nom de votre premier animal de compagnie ?" textFill="#224957" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <Label fx:id="question" alignment="CENTER" prefHeight="17.0" prefWidth="642.0" text="Quel est le nom de votre premier animal de compagnie ?" textFill="#224957" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <font>
                <Font name="System Bold Italic" size="16.0" />
             </font></Label>

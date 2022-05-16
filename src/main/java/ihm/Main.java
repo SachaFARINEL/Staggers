@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import staggers.Entreprise;
+import staggers.Utilisateur;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -12,6 +15,9 @@ import java.util.Objects;
 public class Main extends Application {
 
     private static Stage stg;
+    static Entreprise selectedEntreprise;
+    static Utilisateur connectedUser;
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -22,6 +28,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1064, 600);
         scene.getStylesheets().add("styles.css");
         stage.setTitle("Staggers");
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("favico.png")));
         stage.setScene(scene);
         stage.show();
     }
