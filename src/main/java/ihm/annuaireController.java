@@ -70,16 +70,16 @@ public class annuaireController implements Initializable  {
     @FXML
     private ListView<?> myListView;
 
-    public void getEntrepriseIdSelected() {
+    public void getEntrepriseSelected() {
         String textSelectedCellule = (String) myListView.getSelectionModel().getSelectedItem();
         String[] listViewSelectedEntreprise = textSelectedCellule.split(" ");
         int idSelectedEntreprise =  parseInt(listViewSelectedEntreprise[0]);
         selectedEntreprise = EntrepriseDAO.getInstance().read(idSelectedEntreprise);
     }
 
-    public void handleMouseClick(MouseEvent mouseEvent) {
-        getEntrepriseIdSelected();
-        System.out.println(selectedEntreprise.getId());
+    public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
+        getEntrepriseSelected();
+        main.nextScene("ficheEntreprise-view.fxml");
     }
 
     List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();

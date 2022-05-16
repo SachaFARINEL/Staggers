@@ -53,5 +53,10 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <Label fx:id="bienvenue" layoutX="26.0" layoutY="96.0" text="Hey, #">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
