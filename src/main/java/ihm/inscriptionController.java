@@ -1,11 +1,13 @@
 package ihm;
 
 import dao.AdresseDAO;
+import dao.EntrepriseDAO;
 import dao.UtilisateurDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -13,8 +15,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import staggers.Adresse;
+import staggers.Entreprise;
 import staggers.Utilisateur;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -22,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class inscriptionController implements Initializable {
@@ -258,10 +265,9 @@ public class inscriptionController implements Initializable {
             };
         }
 
-
-
-
     }
+
+
 
 
     @Override
