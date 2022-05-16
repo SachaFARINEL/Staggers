@@ -73,7 +73,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
                 obj.setId(rs.getInt(1));
             }
             donnees.put(obj.getId(), obj);
-        } catch (SQLException    e) {
+        } catch (SQLException e) {
             success = false;
             e.printStackTrace();
         }

@@ -35,6 +35,20 @@ import java.util.Date;
             this.langage = langage;
         }
 
+        public Entreprise(String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, boolean est_favoris, String langage) {
+            this.nom = nom;
+            this.email = email;
+            this.num_tel = num_tel;
+            this.nom_contact = nom_contact;
+            this.email_contact = email_contact;
+            this.num_contact = num_contact;
+            this.nb_salarie = nb_salarie;
+            this.nb_stagiaire_max = nb_stagiaire_max;
+            this.est_favoris = est_favoris;
+            this.description = description;
+            this.langage = langage;
+        }
+
         public int getId() {
             return id;
         }
