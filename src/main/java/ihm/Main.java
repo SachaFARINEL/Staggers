@@ -15,8 +15,7 @@ import java.util.Objects;
 public class Main extends Application {
 
     private static Stage stg;
-    static Entreprise selectedEntreprise;
-    static Utilisateur connectedUser;
+
 
 
     @Override

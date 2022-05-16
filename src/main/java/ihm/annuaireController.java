@@ -18,8 +18,9 @@ import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
 
-public class annuaireController extends Main implements Initializable  {
+public class annuaireController implements Initializable  {
 
+    static Entreprise selectedEntreprise;
     Main main = new Main();
 
     @FXML

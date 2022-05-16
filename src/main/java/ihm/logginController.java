@@ -21,9 +21,9 @@ import java.security.spec.InvalidKeySpecException;
 
 import static utils.Utils.isPasswordCorrect;
 
-public class logginController extends Main {
+public class logginController {
 
-
+    static Utilisateur connectedUser;
     @FXML
     private Button connexion;
 
