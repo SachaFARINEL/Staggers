@@ -1,10 +1,16 @@
 package dao;
 
 import staggers.Entreprise;
+
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import static utils.Utils.hashPass;
 
 
 public class EntrepriseDAO extends DAO<Entreprise> {
@@ -40,7 +46,40 @@ public class EntrepriseDAO extends DAO<Entreprise> {
 
     @Override
     public boolean create(Entreprise obj) {
-        return false;
+        boolean success = true;
+        try {
+            String requete = "INSERT INTO " + TABLE + " (" + CLE_PRIMAIRE + "," + NOM + "," + EMAIL + "," + NUM_TEL + "," + NOM_CONTACT + "," + EMAIL_CONTACT + "," +
+                    "" + NUM_CONTACT + "," + NB_SALARIE + "," + NB_STAGIAIRE_MAX + "," + DESCRIPTION + "," + EST_FAVORIS + "," + LANGAGE + ") " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+            // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
+            pst.setInt(1, obj.getId());
+            pst.setString(2, obj.getNom());
+            pst.setString(3, obj.getEmail());
+            pst.setString(4, obj.getNum_tel());
+            pst.setString(5, obj.getnom_contact());
+            pst.setString(6, obj.getEmail_contact());
+            pst.setString(7, obj.getNum_contact());
+            pst.setString(8, obj.getNb_salarie());
+            pst.setString(9, obj.getnb_stagiaire_max());
+            pst.setString(10, obj.getDescription());
+            pst.setBoolean(11, obj.isEst_favoris());
+            pst.setString(12, obj.getLangage());
+
+            // on exécute la mise à jour
+            pst.executeUpdate();
+            //Récupérer la clé qui a été générée et la pousser dans l'objet initial
+            ResultSet rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                obj.setId(rs.getInt(1));
+            }
+            donnees.put(obj.getId(), obj);
+        } catch (SQLException    e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
+
     }
 
     @Override
