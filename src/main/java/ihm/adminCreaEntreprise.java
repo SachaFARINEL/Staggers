@@ -1,5 +1,6 @@
 package ihm;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -153,8 +154,13 @@ public class adminCreaEntreprise implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nbSalarie.getItems().addAll(arrayNbSalarie);
-        nbStagiaire.getItems().addAll(arrayNbStagiaire);
+
+        ObservableList<String> selectNbSalarie = (ObservableList<String>) nbSalarie.getItems();
+        ObservableList<String> selectNbStagiaire = (ObservableList<String>) nbStagiaire.getItems();
+
+        selectNbSalarie.addAll(arrayNbSalarie);
+        selectNbStagiaire.addAll(arrayNbStagiaire);
+
     }
 
 }

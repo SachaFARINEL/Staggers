@@ -109,5 +109,22 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
         return entreprise;
     }
+
+
+    public Entreprise readWithId(String colonne, int id) {
+        Entreprise entreprise = null;
+            try {
+                String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
+                ResultSet rs = Connexion.executeQuery(requete);
+                rs.next();
+
+                entreprise = getEntreprise(rs);
+                donnees.put(id, entreprise);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        return entreprise;
+    }
 }
 
