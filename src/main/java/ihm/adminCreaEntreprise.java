@@ -244,8 +244,8 @@ public class adminCreaEntreprise implements Initializable {
             String villeSent = ville.getText().toString();
             String descriptionSent = description.getText().toString();
             String langageSent = langage.getText().toString();
-int id = 0;
-            Entreprise entreprise = new Entreprise(0, nomSent, emailSent, numTelSent, nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent,false, langageSent) ;
+
+            Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent, langageSent) ;
             EntrepriseDAO.getInstance().create(entreprise);
 
             Integer idEnt = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));

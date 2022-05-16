@@ -43,6 +43,23 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         super();
     }
 
+    private Entreprise getEntreprise(ResultSet rs) throws SQLException {
+        Entreprise entreprise;
+        int id = rs.getInt((CLE_PRIMAIRE));
+        String nom = rs.getString(NOM);
+        String email = rs.getString(EMAIL);
+        String num_tel = rs.getString(NUM_TEL);
+        String nom_contact = rs.getString(NOM_CONTACT);
+        String email_contact = rs.getString(EMAIL_CONTACT);
+        String num_contact = rs.getString(NUM_CONTACT);
+        String nb_salarie = rs.getString(NB_SALARIE);
+        String nb_stagiaire_max = rs.getString(NB_STAGIAIRE_MAX);
+        String description = rs.getString(DESCRIPTION);
+        String langage = rs.getString(LANGAGE);
+        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, langage);
+        return entreprise;
+    }
+
     @Override
     public boolean create(Entreprise obj) {
         boolean success = true;
@@ -131,22 +148,6 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         return listeEntreprise;
     }
 
-    private Entreprise getEntreprise(ResultSet rs) throws SQLException {
-        Entreprise entreprise;
-        int id = rs.getInt((CLE_PRIMAIRE));
-        String nom = rs.getString(NOM);
-        String email = rs.getString(EMAIL);
-        String num_tel = rs.getString(NUM_TEL);
-        String nom_contact = rs.getString(NOM_CONTACT);
-        String email_contact = rs.getString(EMAIL_CONTACT);
-        String num_contact = rs.getString(NUM_CONTACT);
-        String nb_salarie = rs.getString(NB_SALARIE);
-        String nb_stagiaire_max = rs.getString(NB_STAGIAIRE_MAX);
-        String description = rs.getString(DESCRIPTION);
-        String langage = rs.getString(LANGAGE);
-        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, langage);
-        return entreprise;
-    }
     public String getWithEmail(String recherche,  String mail) {
         String reponseRequete = null;
         System.out.println("Recherche dans la BD");
@@ -159,6 +160,25 @@ public class EntrepriseDAO extends DAO<Entreprise> {
             e.printStackTrace();
         }
         return reponseRequete;
+    }
+
+    public List<Entreprise> chercherEntrepriseParNomLIKE(String dataUser) {
+        Entreprise entreprise = null;
+        List<Entreprise> listeEntreprise =null;
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE " + NOM + " LIKE '" + dataUser + "%'";
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeEntreprise = new ArrayList<Entreprise>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                entreprise = getEntreprise(rs);
+                listeEntreprise.add(entreprise);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeEntreprise;
     }
 
 }

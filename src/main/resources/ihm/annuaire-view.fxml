@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,7 +55,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ListView fx:id="myListView" layoutX="232.0" layoutY="129.0" onMouseClicked="#handleMouseClick" prefHeight="380.0" prefWidth="600.0" />
+      <ListView fx:id="myListView" layoutX="232.0" layoutY="141.0" onMouseClicked="#handleMouseClick" prefHeight="368.0" prefWidth="600.0" />
       <ImageView fitHeight="262.0" fitWidth="116.0" layoutX="70.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Hotel.png" />
@@ -95,5 +96,20 @@
             <Image url="@../img/Group%2010.png" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="232.0" layoutY="93.0" prefHeight="45.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="searchBox" layoutX="205.0" layoutY="10.0" prefHeight="25.0" prefWidth="237.0" />
+            <ImageView fx:id="loupe" fitHeight="25.0" fitWidth="98.0" layoutX="462.0" layoutY="10.0" onMouseClicked="#rechercheLIKE" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@../img/search.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="67.0" layoutY="13.0" text="Recherche par nom">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </Pane>

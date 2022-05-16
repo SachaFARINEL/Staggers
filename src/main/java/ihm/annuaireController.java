@@ -2,14 +2,17 @@ package ihm;
 
 import dao.AdresseDAO;
 import dao.EntrepriseDAO;
+import dao.UtilisateurDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import staggers.Entreprise;
+import staggers.Utilisateur;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +24,7 @@ import static java.lang.Integer.parseInt;
 public class annuaireController implements Initializable  {
 
     static Entreprise selectedEntreprise;
+    List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
     Main main = new Main();
 
     @FXML
@@ -40,6 +44,12 @@ public class annuaireController implements Initializable  {
     private Label profil;
 
     @FXML
+    private TextField searchBox;
+
+    @FXML
+    private ListView<?> myListView;
+
+    @FXML
     void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
@@ -56,7 +66,6 @@ public class annuaireController implements Initializable  {
 
     }
 
-
     @FXML
     void versConseil(MouseEvent event) {
 
@@ -68,7 +77,14 @@ public class annuaireController implements Initializable  {
     }
 
     @FXML
-    private ListView<?> myListView;
+    void rechercheLIKE(MouseEvent event) {
+        String dataUser = searchBox.getText();
+        System.out.println(dataUser);
+        List<Entreprise> listeEntrepriseLIKE = EntrepriseDAO.getInstance().chercherEntrepriseParNomLIKE(dataUser);
+        ObservableList<String> entrepriseInListView = (ObservableList<String>) myListView.getItems();
+        entrepriseInListView.clear();
+        entrepriseInListView.addAll(getEntreprise(listeEntrepriseLIKE));
+    }
 
     public void getEntrepriseSelected() {
         String textSelectedCellule = (String) myListView.getSelectionModel().getSelectedItem();
@@ -81,8 +97,6 @@ public class annuaireController implements Initializable  {
         getEntrepriseSelected();
         main.nextScene("ficheEntreprise-view.fxml");
     }
-
-    List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
 
     private String[] getEntreprise(List<Entreprise> listeEntreprise) {
         String[] nomEntreprise = new String[listeEntreprise.size()];
