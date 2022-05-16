@@ -1,6 +1,7 @@
 package dao;
 
 import staggers.Adresse;
+import staggers.Entreprise;
 
 import java.sql.*;
 
@@ -132,6 +133,30 @@ public class AdresseDAO extends DAO<Adresse> {
                 e.printStackTrace();
             }
         }
+        return adresse;
+    }
+
+
+    public static Adresse readWithId(String colonne, int id) {
+        Adresse adresse = null;
+            try {
+                String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
+                ResultSet rs = Connexion.executeQuery(requete);
+                rs.next();
+                String numero = rs.getString(NUMERO);
+                String type_de_voie = rs.getString(TYPE_DE_VOIE);
+                String adresses = rs.getString(ADRESSE);
+                String ville = rs.getString(VILLE);
+                String code_postal = rs.getString(CODE_POSTAL);
+                Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
+                Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
+
+                adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         return adresse;
     }
 

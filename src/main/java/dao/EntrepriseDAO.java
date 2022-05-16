@@ -22,6 +22,8 @@ public class EntrepriseDAO extends DAO<Entreprise> {
     private static final String NB_STAGIAIRE_MAX = "nb_stagiaire_max";
     private static final String DESCRIPTION = "description";
     private static final String EST_FAVORIS = "est_favoris";
+    private static final String LANGAGE = "langage";
+
 
     private static EntrepriseDAO instance = null;
 
@@ -106,25 +108,11 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         int nb_stagiaire_max = rs.getInt(NB_STAGIAIRE_MAX);
         String description = rs.getString(DESCRIPTION);
         boolean est_favoris = rs.getBoolean(EST_FAVORIS);
-        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris);
+        String langage = rs.getString(LANGAGE);
+        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, est_favoris, langage);
         return entreprise;
     }
 
 
-    public Entreprise readWithId(String colonne, int id) {
-        Entreprise entreprise = null;
-            try {
-                String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
-                ResultSet rs = Connexion.executeQuery(requete);
-                rs.next();
-
-                entreprise = getEntreprise(rs);
-                donnees.put(id, entreprise);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        return entreprise;
-    }
 }
 

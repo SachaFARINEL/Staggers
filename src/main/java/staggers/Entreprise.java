@@ -16,10 +16,11 @@ import java.util.Date;
         private int nb_stagiaire_max;
         private String description;
         private boolean est_favoris;
+        private String langage;
 
 
 
-        public Entreprise(int id,String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire_max, String description, boolean est_favoris) {
+        public Entreprise(int id,String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire_max, String description, boolean est_favoris, String langage) {
             this.id = id;
             this.nom = nom;
             this.email = email;
@@ -31,6 +32,7 @@ import java.util.Date;
             this.nb_stagiaire_max = nb_stagiaire_max;
             this.est_favoris = est_favoris;
             this.description = description;
+            this.langage = langage;
         }
 
         public int getId() {
@@ -121,6 +123,30 @@ import java.util.Date;
             this.description = description;
         }
 
+        public String getNom_contact() {
+            return nom_contact;
+        }
+
+        public void setNom_contact(String nom_contact) {
+            this.nom_contact = nom_contact;
+        }
+
+        public int getNb_stagiaire_max() {
+            return nb_stagiaire_max;
+        }
+
+        public void setNb_stagiaire_max(int nb_stagiaire_max) {
+            this.nb_stagiaire_max = nb_stagiaire_max;
+        }
+
+        public String getLangage() {
+            return langage;
+        }
+
+        public void setLangage(String langage) {
+            this.langage = langage;
+        }
+
         @Override
         public String toString() {
             return "Entreprise{" +
@@ -133,8 +159,9 @@ import java.util.Date;
                     ", num_contact='" + num_contact + '\'' +
                     ", nb_salarie=" + nb_salarie +
                     ", nb_stagiaire_max=" + nb_stagiaire_max +
-                    ", est_favoris=" + est_favoris +
                     ", description='" + description + '\'' +
+                    ", est_favoris=" + est_favoris +
+                    ", langage='" + langage + '\'' +
                     '}';
         }
 

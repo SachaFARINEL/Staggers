@@ -1,5 +1,6 @@
 package ihm;
 
+import dao.AdresseDAO;
 import dao.EntrepriseDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -55,7 +56,7 @@ public class accueilController implements Initializable {
 
     @FXML
     void versConseil(MouseEvent event) {
-        System.out.println(getEntrepriseNom(listeEntreprise));
+
     }
 
     @FXML
@@ -69,14 +70,14 @@ public class accueilController implements Initializable {
     int currentId;
     List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
 
-    private String[] getEntrepriseNom(List<Entreprise> listeEntreprise) {
+    private String[] getEntreprise(List<Entreprise> listeEntreprise) {
         String[] nomEntreprise = new String[listeEntreprise.size()];
         int compteur = 0;
         String informationsEntreprise;
         String adresseEntreprise;
         for (Entreprise entreprise : listeEntreprise) {
-            adresseEntreprise =
-            informationsEntreprise = entreprise.getNom() + entreprise.getEmail();
+            adresseEntreprise = (AdresseDAO.readWithId("id_entreprise", entreprise.getId())).getCode_postal() + ", " + (AdresseDAO.readWithId("id_entreprise", entreprise.getId())).getVille();
+            informationsEntreprise = entreprise.getNom() + " - " + adresseEntreprise + " - " + entreprise.getLangage();
             nomEntreprise[compteur++] = informationsEntreprise;
         }
         return nomEntreprise;
@@ -86,7 +87,7 @@ public class accueilController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> maListe = (ObservableList<String>) myListView.getItems();
 
-        maListe.addAll(getEntrepriseNom(listeEntreprise));
+        maListe.addAll(getEntreprise(listeEntreprise));
     }
 
 
