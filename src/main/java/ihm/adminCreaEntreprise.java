@@ -1,9 +1,16 @@
 package ihm;
 
+import dao.AdresseDAO;
+import dao.EntrepriseDAO;
+import dao.UtilisateurDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import staggers.Adresse;
+import staggers.Entreprise;
+import staggers.Utilisateur;
 
 public class adminCreaEntreprise implements Initializable {
 
@@ -55,7 +65,7 @@ public class adminCreaEntreprise implements Initializable {
     private ChoiceBox<?> nbStagiaire;
 
     @FXML
-    private TextField nom1;
+    private TextField nom;
 
     @FXML
     private TextField nom_contact;
@@ -118,6 +128,9 @@ public class adminCreaEntreprise implements Initializable {
     private Label wrongVille;
 
     @FXML
+    private TextField description;
+
+    @FXML
     void deconnexion(MouseEvent event) {
 
     }
@@ -127,10 +140,7 @@ public class adminCreaEntreprise implements Initializable {
 
     }
 
-    @FXML
-    void sendInscription(ActionEvent event) {
 
-    }
 
     @FXML
     void versActualite(MouseEvent event) {
@@ -149,6 +159,98 @@ public class adminCreaEntreprise implements Initializable {
 
     @FXML
     void versProfil(MouseEvent event) {
+
+    }
+
+    private boolean checkIfEmpty() throws ParseException {
+        boolean isNotEmpty = true;
+        String nomSent = nom.getText().toString();
+        String numTelSent = num_tel.getText().toString();
+        String nomContactSent = nom_contact.getText().toString();
+        String numContactSent = num_contact.getText().toString();
+        String emailSent = email.getText().toString();
+        String emailContact = email_contact.getText().toString();
+        String nbSalarieSent = nbSalarie.getValue().toString();
+        String nbStagiaireSent = nbStagiaire.getValue().toString();
+        String numeroSent = numero.getText();
+        String voieSent = typeDeVoie.getText().toString();
+        String adresseSent = adresse.getText().toString();
+        String codePostalSent = codePostal.getText().toString();
+        String villeSent = ville.getText().toString();
+        String descriptionSent = description.getText().toString();
+
+        if (nomSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (numTelSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (nomContactSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (numContactSent .isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (emailSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (emailContact.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (nbSalarieSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (nbStagiaireSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (numeroSent.isEmpty() || voieSent.isEmpty() || adresseSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (codePostalSent.isEmpty()) {
+            isNotEmpty = false;
+
+        }
+        if (villeSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        if (descriptionSent.isEmpty()) {
+            isNotEmpty = false;
+        }
+        return isNotEmpty;
+    }
+
+    void sendCreationEnt(ActionEvent event) throws ParseException {
+        if (checkIfEmpty()) {
+
+            String nomSent = nom.getText().toString();
+            String numTelSent = num_tel.getText().toString();
+            String nomContactSent = nom_contact.getText().toString();
+            String numContactSent = num_contact.getText().toString();
+            String emailSent = email.getText().toString();
+            String emailContact = email_contact.getText().toString();
+            String nbSalarieSent = nbSalarie.getValue().toString();
+            String nbStagiaireSent = nbStagiaire.getValue().toString();
+            String voieSent = typeDeVoie.getText().toString();
+            String numeroSent = numero.getText().toString();
+            String adresseSent = adresse.getText().toString();
+            String codePostalSent = codePostal.getText().toString();
+            String villeSent = ville.getText().toString();
+            String descriptionSent = description.getText().toString();
+int id = 0;
+            Entreprise entreprise = new Entreprise(0, nomSent, emailSent,nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent) ;
+            EntrepriseDAO.getInstance().create(entreprise);
+
+            Integer idEnt = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
+            Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, null, idEnt);
+            AdresseDAO.getInstance().create(userAdresse);
+
+            try {
+                Main main = new Main();
+                main.nextScene("accueil-view.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+        }
 
     }
 
