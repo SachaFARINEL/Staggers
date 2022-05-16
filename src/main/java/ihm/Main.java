@@ -27,7 +27,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1064, 600);
         scene.getStylesheets().add("styles.css");
         stage.setTitle("Staggers");
-        stage.getIcons().add(new Image(Main.class.getResourceAsStream("favico.png")));
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("img/favico.png")));
         stage.setScene(scene);
         stage.show();
     }

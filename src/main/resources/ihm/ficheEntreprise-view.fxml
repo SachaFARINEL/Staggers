@@ -32,6 +32,11 @@
                   <Font name="Roboto Condensed Bold" size="36.0" />
                </font>
             </Label>
+            <ImageView fx:id="nonFavoris" fitHeight="36.0" fitWidth="48.0" layoutX="627.0" layoutY="14.0" onMouseClicked="#changeStar" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/emptyStar.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

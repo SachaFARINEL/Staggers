@@ -18,7 +18,28 @@ public class Utilisateur {
     private String role;
     private String question_secrete;
 
-    //Remettre l'id dans le constructeur
+/*
+    ### Surcharge du constructeur ###
+
+    public Utilisateur(int id,int promo, String nom, String prenom, LocalDateTime date_naissance, String email, String num_tel,
+                       boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role, String question_secrete) {
+        this.id = id;
+        this.promo = promo;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.date_naissance = date_naissance;
+        this.email = email;
+        this.num_tel = num_tel;
+        this.admis_stage = admis_stage;
+        this.sexe = sexe;
+        this.mot_de_passe = mot_de_passe;
+        this.est_admin = est_admin;
+        this.role = role;
+        this.question_secrete = question_secrete;
+    }
+
+ */
+
     public Utilisateur(int promo, String nom, String prenom, LocalDateTime date_naissance, String email, String num_tel,
                        boolean admis_stage, String sexe, String mot_de_passe, boolean est_admin, String role, String question_secrete) {
         // Gérer le numéro de promo autrement, avec la date d'inscription.
