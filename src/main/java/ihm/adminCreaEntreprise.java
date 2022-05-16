@@ -56,7 +56,7 @@ public class adminCreaEntreprise implements Initializable {
     private Label fil_actualite;
 
     @FXML
-    private Label fil_actualite1;
+    private Label admin;
 
     @FXML
     private ChoiceBox<?> nbSalarie;
@@ -131,6 +131,9 @@ public class adminCreaEntreprise implements Initializable {
     private TextField description;
 
     @FXML
+    private TextField langage;
+
+    @FXML
     void deconnexion(MouseEvent event) {
 
     }
@@ -178,6 +181,7 @@ public class adminCreaEntreprise implements Initializable {
         String codePostalSent = codePostal.getText().toString();
         String villeSent = ville.getText().toString();
         String descriptionSent = description.getText().toString();
+        String langageSent = langage.getText().toString();
 
         if (nomSent.isEmpty()) {
             isNotEmpty = false;
@@ -216,6 +220,9 @@ public class adminCreaEntreprise implements Initializable {
         if (descriptionSent.isEmpty()) {
             isNotEmpty = false;
         }
+        if (langageSent.isEmpty()) {
+            isNotEmpty = false;
+        }
         return isNotEmpty;
     }
 
@@ -236,8 +243,9 @@ public class adminCreaEntreprise implements Initializable {
             String codePostalSent = codePostal.getText().toString();
             String villeSent = ville.getText().toString();
             String descriptionSent = description.getText().toString();
+            String langageSent = langage.getText().toString();
 int id = 0;
-            Entreprise entreprise = new Entreprise(0, nomSent, emailSent,nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent) ;
+            Entreprise entreprise = new Entreprise(0, nomSent, emailSent, numTelSent, nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent,false, langageSent) ;
             EntrepriseDAO.getInstance().create(entreprise);
 
             Integer idEnt = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));

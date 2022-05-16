@@ -112,7 +112,8 @@
             <Label fx:id="wrongReponse" alignment="CENTER" layoutX="99.0" layoutY="394.0" prefHeight="17.0" prefWidth="312.0" textFill="RED" />
             <Label layoutX="26.0" layoutY="284.0" text="Nombre de stagiare Max" />
             <ChoiceBox fx:id="nbStagiaire" layoutX="232.0" layoutY="280.0" prefHeight="25.0" prefWidth="137.0" />
-            <TextField fx:id="description" alignment="CENTER" layoutX="140.0" layoutY="427.0" prefHeight="64.0" prefWidth="230.0" promptText="Description de l'entreprise" />
+            <TextField fx:id="description" alignment="CENTER" layoutX="232.0" layoutY="426.0" prefHeight="64.0" prefWidth="230.0" promptText="Description de l'entreprise" />
+            <TextField fx:id="langage" alignment="CENTER" layoutX="51.0" layoutY="442.0" prefHeight="33.0" prefWidth="137.0" promptText="Langage utilisé" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="retourLoggin" layoutX="63.0" layoutY="15.0" onMouseClicked="#retourLoggin" prefHeight="51.0" prefWidth="57.0" style="-fx-cursor: hand;" />
