@@ -12,15 +12,15 @@ import java.util.Date;
         private String nom_contact;
         private String email_contact;
         private String num_contact;
-        private int nb_salarie;
-        private int nb_stagiaire_max;
+        private String nb_salarie;
+        private String nb_stagiaire_max;
         private String description;
         private boolean est_favoris;
         private String langage;
 
 
 
-        public Entreprise(int id,String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, int nb_salarie, int nb_stagiaire_max, String description, boolean est_favoris, String langage) {
+        public Entreprise(int id,String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, boolean est_favoris, String langage) {
             this.id = id;
             this.nom = nom;
             this.email = email;
@@ -91,19 +91,19 @@ import java.util.Date;
             this.num_contact = num_contact;
         }
 
-        public int getNb_salarie() {
+        public String getNb_salarie() {
             return nb_salarie;
         }
 
-        public void setNb_salarie(int nb_salarie) {
+        public void setNb_salarie(String nb_salarie) {
             this.nb_salarie = nb_salarie;
         }
 
-        public int getnb_stagiaire_max() {
+        public String getnb_stagiaire_max() {
             return nb_stagiaire_max;
         }
 
-        public void setnb_stagiaire_max(int nb_stagiaire_max) {
+        public void setnb_stagiaire_max(String nb_stagiaire_max) {
             this.nb_stagiaire_max = nb_stagiaire_max;
         }
 
@@ -121,22 +121,6 @@ import java.util.Date;
 
         public void setDescription(String description) {
             this.description = description;
-        }
-
-        public String getNom_contact() {
-            return nom_contact;
-        }
-
-        public void setNom_contact(String nom_contact) {
-            this.nom_contact = nom_contact;
-        }
-
-        public int getNb_stagiaire_max() {
-            return nb_stagiaire_max;
-        }
-
-        public void setNb_stagiaire_max(int nb_stagiaire_max) {
-            this.nb_stagiaire_max = nb_stagiaire_max;
         }
 
         public String getLangage() {

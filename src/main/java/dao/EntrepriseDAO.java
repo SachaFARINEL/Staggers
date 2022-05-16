@@ -104,8 +104,8 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         String nom_contact = rs.getString(NOM_CONTACT);
         String email_contact = rs.getString(EMAIL_CONTACT);
         String num_contact = rs.getString(NUM_CONTACT);
-        int nb_salarie = rs.getInt(NB_SALARIE);
-        int nb_stagiaire_max = rs.getInt(NB_STAGIAIRE_MAX);
+        String nb_salarie = rs.getString(NB_SALARIE);
+        String nb_stagiaire_max = rs.getString(NB_STAGIAIRE_MAX);
         String description = rs.getString(DESCRIPTION);
         boolean est_favoris = rs.getBoolean(EST_FAVORIS);
         String langage = rs.getString(LANGAGE);
