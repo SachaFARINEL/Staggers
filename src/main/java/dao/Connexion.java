@@ -39,10 +39,8 @@ public class Connexion {
         ResultSet rs = null;
         System.out.println("requete = " + requete);
         try {
-            System.out.println("je passe st rs");
             st = getInstance().createStatement();
             rs = st.executeQuery(requete);
-            System.out.println("je passe apres st rs");
         } catch (SQLException e) {
             System.out.println("Echec de la tentative d'exécution de requete : " + requete + " [" + e.getMessage() + "]");
         }

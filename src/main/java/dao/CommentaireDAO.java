@@ -1,9 +1,12 @@
 package dao;
 
 import staggers.Commentaire;
+import staggers.Entreprise;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommentaireDAO extends DAO<Commentaire> {
 
@@ -124,6 +127,30 @@ public class CommentaireDAO extends DAO<Commentaire> {
             }
         }
         return commentaire;
+    }
+
+    public List<Commentaire> readAll(int id_entrepriseSelected) {
+        Commentaire commentaire = null;
+        List<Commentaire> listeCommentaire =null;
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE id_entreprise = " + id_entrepriseSelected;
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeCommentaire = new ArrayList<Commentaire>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                int id = rs.getInt(CLE_PRIMAIRE);
+                int id_utilisateur = rs.getInt(ID_UTILISATEUR);
+                int id_entreprise = rs.getInt(ID_ENTREPRISE);
+                String com = rs.getString(COM);
+                LocalDateTime date = rs.getObject(DATE, LocalDateTime.class);
+                commentaire = new Commentaire(id, id_utilisateur, id_entreprise, com, date);
+                listeCommentaire.add(commentaire);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeCommentaire;
     }
 }
 

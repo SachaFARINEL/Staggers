@@ -2,18 +2,13 @@ package ihm;
 
 import dao.AdresseDAO;
 import dao.EntrepriseDAO;
-import dao.UtilisateurDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import staggers.Entreprise;
-import staggers.Utilisateur;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -25,23 +20,9 @@ public class annuaireController implements Initializable  {
 
     static Entreprise selectedEntreprise;
     List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
+
     Main main = new Main();
 
-    @FXML
-    private Label annuaire;
-
-    @FXML
-    private Label conseils;
-
-    @FXML
-    private Button deco;
-
-    @FXML
-    private Label fil_actualite;
-
-
-    @FXML
-    private Label profil;
 
     @FXML
     private TextField searchBox;

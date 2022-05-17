@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -29,23 +31,113 @@
       </ImageView>
       <AnchorPane layoutX="28.0" layoutY="115.0" prefHeight="457.0" prefWidth="689.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-color: #4C6B77;">
          <children>
-            <Label fx:id="nomEntreprise" layoutX="16.0" layoutY="-4.0" prefHeight="65.0" prefWidth="482.0" text="Entreprise #" textAlignment="CENTER" textFill="#224957">
+            <Label fx:id="nomEntreprise" layoutX="59.0" prefHeight="65.0" prefWidth="482.0" text="Entreprise #" textAlignment="CENTER" textFill="#224957">
                <font>
                   <Font name="Roboto Condensed Bold" size="36.0" />
                </font>
             </Label>
-            <ImageView fx:id="isFavoris" fitHeight="36.0" fitWidth="48.0" layoutX="645.0" layoutY="11.0" onMouseClicked="#changeStar" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+            <ImageView fx:id="isFavoris" fitHeight="36.0" fitWidth="48.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#changeStar" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@img/star.png" />
                </image>
             </ImageView>
-            <TextArea fx:id="commentaire" layoutX="9.0" layoutY="338.0" prefHeight="78.0" prefWidth="673.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
-            <Button fx:id="buttonSendCommentaire" layoutX="7.0" layoutY="422.0" mnemonicParsing="false" onMouseClicked="#sendCommentaire" prefHeight="30.0" prefWidth="674.0" style="-fx-background-color: #4BE397;" text="Poster le commentaire" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+            <ListView fx:id="listViewCommentaire" layoutX="9.0" layoutY="59.0" prefHeight="395.0" prefWidth="672.0" />
+            <Button fx:id="buttonCommentaire" layoutX="541.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#switchView" style="-fx-background-color: #4BE397; -fx-cursor: hand;" text="Voir les commentaires" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="mainAnchor" layoutX="32.0" layoutY="174.0" prefHeight="395.0" prefWidth="680.0">
+         <children>
+            <AnchorPane layoutX="342.0" layoutY="14.0" prefHeight="257.0" prefWidth="324.0" AnchorPane.rightAnchor="7.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="43.0" layoutY="-1.0" prefHeight="30.0" prefWidth="238.0" text="Informations complémentaires" textAlignment="CENTER" textFill="#224957" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="Roboto Condensed Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tailleEntreprise" alignment="CENTER" layoutX="70.0" layoutY="29.0" text="Taille de l'entreprise : # salariés" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="30.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nbStagiaireMax" alignment="CENTER" layoutX="39.0" layoutY="56.0" text="Capacité d'accueil : # stagiaire(s)" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="60.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="langageEntreprise" alignment="CENTER" layoutX="60.0" layoutY="83.0" text="Technologie principale : #" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="90.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="70.0" layoutY="93.0" text="Description :" textFill="#224957" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="120.0">
+                     <font>
+                        <Font name="Roboto Condensed Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="description" editable="false" layoutX="25.0" layoutY="148.0" prefHeight="110.0" prefWidth="310.0" text="tes" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="14.0" prefHeight="257.0" prefWidth="324.0" AnchorPane.leftAnchor="7.0">
+               <children>
+                  <Label fx:id="telEntreprise" alignment="CENTER" layoutX="7.0" layoutY="1.0" text="Numero de l'entreprise" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="debutAdresseEntreprise" alignment="CENTER" layoutX="7.0" layoutY="73.0" text="Type de voie + adresse" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="60.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="finAdresseEntreprise" alignment="CENTER" layoutX="101.0" layoutY="100.0" text="code postal + ville" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="90.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nomContact" alignment="CENTER" layoutX="7.0" layoutY="170.0" text="Personne de confiance" textFill="#7c7878" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="telContact" alignment="CENTER" layoutX="7.0" layoutY="200.0" text="Numero de téléphone" textFill="#7c7878" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mailContact" alignment="CENTER" layoutX="7.0" layoutY="230.0" text="Mail" textFill="#7c7878" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mailEntreprise" alignment="CENTER" layoutX="7.0" layoutY="35.0" text="Mail de l'entreprise" textFill="#7c7878" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="30.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="62.0" layoutY="127.0" prefWidth="200.0" />
+                  <Label alignment="CENTER" layoutX="7.0" layoutY="140.0" prefHeight="30.0" prefWidth="238.0" text="Personne de confiance" textAlignment="CENTER" textFill="#224957" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+                     <font>
+                        <Font name="Roboto Condensed Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Separator layoutX="328.0" layoutY="14.0" orientation="VERTICAL" prefHeight="257.0" prefWidth="5.0" />
+            <Button fx:id="buttonSendCommentaire" layoutX="7.0" layoutY="366.0" mnemonicParsing="false" onMouseClicked="#sendCommentaire" prefHeight="30.0" prefWidth="674.0" style="-fx-background-color: #4BE397; -fx-cursor: hand;" text="Poster le commentaire" textFill="WHITE" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="commentaireIsSent" alignment="CENTER" layoutX="166.0" layoutY="364.0" text="Votre commentaire à bien été pris en compte" textFill="#224957" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+            <TextArea fx:id="commentaire" layoutX="7.0" layoutY="280.0" prefHeight="78.0" prefWidth="673.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" />
+            <Label fx:id="commentaireIsSent" alignment="CENTER" layoutX="7.0" layoutY="306.0" text="Votre commentaire à bien été pris en compte" textFill="#224957" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
