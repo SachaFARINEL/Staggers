@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Entreprise;
@@ -35,6 +36,7 @@ public class inscriptionController implements Initializable {
 
 
     private final String[] arraySexe = {"Monsieur", "Madame", "Autre"};
+    Main main = new Main();
 
     @FXML
     private TextField adresse;
@@ -65,12 +67,6 @@ public class inscriptionController implements Initializable {
 
     @FXML
     private TextField prenom;
-
-    @FXML
-    private AnchorPane retourLoggin;
-
-    @FXML
-    private ImageView retourLogginArrow;
 
     @FXML
     private ChoiceBox<String> sexe;
@@ -117,6 +113,9 @@ public class inscriptionController implements Initializable {
 
     @FXML
     private Button valider;
+
+    @FXML
+    private Label labelInscription;
 
     public inscriptionController() throws ParseException {
     }
@@ -234,8 +233,8 @@ public class inscriptionController implements Initializable {
     void sendInscription(){
         if (isMotDePasseConfirmed() && checkIfEmpty()) {
             String sexeSent = sexe.getValue();
-            String nomSent = nom.getText();
-            String prenomSent = prenom.getText();
+            String nomSent = nom.getText().trim();
+            String prenomSent = prenom.getText().trim();
             LocalDate dateNaissanceSent = dateNaissance.getValue();
             LocalDateTime dateNaiss = dateNaissanceSent.atTime(0,0);
 
@@ -256,13 +255,20 @@ public class inscriptionController implements Initializable {
             Integer idUser = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
             Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idUser, null);
             AdresseDAO.getInstance().create(userAdresse);
+            labelInscription.setText("Inscription réussie");
+            labelInscription.setTextFill(Color.web("#20DF7F"));
 
-            try {
-                Main main = new Main();
-                main.nextScene("loggin-view.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            };
+            Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.millis(1000),
+                    ae -> {
+                        try {
+                            main.nextScene("loggin-view.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }));
+            timeline.play();
+
         }
 
     }
