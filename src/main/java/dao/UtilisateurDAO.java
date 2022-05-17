@@ -138,6 +138,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 String requete = "SELECT * FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = " + id;
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
+                int idUser = rs.getInt(CLE_PRIMAIRE);
                 int promo = rs.getInt(PROMO);
                 String nom = rs.getString(NOM);
                 String prenom = rs.getString(PRENOM);
@@ -150,7 +151,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
                 String question_secrete = rs.getString(QUESTION_SECRETE);
-                utilisateur = new Utilisateur(promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+                utilisateur = new Utilisateur(idUser,promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
                 donnees.put(id, utilisateur);
 
             } catch (SQLException e) {
@@ -195,6 +196,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 String requete = "SELECT * FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
+                int id = rs.getInt(CLE_PRIMAIRE);
                 int promo = rs.getInt(PROMO);
                 String nom = rs.getString(NOM);
                 String prenom = rs.getString(PRENOM);
@@ -207,7 +209,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
                 String question_secrete = rs.getString(QUESTION_SECRETE);
-                utilisateur = new Utilisateur(promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+                utilisateur = new Utilisateur(id,promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
 
             } catch (SQLException e) {
                 e.printStackTrace();
