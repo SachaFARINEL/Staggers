@@ -98,6 +98,10 @@ public class ficheEntrepriseController implements Initializable {
         if (!commentaire.getText().isEmpty()) {
             Commentaire com = new Commentaire(id_utilisateur, id_selectedEntreprise, commentaire.getText(), LocalDateTime.now());
             CommentaireDAO.getInstance().create(com);
+            listeCommentaire.add(com);
+            ObservableList<String> maListe = (ObservableList<String>) listViewCommentaire.getItems();
+            maListe.clear();
+            maListe.addAll(printACommentaire(listeCommentaire));
             commentaire.setText("");
             commentaireIsSent.setVisible(true);
 

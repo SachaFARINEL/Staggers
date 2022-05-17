@@ -41,7 +41,7 @@
                   <Image url="@img/star.png" />
                </image>
             </ImageView>
-            <ListView fx:id="listViewCommentaire" layoutX="9.0" layoutY="59.0" prefHeight="395.0" prefWidth="672.0" />
+            <ListView fx:id="listViewCommentaire" layoutX="9.0" layoutY="59.0" prefHeight="387.0" prefWidth="672.0" />
             <Button fx:id="buttonCommentaire" layoutX="531.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#switchView" prefWidth="150.0" style="-fx-background-color: #4BE397; -fx-cursor: hand;" text="Voir les commentaires" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
