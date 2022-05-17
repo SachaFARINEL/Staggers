@@ -1,5 +1,6 @@
 package staggers;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Commentaire {
@@ -8,12 +9,22 @@ public class Commentaire {
     private int id_utilisateur;
     private int id_entreprise;
     private String com;
-    private int date;
+    private LocalDateTime date;
 
 
-    public Commentaire(int id, int id_utilisateur, int id_entreprise, String com, int date) {
+    public Commentaire(int id, int id_utilisateur, int id_entreprise, String com, LocalDateTime date) {
 
         this.id = id;
+        this.id_utilisateur = id_utilisateur;
+        this.id_entreprise = id_entreprise;
+        this.com = com;
+        this.date = date;
+
+    }
+
+    public Commentaire(int id_utilisateur, int id_entreprise, String com, LocalDateTime date) {
+
+
         this.id_utilisateur = id_utilisateur;
         this.id_entreprise = id_entreprise;
         this.com = com;
@@ -53,11 +64,11 @@ public class Commentaire {
         this.com = com;
     }
 
-    public int getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

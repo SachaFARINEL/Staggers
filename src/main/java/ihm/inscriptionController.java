@@ -128,22 +128,22 @@ public class inscriptionController implements Initializable {
     }
 
 
-    private boolean checkIfEmpty() throws ParseException {
+    private boolean checkIfEmpty() {
         boolean isNotEmpty = true;
-        String sexeSent = sexe.getValue().toString();
-        String nomSent = nom.getText().toString();
-        String prenomSent = prenom.getText().toString();
+        String sexeSent = sexe.getValue();
+        String nomSent = nom.getText();
+        String prenomSent = prenom.getText();
         LocalDate dateNaissanceSent = dateNaissance.getValue();
         String emailSent = email.getText();
-        String telephoneSent = telephone.getText().toString();
+        String telephoneSent = telephone.getText();
         String passwordSent = password.getText();
-        String confirmationPasswordSent = passwordConfirmation.getText().toString();
+        String confirmationPasswordSent = passwordConfirmation.getText();
         String numeroSent = numero.getText();
-        String voieSent = typeDeVoie.getText().toString();
-        String adresseSent = adresse.getText().toString();
-        String codePostalSent = codePostal.getText().toString();
-        String villeSent = ville.getText().toString();
-        String reponseSent = reponseQuestion.getText().toString();
+        String voieSent = typeDeVoie.getText();
+        String adresseSent = adresse.getText();
+        String codePostalSent = codePostal.getText();
+        String villeSent = ville.getText();
+        String reponseSent = reponseQuestion.getText();
 
         if (sexeSent.isEmpty()) {
             isNotEmpty = false;
@@ -220,7 +220,7 @@ public class inscriptionController implements Initializable {
 
     private boolean isMotDePasseConfirmed() {
         boolean mdpConfirmed = true;
-        if (!password.getText().toString().equals(passwordConfirmation.getText().toString())) {
+        if (!password.getText().equals(passwordConfirmation.getText())) {
             mdpConfirmed = false;
             wrongPassword.setText("Les mots de passe ne sont pas identiques");
         } else {
@@ -231,23 +231,23 @@ public class inscriptionController implements Initializable {
 
 
     @FXML
-    void sendInscription(ActionEvent event) throws ParseException {
+    void sendInscription(){
         if (isMotDePasseConfirmed() && checkIfEmpty()) {
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText();
-            String prenomSent = prenom.getText().toString();
+            String prenomSent = prenom.getText();
             LocalDate dateNaissanceSent = dateNaissance.getValue();
             LocalDateTime dateNaiss = dateNaissanceSent.atTime(0,0);
 
-            String emailSent = email.getText().toString();
-            String telephoneSent = telephone.getText().toString();
-            String passwordSent = password.getText().toString();
-            String numeroSent = numero.getText().toString();
-            String voieSent = typeDeVoie.getText().toString();
-            String adresseSent = adresse.getText().toString();
-            String codePostalSent = codePostal.getText().toString();
-            String villeSent = ville.getText().toString();
-            String reponseSent = reponseQuestion.getText().toString();
+            String emailSent = email.getText();
+            String telephoneSent = telephone.getText();
+            String passwordSent = password.getText();
+            String numeroSent = numero.getText();
+            String voieSent = typeDeVoie.getText();
+            String adresseSent = adresse.getText();
+            String codePostalSent = codePostal.getText();
+            String villeSent = ville.getText();
+            String reponseSent = reponseQuestion.getText();
 
             Utilisateur user = new Utilisateur(21 / 22, nomSent, prenomSent, dateNaiss, emailSent, telephoneSent,
                     false, sexeSent, passwordSent, false, "stagiaire", reponseSent);

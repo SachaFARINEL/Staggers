@@ -3,6 +3,7 @@ package dao;
 import staggers.Commentaire;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class CommentaireDAO extends DAO<Commentaire> {
 
@@ -40,7 +41,7 @@ public class CommentaireDAO extends DAO<Commentaire> {
             pst.setInt(1, obj.getId_utilisateur());
             pst.setInt(2, obj.getId_entreprise());
             pst.setString(3, obj.getCom());
-            pst.setInt(4, obj.getDate());
+            pst.setObject(4, obj.getDate());
 
 
             // on exécute la mise à jour
@@ -87,7 +88,7 @@ public class CommentaireDAO extends DAO<Commentaire> {
             pst.setInt(1, obj.getId_utilisateur());
             pst.setInt(2, obj.getId_entreprise());
             pst.setString(3, obj.getCom());
-            pst.setInt(4, obj.getDate());
+            pst.setObject(4, obj.getDate());
             pst.setInt(5, id);
             pst.executeUpdate();
             donnees.put(id, obj);
@@ -113,7 +114,7 @@ public class CommentaireDAO extends DAO<Commentaire> {
                 int id_utilisateur = rs.getInt(ID_UTILISATEUR);
                 int id_entreprise = rs.getInt(ID_ENTREPRISE);
                 String com = rs.getString(COM);
-                int date = rs.getInt(DATE);
+                LocalDateTime date = rs.getObject(DATE, LocalDateTime.class);
 
                 commentaire = new Commentaire(id, id_utilisateur, id_entreprise, com, date);
                 donnees.put(id, commentaire);
