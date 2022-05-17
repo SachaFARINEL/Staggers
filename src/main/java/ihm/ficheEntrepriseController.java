@@ -22,6 +22,8 @@ import staggers.Favoris;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -118,13 +120,19 @@ public class ficheEntrepriseController implements Initializable {
     private String[] printACommentaire(List<Commentaire> listeCommentaire) {
         String[] printCom = new String[listeCommentaire.size()];
         int compteur = 0;
-        String concatenationCommentaire = null;
+        String concatenationCommentaire;
         String nomAuteurCommentaire;
         String prenomAuteurCommentaire;
+        String[] dateAmericainCommentaire;
+        String dateCommentaire;
+
         for (Commentaire commentaire : listeCommentaire) {
+            dateAmericainCommentaire = ((String.valueOf(commentaire.getDate())).split("T")[0]).split("-");
+            dateCommentaire = dateAmericainCommentaire[2] + "/" + dateAmericainCommentaire[1] + "/" + dateAmericainCommentaire[0];
+
             nomAuteurCommentaire = (UtilisateurDAO.getInstance().read(commentaire.getId_utilisateur())).getNom();
             prenomAuteurCommentaire = (UtilisateurDAO.getInstance().read(commentaire.getId_utilisateur())).getPrenom();
-            concatenationCommentaire = prenomAuteurCommentaire + " " + nomAuteurCommentaire + ", le " + commentaire.getDate() + " : " + commentaire.getCom();
+            concatenationCommentaire = prenomAuteurCommentaire + " " + nomAuteurCommentaire + ", le " + dateCommentaire + " : " + commentaire.getCom();
             printCom[compteur++] = concatenationCommentaire;
         }
         return printCom;
