@@ -228,10 +228,19 @@ public class inscriptionController implements Initializable {
         return mdpConfirmed;
     }
 
+    private boolean emailNotInDatabase() {
+        boolean emailIsFree = true;
+        if ((UtilisateurDAO.getInstance().getUserWithMail(email.getText())) != null) {
+            emailIsFree = false;
+            wrongEmail.setText("L'e-mail est déjà utilisé");
+        }
+        return emailIsFree;
+    }
+
 
     @FXML
     void sendInscription(){
-        if (isMotDePasseConfirmed() && checkIfEmpty()) {
+        if (isMotDePasseConfirmed() && checkIfEmpty() && emailNotInDatabase()) {
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText().trim();
             String prenomSent = prenom.getText().trim();
