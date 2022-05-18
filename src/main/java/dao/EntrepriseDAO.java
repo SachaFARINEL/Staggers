@@ -181,5 +181,26 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         return listeEntreprise;
     }
 
+    public List<Entreprise> chercherEntrepriseParLangageLIKE(String dataUser) {
+        Entreprise entreprise = null;
+        List<Entreprise> listeEntreprise =null;
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE " + LANGAGE + " LIKE '%" + dataUser + "%'";
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeEntreprise = new ArrayList<Entreprise>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                entreprise = getEntreprise(rs);
+                listeEntreprise.add(entreprise);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeEntreprise;
+    }
+
+
+
 }
 

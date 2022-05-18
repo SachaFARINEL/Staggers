@@ -1,5 +1,6 @@
 package dao;
 
+import staggers.Entreprise;
 import staggers.Favoris;
 import staggers.Utilisateur;
 
@@ -10,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static utils.Utils.hashPass;
 
@@ -83,6 +86,27 @@ public class FavorisDAO extends DAO<Favoris> {
     @Override
     public Favoris read(int id) {
         return null;
+    }
+
+    public List<Favoris> readAllWithId(int id_utilisateur) {
+        Favoris favoris;
+        List<Favoris> listeFavoris =null;
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE " + ID_UTILISATEUR + " = " + id_utilisateur ;
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeFavoris = new ArrayList<Favoris>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                int id_util = rs.getInt(ID_UTILISATEUR);
+                int id_entreprise = rs.getInt(ID_ENTREPRISE);
+                favoris = new Favoris(id_util, id_entreprise);
+                listeFavoris.add(favoris);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeFavoris;
     }
 
     public boolean isFavoris (int id_utilisateur, int id_entreprise) {

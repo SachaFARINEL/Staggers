@@ -4,6 +4,8 @@ import staggers.Adresse;
 import staggers.Entreprise;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AdresseDAO extends DAO<Adresse> {
@@ -188,6 +190,33 @@ public class AdresseDAO extends DAO<Adresse> {
             }
         }
         return adresse;
+    }
+
+    public List<Adresse> chercherEntrepriseParVilleLIKE(String dataUser) {
+        Adresse adresse;
+        List<Adresse> listeAdresse = null;
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE id_utilisateur IS NULL AND " + VILLE + " LIKE '" + dataUser + "%'";
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeAdresse = new ArrayList<Adresse>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                int id= rs.getInt(CLE_PRIMAIRE);
+                String numero = rs.getString(NUMERO);
+                String type_de_voie = rs.getString(TYPE_DE_VOIE);
+                String adresses = rs.getString(ADRESSE);
+                String ville = rs.getString(VILLE);
+                String code_postal = rs.getString(CODE_POSTAL);
+                Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
+                Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
+                adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
+                listeAdresse.add(adresse);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeAdresse;
     }
 
 }

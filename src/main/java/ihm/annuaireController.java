@@ -2,13 +2,20 @@ package ihm;
 
 import dao.AdresseDAO;
 import dao.EntrepriseDAO;
+import dao.FavorisDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import staggers.Adresse;
 import staggers.Entreprise;
+import staggers.Favoris;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -19,6 +26,7 @@ import static java.lang.Integer.parseInt;
 public class annuaireController implements Initializable  {
 
     static Entreprise selectedEntreprise;
+    private final String[] arrayChoix = {"nom", "ville", "langage"};
     List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
 
     Main main = new Main();
@@ -26,9 +34,14 @@ public class annuaireController implements Initializable  {
 
     @FXML
     private TextField searchBox;
-
+    @FXML
+    public ImageView loupe;
     @FXML
     private ListView<?> myListView;
+    @FXML
+    public ChoiceBox<String> rechercheBy;
+    @FXML
+    private Label noResult;
 
     @FXML
     void deconnexion(MouseEvent event) throws IOException {
@@ -58,13 +71,53 @@ public class annuaireController implements Initializable  {
     }
 
     @FXML
-    void rechercheLIKE(MouseEvent event) {
-        String dataUser = searchBox.getText();
-        System.out.println(dataUser);
-        List<Entreprise> listeEntrepriseLIKE = EntrepriseDAO.getInstance().chercherEntrepriseParNomLIKE(dataUser);
+    void getFavoris(MouseEvent event) {
         ObservableList<String> entrepriseInListView = (ObservableList<String>) myListView.getItems();
+        List<Favoris> listeFavoris = FavorisDAO.getInstance().readAllWithId(logginController.connectedUser.getId());
         entrepriseInListView.clear();
-        entrepriseInListView.addAll(getEntreprise(listeEntrepriseLIKE));
+        if (listeFavoris.isEmpty()) {
+            noResult.setVisible(true);
+        } else {
+            entrepriseInListView.addAll(getFavoris(listeFavoris));
+            noResult.setVisible(false);
+        }
+    }
+
+    @FXML
+    void rechercheLIKE(MouseEvent event) {
+        ObservableList<String> entrepriseInListView = (ObservableList<String>) myListView.getItems();
+        String dataUser = searchBox.getText();
+        if (rechercheBy.getValue().equals("nom")) {
+            List<Entreprise> listeEntrepriseLIKE = EntrepriseDAO.getInstance().chercherEntrepriseParNomLIKE(dataUser);
+            entrepriseInListView.clear();
+            if (listeEntrepriseLIKE.isEmpty()) {
+                noResult.setVisible(true);
+            } else {
+                entrepriseInListView.addAll(getEntreprise(listeEntrepriseLIKE));
+                noResult.setVisible(false);
+            }
+
+        } else if (rechercheBy.getValue().equals("ville")) {
+            List<Adresse> listeAdresseLike = AdresseDAO.getInstance().chercherEntrepriseParVilleLIKE(dataUser);
+            entrepriseInListView.clear();
+            if (listeAdresseLike.isEmpty()) {
+                noResult.setVisible(true);
+            } else {
+                entrepriseInListView.addAll(getAdresse(listeAdresseLike));
+                noResult.setVisible(false);
+            }
+
+        } else {
+            List<Entreprise> listeEntrepriseLangageLike = EntrepriseDAO.getInstance().chercherEntrepriseParLangageLIKE(dataUser);
+            entrepriseInListView.clear();
+            if (listeEntrepriseLangageLike.isEmpty()) {
+                noResult.setVisible(true);
+            } else {
+                entrepriseInListView.addAll(getEntreprise(listeEntrepriseLangageLike));
+                noResult.setVisible(false);
+            }
+        }
+
     }
 
     public void getEntrepriseSelected() {
@@ -92,11 +145,44 @@ public class annuaireController implements Initializable  {
         return nomEntreprise;
     }
 
+    private String[] getAdresse(List<Adresse> listeAdresse) {
+        String[] adr = new String[listeAdresse.size()];
+        int compteur = 0;
+        String informationsEntreprise;
+        String adresseEntreprise;
+        for (Adresse adresse : listeAdresse) {
+            Entreprise entreprise = EntrepriseDAO.getInstance().read(adresse.getId_entreprise());
+            informationsEntreprise = entreprise.getId() + " - " + entreprise.getNom() + " - " + adresse.getCode_postal() + ", " + adresse.getVille() + " - " + entreprise.getLangage();;
+            adr[compteur++] = informationsEntreprise;
+        }
+        return adr;
+    }
+
+    private String[] getFavoris(List<Favoris> listeFavoris) {
+        String[] fav = new String[listeFavoris.size()];
+        int compteur = 0;
+        String informationsEntreprise;
+        String adresseEntreprise;
+        for (Favoris favoris : listeFavoris) {
+            Entreprise entreprise = EntrepriseDAO.getInstance().read(favoris.getId_entreprise());
+            Adresse adresse = AdresseDAO.getInstance().getAdresseWithId("id_entreprise", entreprise.getId());
+            informationsEntreprise = entreprise.getId() + " - " + entreprise.getNom() + " - " + adresse.getCode_postal() + ", " + adresse.getVille() + " - " + entreprise.getLangage();;
+            fav[compteur++] = informationsEntreprise;
+        }
+        return fav;
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> maListe = (ObservableList<String>) myListView.getItems();
-
         maListe.addAll(getEntreprise(listeEntreprise));
+        rechercheBy.getItems().addAll(arrayChoix);
+        noResult.setVisible(false);
+
+
+
     }
 
 
