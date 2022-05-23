@@ -30,6 +30,9 @@ public class accueilController implements Initializable {
     private Label profil;
 
     @FXML
+    private Label admin;
+
+    @FXML
     private Label bienvenue;
 
     @FXML
@@ -55,9 +58,19 @@ public class accueilController implements Initializable {
     void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
     }
+    @FXML
+    void versAdmin(MouseEvent event) throws IOException {
+        main.nextScene("admin-crea-entreprise-view.fxml");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bienvenue.setText("Hey, " + logginController.connectedUser.getPrenom());
+
+        if (logginController.connectedUser.isEst_admin()) {
+           admin.setVisible(true);
+        } else {
+            admin.setVisible(false);
+        }
     }
 }

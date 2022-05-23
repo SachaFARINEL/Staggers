@@ -33,6 +33,15 @@ public class Adresse {
         this.id_utilisateur = id_utilisateur;
         this.id_entreprise = id_entreprise;
     }
+    public Adresse(String numero, String type_de_voie, String adresse, String ville, String code_postal,
+                    Integer id_entreprise) {
+        this.numero = numero;
+        this.type_de_voie = type_de_voie;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.id_entreprise = id_entreprise;
+    }
 
     public int getId() {
         return id;

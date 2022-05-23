@@ -48,8 +48,8 @@ public class AdresseDAO extends DAO<Adresse> {
             pst.setString(3, obj.getAdresse());
             pst.setString(4, obj.getVille());
             pst.setString(5, obj.getCode_postal());
-            pst.setLong(6, obj.getId_utilisateur());
-            pst.setObject(7, obj.getId_entreprise());
+            pst.setInt(6, obj.getId_utilisateur());
+            pst.setInt(7, obj.getId_entreprise());
 
             // on exécute la mise à jour
             pst.executeUpdate();
@@ -218,5 +218,36 @@ public class AdresseDAO extends DAO<Adresse> {
         }
         return listeAdresse;
     }
+
+    public boolean createEntAdmin(Adresse obj) {
+        boolean succes = true;
+        try {
+            String requete = "INSERT INTO " + TABLE + " (" + NUMERO + "," + TYPE_DE_VOIE + "," + ADRESSE + "," + VILLE + "," + CODE_POSTAL + "," +
+                       ID_ENTREPRISE + ") " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+            // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
+            pst.setString(1, obj.getNumero());
+            pst.setString(2, obj.getType_de_voie());
+            pst.setString(3, obj.getAdresse());
+            pst.setString(4, obj.getVille());
+            pst.setString(5, obj.getCode_postal());
+            pst.setInt(6, obj.getId_entreprise());
+
+            // on exécute la mise à jour
+            pst.executeUpdate();
+            //Récupérer la clé qui a été générée et la pousser dans l'objet initial
+            ResultSet rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                obj.setId(rs.getInt(1));
+            }
+            donnees.put(obj.getId(), obj);
+        } catch (SQLException e) {
+            succes = false;
+            e.printStackTrace();
+        }
+        return succes;
+    }
+
 
 }

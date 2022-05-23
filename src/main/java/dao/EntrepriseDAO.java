@@ -148,7 +148,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         return listeEntreprise;
     }
 
-    public String getWithEmail(String recherche,  String mail) {
+    public String getWithEmailEnt(String recherche,  String mail) {
         String reponseRequete = null;
         System.out.println("Recherche dans la BD");
         try {

@@ -13,8 +13,8 @@ public class Connexion {
     public static Connection getInstance() {
         if (connect == null) {
             String connectionUrl =
-                    "jdbc:sqlserver://localhost\\SQLEXPRESS;database=dbstage;"
-                            + "user=sacha;"
+                    "jdbc:sqlserver://localhost\\SQLEXPRESS01;database=dbstage;"
+                            + "user=CLEMENT;"
                             + "password=sio;"
                             + "encrypt=true;"
                             + "trustServerCertificate=true;";

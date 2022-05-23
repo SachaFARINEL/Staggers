@@ -165,6 +165,11 @@ public class adminCreaEntreprise implements Initializable {
 
     }
 
+    @FXML
+    void versAdmin(MouseEvent event) {
+
+    }
+
     private boolean checkIfEmpty() throws ParseException {
         boolean isNotEmpty = true;
         String nomSent = nom.getText().toString();
@@ -226,7 +231,7 @@ public class adminCreaEntreprise implements Initializable {
         return isNotEmpty;
     }
 
-    void sendCreationEnt(ActionEvent event) throws ParseException {
+  public void sendCreationEnt(ActionEvent event) throws ParseException {
         if (checkIfEmpty()) {
 
             String nomSent = nom.getText().toString();
@@ -248,9 +253,10 @@ public class adminCreaEntreprise implements Initializable {
             Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent, langageSent) ;
             EntrepriseDAO.getInstance().create(entreprise);
 
-            Integer idEnt = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
-            Adresse userAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, null, idEnt);
-            AdresseDAO.getInstance().create(userAdresse);
+            Integer idEnt = Integer.parseInt((EntrepriseDAO.getInstance().getWithEmailEnt("id", emailSent)));
+            System.out.println(idEnt);
+            Adresse entAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idEnt);
+            AdresseDAO.getInstance().createEntAdmin(entAdresse);
 
             try {
                 Main main = new Main();
