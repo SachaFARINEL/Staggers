@@ -163,16 +163,9 @@ public class ficheEntrepriseController implements Initializable {
         telContact.setText(annuaireController.selectedEntreprise.getNum_contact());
         mailContact.setText(annuaireController.selectedEntreprise.getEmail_contact());
 
-        int nombreSalaries = Integer.parseInt(annuaireController.selectedEntreprise.getNb_salarie());
-        int nombreStagiaireMax = Integer.parseInt(annuaireController.selectedEntreprise.getnb_stagiaire_max());
-        String affichageNbSalaries = "Taille de l'entreprise : " + annuaireController.selectedEntreprise.getNb_salarie() + " salarié";
-        String affichageNbStagiaireMax = "Capacité d'accueil : " + annuaireController.selectedEntreprise.getnb_stagiaire_max() + " stagiaire";
-        if (nombreSalaries > 1) {
-            affichageNbSalaries += "s";
-        }
-        if (nombreStagiaireMax > 1) {
-            affichageNbStagiaireMax += "s";
-        }
+        String affichageNbSalaries = "Taille de l'entreprise : " + annuaireController.selectedEntreprise.getNb_salarie() + " salariés";
+        String affichageNbStagiaireMax = "Capacité d'accueil : " + annuaireController.selectedEntreprise.getnb_stagiaire_max() + " stagiaires";
+
         tailleEntreprise.setText(affichageNbSalaries);
         nbStagiaireMax.setText(affichageNbStagiaireMax);
 

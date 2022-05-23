@@ -42,6 +42,9 @@ public class annuaireController implements Initializable  {
     public ChoiceBox<String> rechercheBy;
     @FXML
     private Label noResult;
+    @FXML
+    private Label admin;
+
 
     @FXML
     void deconnexion(MouseEvent event) throws IOException {
@@ -65,6 +68,10 @@ public class annuaireController implements Initializable  {
 
     }
 
+    @FXML
+    void versAdmin(MouseEvent event) throws IOException {
+        main.nextScene("admin-crea-entreprise-view.fxml");
+    }
     @FXML
     void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
@@ -180,7 +187,11 @@ public class annuaireController implements Initializable  {
         maListe.addAll(getEntreprise(listeEntreprise));
         rechercheBy.getItems().addAll(arrayChoix);
         noResult.setVisible(false);
-
+        if (logginController.connectedUser.isEst_admin()) {
+            admin.setVisible(true);
+        } else {
+            admin.setVisible(false);
+        }
 
 
     }

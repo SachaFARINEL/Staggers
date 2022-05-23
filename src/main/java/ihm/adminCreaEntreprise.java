@@ -12,12 +12,14 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ImageInput;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,9 +29,11 @@ import staggers.Utilisateur;
 
 public class adminCreaEntreprise implements Initializable {
 
-    private final String[] arrayNbSalarie = {"Moins de 5","Entre 6 et 9","Entre 10 et 49","50 et plus"};
+    Main main = new Main();
 
-    private final String[] arrayNbStagiaire = {"1","2","3","4 et plus"};
+    private final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
+
+    private final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
 
     @FXML
     private TextField adresse;
@@ -144,15 +148,14 @@ public class adminCreaEntreprise implements Initializable {
     }
 
 
-
     @FXML
-    void versActualite(MouseEvent event) {
-
+    void versActualite(MouseEvent event) throws IOException {
+        main.nextScene("accueil-view.fxml");
     }
 
     @FXML
-    void versAnnuaire(MouseEvent event) {
-
+    void versAnnuaire(MouseEvent event) throws IOException {
+        main.nextScene("annuaire-view.fxml");
     }
 
     @FXML
@@ -197,7 +200,7 @@ public class adminCreaEntreprise implements Initializable {
         if (nomContactSent.isEmpty()) {
             isNotEmpty = false;
         }
-        if (numContactSent .isEmpty()) {
+        if (numContactSent.isEmpty()) {
             isNotEmpty = false;
         }
         if (emailSent.isEmpty()) {
@@ -231,7 +234,7 @@ public class adminCreaEntreprise implements Initializable {
         return isNotEmpty;
     }
 
-  public void sendCreationEnt(ActionEvent event) throws ParseException {
+    public void sendCreationEnt(ActionEvent event) throws ParseException {
         if (checkIfEmpty()) {
 
             String nomSent = nom.getText().toString();
@@ -250,7 +253,7 @@ public class adminCreaEntreprise implements Initializable {
             String descriptionSent = description.getText().toString();
             String langageSent = langage.getText().toString();
 
-            Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent,emailContact,numContactSent,nbSalarieSent,nbStagiaireSent,descriptionSent, langageSent) ;
+            Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent, emailContact, numContactSent, nbSalarieSent, nbStagiaireSent, descriptionSent, langageSent);
             EntrepriseDAO.getInstance().create(entreprise);
 
             Integer idEnt = Integer.parseInt((EntrepriseDAO.getInstance().getWithEmailEnt("id", emailSent)));
@@ -263,7 +266,8 @@ public class adminCreaEntreprise implements Initializable {
                 main.nextScene("accueil-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
-            };
+            }
+            ;
         }
 
     }

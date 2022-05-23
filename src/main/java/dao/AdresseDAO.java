@@ -141,24 +141,24 @@ public class AdresseDAO extends DAO<Adresse> {
 
     public static Adresse readWithId(String colonne, int id) {
         Adresse adresse = null;
-            try {
-                String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
-                ResultSet rs = Connexion.executeQuery(requete);
-                rs.next();
-                String numero = rs.getString(NUMERO);
-                String type_de_voie = rs.getString(TYPE_DE_VOIE);
-                String adresses = rs.getString(ADRESSE);
-                String ville = rs.getString(VILLE);
-                String code_postal = rs.getString(CODE_POSTAL);
-                Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
-                Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
+            ResultSet rs = Connexion.executeQuery(requete);
+            rs.next();
+            String numero = rs.getString(NUMERO);
+            String type_de_voie = rs.getString(TYPE_DE_VOIE);
+            String adresses = rs.getString(ADRESSE);
+            String ville = rs.getString(VILLE);
+            String code_postal = rs.getString(CODE_POSTAL);
+            Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
+            Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
 
-                adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
+            adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
 
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return adresse;
     }
 
@@ -201,7 +201,7 @@ public class AdresseDAO extends DAO<Adresse> {
             listeAdresse = new ArrayList<Adresse>();
             boolean hasNext = rs.next();
             while (hasNext) {
-                int id= rs.getInt(CLE_PRIMAIRE);
+                int id = rs.getInt(CLE_PRIMAIRE);
                 String numero = rs.getString(NUMERO);
                 String type_de_voie = rs.getString(TYPE_DE_VOIE);
                 String adresses = rs.getString(ADRESSE);
@@ -223,7 +223,7 @@ public class AdresseDAO extends DAO<Adresse> {
         boolean succes = true;
         try {
             String requete = "INSERT INTO " + TABLE + " (" + NUMERO + "," + TYPE_DE_VOIE + "," + ADRESSE + "," + VILLE + "," + CODE_POSTAL + "," +
-                       ID_ENTREPRISE + ") " +
+                    ID_ENTREPRISE + ") " +
                     "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
             // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
