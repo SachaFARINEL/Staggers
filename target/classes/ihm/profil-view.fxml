@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.profilController">
+    <children>
+        <AnchorPane prefHeight="106.0" prefWidth="1064.0" style="-fx-background-color: #496874;">
+            <children>
+                <ImageView fitHeight="86.0" fitWidth="200.0" layoutX="420.0" layoutY="11.0">
+                    <image>
+                        <Image url="@../img/Logo.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="fil_actualite" layoutX="14.0" layoutY="31.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
+                    <font>
+                        <Font size="29.0" />
+                    </font>
+                </Label>
+                <Label fx:id="annuaire" layoutX="245.0" layoutY="31.0" onMouseClicked="#versAnnuaire" style="-fx-cursor: hand;" text="Annuaire" textFill="WHITE">
+                    <font>
+                        <Font size="29.0" />
+                    </font>
+                </Label>
+                <Label fx:id="conseils" layoutX="668.0" layoutY="31.0" onMouseClicked="#versConseil" style="-fx-cursor: hand;" text="Conseils" textFill="WHITE">
+                    <font>
+                        <Font size="29.0" />
+                    </font>
+                </Label>
+                <Label fx:id="profil" layoutX="815.0" layoutY="33.0" onMouseClicked="#versProfil" style="-fx-cursor: hand;" text="Mon profil">
+                    <font>
+                        <Font name="System Bold" size="29.0" />
+                    </font>
+                </Label>
+                <Label fx:id="deco" layoutX="988.0" layoutY="14.0" onMouseClicked="#deconnexion" style="-fx-cursor: hand;" text="Déconnexion" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="514.0" prefHeight="86.0" prefWidth="1064.0">
+            <children>
+                <ImageView fitHeight="73.0" fitWidth="1064.0" layoutY="14.0">
+                    <image>
+                        <Image url="@../img/Vectors.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+      <AnchorPane layoutX="457.0" layoutY="129.0" prefHeight="43.0" prefWidth="134.0">
+         <children>
+            <Label text="Mon profil">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="171.0" layoutY="172.0" prefHeight="326.0" prefWidth="758.0">
+         <children>
+            <TextField layoutX="195.0" layoutY="228.0" prefHeight="25.0" prefWidth="50.0" text="1" />
+            <TextField layoutX="195.0" layoutY="90.0" text="Elouan" />
+            <TextField layoutX="195.0" layoutY="137.0" text="lapin@gmail.com" />
+            <TextField layoutX="195.0" layoutY="181.0" text="***" />
+            <TextField layoutX="195.0" layoutY="270.0" text="35000" />
+            <TextField layoutX="259.0" layoutY="228.0" prefHeight="25.0" prefWidth="85.0" text="rue" />
+            <TextField layoutX="437.0" layoutY="136.0" text="010203040506" />
+            <TextField layoutX="437.0" layoutY="269.0" text="ville" />
+            <TextField layoutX="437.0" layoutY="89.0" text="14/10/200" />
+            <TextField layoutX="437.0" layoutY="227.0" text="adresse" />
+            <TextField layoutX="437.0" layoutY="180.0" text="***" />
+            <TextField layoutX="437.0" layoutY="46.0" text="Lamande" />
+            <Button layoutX="43.0" layoutY="221.0" mnemonicParsing="false" text="Modifier" />
+         </children>
+      </AnchorPane>
+    </children>
+</Pane>

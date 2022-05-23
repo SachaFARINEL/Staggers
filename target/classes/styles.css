@@ -6,23 +6,23 @@
 .button {
     -fx-background-color: #20DF7F
 }
-.choice-box {
+#sexe {
     -fx-mark-color: white;
     -fx-background-color: #224957;
     -fx-font: 14px "System";
     -fx-background-radius: 10, 10;
 }
-.choice-box > .label {
+#sexe > .label {
     -fx-text-fill: white;
 }
-.choice-box .context-menu {
+#sexe .context-menu {
     -fx-background-color: #224957;
     -fx-background-radius: 10, 10;
 }
-.choice-box .menu-item:focused {
+#sexe .menu-item:focused {
     -fx-background-color: #296763;
 }
-.choice-box .menu-item > .label {
+#sexe .menu-item > .label {
     -fx-pref-width: 65;
     -fx-text-fill: white;
     -fx-font: 12px "System";
@@ -72,3 +72,15 @@
 .date-picker-popup .spinner .button .right-arrow {
     -fx-background-color: white;
 }
+.list-cell{
+    -fx-font-size:20.0;
+}
+#searchBox {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-border-color: #4C6B77;
+    -fx-border-radius: 10, 10;
+
+}
+
+

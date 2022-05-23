@@ -5,6 +5,8 @@ import dao.Connexion;
 import dao.EntrepriseDAO;
 import dao.UtilisateurDAO;
 
+import java.util.List;
+
 public class RunProject {
 
 
@@ -24,6 +26,9 @@ public class RunProject {
         /* Entreprise */
 
         //System.out.println(EntrepriseDAO.getInstance().read(1));
+
+        List listeEntreprise = EntrepriseDAO.getInstance().readAll();
+        //System.out.println(listeEntreprise.get(1));
 
         /* Adresse */
 

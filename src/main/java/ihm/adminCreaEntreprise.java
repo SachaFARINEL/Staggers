@@ -249,7 +249,7 @@ public class adminCreaEntreprise implements Initializable {
             EntrepriseDAO.getInstance().create(entreprise);
 
             Integer idEnt = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
-            Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, null, idEnt);
+            Adresse userAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, null, idEnt);
             AdresseDAO.getInstance().create(userAdresse);
 
             try {
