@@ -77,6 +77,7 @@ public class ficheEntrepriseController implements Initializable {
     private ListView<?> listViewCommentaire;
     @FXML
     public Button buttonCommentaire;
+    @FXML private ImageView letter;
 
     @FXML
     void changeStar(MouseEvent event) {
@@ -151,7 +152,13 @@ public class ficheEntrepriseController implements Initializable {
 
     }
 
-    @Override
+    @FXML
+    void doLetter(MouseEvent event) throws IOException {
+        main.nextScene("lettreMotivation-view.fxml");
+    }
+
+
+        @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         nomEntreprise.setText(annuaireController.selectedEntreprise.getNom());

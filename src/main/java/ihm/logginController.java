@@ -1,5 +1,6 @@
 package ihm;
 
+import dao.AdresseDAO;
 import dao.UtilisateurDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import staggers.Adresse;
+import staggers.Entreprise;
 import staggers.Utilisateur;
 
 import java.io.IOException;
@@ -24,6 +27,8 @@ import static utils.Utils.isPasswordCorrect;
 public class logginController {
 
     static Utilisateur connectedUser;
+    static Adresse connectedAdresse;
+
     @FXML
     private Button connexion;
 
@@ -83,6 +88,7 @@ public class logginController {
                     errorLogin.setStyle("-fx-text-fill: #20DF7F;");
                     errorLogin.setText("Authentification réussie !");
                     connectedUser = UtilisateurDAO.getInstance().getUserWithMail(usernameSent);
+                    connectedAdresse = AdresseDAO.getInstance().read(connectedUser.getId());
                     Timeline timeline = new Timeline(new KeyFrame(
                             Duration.millis(1000),
                             ae -> {
