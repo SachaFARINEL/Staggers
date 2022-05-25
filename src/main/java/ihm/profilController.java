@@ -27,7 +27,7 @@ public class profilController {
     private TextField cp;
 
     @FXML
-    private Label deco;
+    private Button deco;
 
     @FXML
     private Label fil_actualite;
