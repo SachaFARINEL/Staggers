@@ -49,7 +49,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                     </font>
                 </Button>
-            <Label fx:id="admin" layoutX="39.0" layoutY="27.0" onMouseClicked="#versAdmin" style="-fx-cursor: hand;" text="Admin" textFill="#20df7f">
+            <Label fx:id="admin" layoutX="52.0" layoutY="27.0" onMouseClicked="#versAdmin" style="-fx-cursor: hand;" text="Admin" textFill="#20df7f">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>

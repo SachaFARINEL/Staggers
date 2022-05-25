@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.profilController">
     <children>
-      <AnchorPane prefHeight="93.0" prefWidth="1074.0" style="-fx-background-color: #4C6B77;">
+      <AnchorPane prefHeight="81.0" prefWidth="1074.0" style="-fx-background-color: #4C6B77;">
          <children>
             <Label fx:id="fil_actualite" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
                <font>
