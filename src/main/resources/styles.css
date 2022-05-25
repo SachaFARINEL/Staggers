@@ -83,4 +83,8 @@
 
 }
 
-
+.text-fieldLettreMotivation {
+    -fx-background-color: #FFFFFF;
+    -fx-text-inner-color: black;
+    -fx-background-radius: 10, 10;
+}

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -38,35 +39,59 @@ public class lettreMotivationController implements Initializable {
 
     @FXML private TextField nombreDeSemaine;
 
+    @FXML private TextField debutStage;
+
+    @FXML private TextField premiereQualite;
+
+    @FXML private TextField deuxiemeQualite;
+
+    @FXML private Text emptyTextfield;
+
+    @FXML private ImageView beforeLetter;
+
+
     private String sexe() {
         return logginController.connectedUser.getSexe();
     }
 
     @FXML void genererLettre(MouseEvent event) {
 
-        String corpLettreMotivation = corpTexte.getText();
-        String tourne="tourné";
-        String honore="honoré";
-        String ravi="ravi";
-        System.out.println(sexe());
-        if (sexe().equals("Madame")) {
-            tourne += "e";
-            honore += "e";
-            ravi += "e";
-        } else if (sexe().equals("Autre")){
-            tourne += "·e";
-            honore += "·e";
-            ravi += "·e";
+        if (!nombreDeSemaine.getText().isEmpty() && !debutStage.getText().isEmpty() && !premiereQualite.getText().isEmpty() && !deuxiemeQualite.getText().isEmpty()) {
+            emptyTextfield.setVisible(false);
+            String corpLettreMotivation = corpTexte.getText();
+            String tourne="tourné";
+            String honore="honoré";
+            String ravi="ravi";
+            if (sexe().equals("Madame")) {
+                tourne += "e";
+                honore += "e";
+                ravi += "e";
+            } else if (sexe().equals("Autre")){
+                tourne += "·e";
+                honore += "·e";
+                ravi += "·e";
+            }
+            String nbSemaine = nombreDeSemaine.getText().toLowerCase();
+            String debutStg = debutStage.getText().toLowerCase();
+            String firstPerk = premiereQualite.getText().substring(0,1).toUpperCase() + premiereQualite.getText().substring(1).toLowerCase();
+            String secondPerk = deuxiemeQualite.getText().toLowerCase();
+            String nomPrenom = logginController.connectedUser.getNom() + " " + logginController.connectedUser.getPrenom();
+            String corp = corpLettreMotivation
+                    .replaceAll("%tourne%", tourne)
+                    .replaceAll("%honore%", honore)
+                    .replaceAll("%ravi%", ravi)
+                    .replaceAll("%nombreSemaines%", nbSemaine)
+                    .replaceAll("%dateDebut%", debutStg)
+                    .replaceAll("%premiereQualite%", firstPerk)
+                    .replaceAll("%deuxiemeQualite%", secondPerk)
+                    .replaceAll("%NOMPRENOM%", nomPrenom )
+                    ;
+            corpTexte.setText(corp);
+            anchorScroll.setVisible(true);
+        } else {
+            emptyTextfield.setVisible(true);
         }
-        String corp = corpLettreMotivation
-                .replaceAll("%tourne%", tourne)
-                .replaceAll("%honore%", honore)
-                .replaceAll("%ravi%", ravi)
-                .replaceAll("%nombreSemaines%", nombreDeSemaine.getText())
 
-                ;
-        corpTexte.setText(corp);
-        anchorScroll.setVisible(true);
     }
 
     @FXML
@@ -78,7 +103,7 @@ public class lettreMotivationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        emptyTextfield.setVisible(false);
         anchorScroll.setVisible(false);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         LocalDateTime now = LocalDateTime.now();
