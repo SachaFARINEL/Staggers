@@ -61,19 +61,19 @@
       </AnchorPane>
       <AnchorPane layoutX="171.0" layoutY="172.0" prefHeight="326.0" prefWidth="758.0">
          <children>
-            <TextField layoutX="195.0" layoutY="228.0" prefHeight="25.0" prefWidth="50.0" text="1" />
-            <TextField layoutX="195.0" layoutY="90.0" text="Elouan" />
-            <TextField layoutX="195.0" layoutY="137.0" text="lapin@gmail.com" />
-            <TextField layoutX="195.0" layoutY="181.0" text="***" />
-            <TextField layoutX="195.0" layoutY="270.0" text="35000" />
-            <TextField layoutX="259.0" layoutY="228.0" prefHeight="25.0" prefWidth="85.0" text="rue" />
-            <TextField layoutX="437.0" layoutY="136.0" text="010203040506" />
-            <TextField layoutX="437.0" layoutY="269.0" text="ville" />
-            <TextField layoutX="437.0" layoutY="89.0" text="14/10/200" />
-            <TextField layoutX="437.0" layoutY="227.0" text="adresse" />
-            <TextField layoutX="437.0" layoutY="180.0" text="***" />
-            <TextField layoutX="437.0" layoutY="46.0" text="Lamande" />
-            <Button layoutX="43.0" layoutY="221.0" mnemonicParsing="false" text="Modifier" />
+            <TextField fx:id="num_rue" layoutX="195.0" layoutY="228.0" prefHeight="25.0" prefWidth="50.0" text="1" />
+            <TextField fx:id="prenom" layoutX="195.0" layoutY="90.0" text="Elouan" />
+            <TextField fx:id="mail" layoutX="195.0" layoutY="137.0" text="lapin@gmail.com" />
+            <TextField fx:id="mp" layoutX="195.0" layoutY="181.0" text="***" />
+            <TextField fx:id="cp" layoutX="195.0" layoutY="270.0" text="35000" />
+            <TextField fx:id="type" layoutX="259.0" layoutY="228.0" prefHeight="25.0" prefWidth="85.0" text="rue" />
+            <TextField fx:id="num_tel" layoutX="437.0" layoutY="136.0" text="010203040506" />
+            <TextField fx:id="ville" layoutX="437.0" layoutY="269.0" text="ville" />
+            <TextField fx:id="birthday" layoutX="437.0" layoutY="89.0" text="14/10/200" />
+            <TextField fx:id="adresse" layoutX="437.0" layoutY="227.0" text="adresse" />
+            <TextField fx:id="mp" layoutX="437.0" layoutY="180.0" text="***" />
+            <TextField fx:id="nom" layoutX="437.0" layoutY="46.0" text="Lamande" />
+            <Button fx:id="modifier" layoutX="43.0" layoutY="221.0" mnemonicParsing="false" text="Modifier" />
          </children>
       </AnchorPane>
     </children>
