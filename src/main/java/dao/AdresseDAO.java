@@ -39,8 +39,8 @@ public class AdresseDAO extends DAO<Adresse> {
         boolean succes = true;
         try {
             String requete = "INSERT INTO " + TABLE + " (" + NUMERO + "," + TYPE_DE_VOIE + "," + ADRESSE + "," + VILLE + "," + CODE_POSTAL + "," +
-                    "" + ID_UTILISATEUR + "," + ID_ENTREPRISE + ") " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    "" + ID_UTILISATEUR + ") " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
             // on pose un String en paramètre 1 -1er '?'- et ce String est le nom de l'avion
             pst.setString(1, obj.getNumero());
@@ -49,7 +49,7 @@ public class AdresseDAO extends DAO<Adresse> {
             pst.setString(4, obj.getVille());
             pst.setString(5, obj.getCode_postal());
             pst.setInt(6, obj.getId_utilisateur());
-            pst.setInt(7, obj.getId_entreprise());
+
 
             // on exécute la mise à jour
             pst.executeUpdate();
