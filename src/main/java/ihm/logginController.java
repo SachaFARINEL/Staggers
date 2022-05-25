@@ -14,7 +14,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import staggers.Adresse;
-import staggers.Entreprise;
 import staggers.Utilisateur;
 
 import java.io.IOException;

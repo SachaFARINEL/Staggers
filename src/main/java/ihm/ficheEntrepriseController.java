@@ -34,7 +34,7 @@ public class ficheEntrepriseController implements Initializable {
     private final int id_utilisateur = logginController.connectedUser.getId();
     private final int id_selectedEntreprise = annuaireController.selectedEntreprise.getId();
 
-    Adresse adresseSelectEntreprise = AdresseDAO.getInstance().getAdresseWithId("id_entreprise",annuaireController.selectedEntreprise.getId());
+    static Adresse adresseSelectEntreprise = AdresseDAO.getInstance().getAdresseWithId("id_entreprise",annuaireController.selectedEntreprise.getId());
     List<Commentaire> listeCommentaire = CommentaireDAO.getInstance().readAll(id_selectedEntreprise);
 
     Main main = new Main();
@@ -202,6 +202,9 @@ public class ficheEntrepriseController implements Initializable {
 
         ObservableList<String> maListe = (ObservableList<String>) listViewCommentaire.getItems();
         maListe.addAll(printACommentaire(listeCommentaire));
+
+
+
         }
 
 
