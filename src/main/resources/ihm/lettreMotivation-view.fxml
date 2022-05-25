@@ -52,12 +52,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="38.0" prefWidth="364.0" text="Objet : Demande de stage dans votre entreprise" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="320.0">
+                  <Label fx:id="objet" prefHeight="38.0" prefWidth="364.0" text="Objet : Demande de stage dans votre entreprise" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="320.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="38.0" prefWidth="364.0" text="Madame, Monsieur," AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0">
+                  <Label fx:id="madameMonsieur" prefHeight="38.0" prefWidth="364.0" text="Madame, Monsieur," AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -87,20 +87,41 @@
       </ImageView>
       <AnchorPane layoutX="749.0" layoutY="146.0" prefHeight="440.0" prefWidth="305.0">
          <children>
-            <Button fx:id="buttonGenerer" layoutX="129.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#genererLettre" style="-fx-cursor: hand;" text="Générer" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="117.0" />
-            <TextField fx:id="nombreDeSemaine" layoutX="24.0" layoutY="71.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="70.0" />
-            <Label alignment="CENTER" layoutX="145.0" layoutY="48.0" prefHeight="17.0" prefWidth="135.0" text="Durée de votre stage (en semaines)" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="50.0" />
-            <TextField fx:id="debutStage" layoutX="24.0" layoutY="138.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="140.0" />
-            <Label alignment="CENTER" layoutX="134.0" layoutY="114.0" prefHeight="17.0" prefWidth="135.0" text="Date de début de stage" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="120.0" />
-            <TextField fx:id="premiereQualite" layoutX="24.0" layoutY="195.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="210.0" />
-            <Label alignment="CENTER" layoutX="140.0" layoutY="171.0" prefHeight="17.0" prefWidth="135.0" text="Une première qualité" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="190.0" />
-            <TextField fx:id="deuxiemeQualite" layoutX="24.0" layoutY="257.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="280.0" />
-            <Label alignment="CENTER" layoutX="186.0" layoutY="240.0" prefHeight="17.0" prefWidth="135.0" text="Une deuxième qualité" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="260.0" />
-            <Text fx:id="emptyTextfield" fill="RED" layoutX="24.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir l'ensemble des champs avant de générer votre lettre de motivation" textAlignment="CENTER" wrappingWidth="257.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0">
+            <Button fx:id="buttonGenerer" layoutX="123.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#genererLettre" style="-fx-cursor: hand;" text="Générer" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.0" />
+            <TextField fx:id="nombreDeSemaine" layoutX="24.0" layoutY="50.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="50.0" />
+            <Label alignment="CENTER" layoutX="24.0" layoutY="30.0" prefHeight="17.0" prefWidth="135.0" text="Durée de votre stage (en semaines)" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="30.0" />
+            <TextField fx:id="debutStage" layoutX="24.0" layoutY="120.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="120.0" />
+            <Label alignment="CENTER" layoutX="24.0" layoutY="100.0" prefHeight="17.0" prefWidth="135.0" text="Date de début de stage" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="100.0" />
+            <TextField fx:id="premiereQualite" layoutX="24.0" layoutY="190.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="190.0" />
+            <Label alignment="CENTER" layoutX="24.0" layoutY="170.0" prefHeight="17.0" prefWidth="135.0" text="Une première qualité" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="170.0" />
+            <TextField fx:id="deuxiemeQualite" layoutX="24.0" layoutY="260.0" prefHeight="25.0" prefWidth="257.0" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="260.0" />
+            <Label alignment="CENTER" layoutX="24.0" layoutY="240.0" prefHeight="17.0" prefWidth="135.0" text="Une deuxième qualité" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="240.0" />
+            <Text fx:id="emptyTextfield" fill="RED" layoutX="24.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir l'ensemble des champs avant de générer votre lettre de motivation" textAlignment="CENTER" wrappingWidth="257.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="saveIcon" fitHeight="25.0" fitWidth="24.0" layoutX="257.0" layoutY="386.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@../img/save.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="pathToFile" layoutX="24.0" layoutY="385.0" prefHeight="25.0" prefWidth="222.0" promptText="C:\LettresMotivation" />
+            <Label fx:id="wrongPath" alignment="CENTER" layoutX="24.0" layoutY="362.0" prefHeight="17.0" prefWidth="222.0" text="Le chemin spécifié est introuvable" textAlignment="CENTER" textFill="#f50505">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="indicationPath" alignment="CENTER" layoutX="26.0" layoutY="363.0" prefHeight="17.0" prefWidth="222.0" text="Chemin de votre emplacement">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="downloadDone" alignment="CENTER" layoutX="25.0" layoutY="418.0" prefHeight="17.0" prefWidth="257.0" text="Lettre de motivation téléchargée" textFill="#19cd88">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
-            </Text>
+            </Label>
          </children>
       </AnchorPane>
       <Label layoutX="764.0" layoutY="89.0" prefHeight="89.0" prefWidth="251.0" text="Construisez votre lettre de motivation" textAlignment="CENTER" wrapText="true">

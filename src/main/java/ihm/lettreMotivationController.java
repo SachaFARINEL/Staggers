@@ -9,11 +9,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.util.Scanner;
 
 public class lettreMotivationController implements Initializable {
 
@@ -47,26 +52,81 @@ public class lettreMotivationController implements Initializable {
 
     @FXML private Text emptyTextfield;
 
-    @FXML private ImageView beforeLetter;
+    @FXML private ImageView saveIcon;
+
+    @FXML private Label objet;
+
+    @FXML private Label madameMonsieur;
+
+    @FXML private Label wrongPath;
+
+    @FXML private TextField pathToFile;
+
+    @FXML private Label indicationPath;
+
+    @FXML private Label downloadDone;
+
+    @FXML
+    void retourAnnuaire(MouseEvent event) throws IOException {
+        main.nextScene("ficheEntreprise-view.fxml");
+    }
+
+    @FXML
+    void save(MouseEvent event) {
+        if (!nombreDeSemaine.getText().isEmpty() && !debutStage.getText().isEmpty() && !premiereQualite.getText().isEmpty() && !deuxiemeQualite.getText().isEmpty()) {
+            emptyTextfield.setVisible(false);
+            wrongPath.setVisible(false);
+            indicationPath.setVisible(true);
 
 
-    private String sexe() {
-        return logginController.connectedUser.getSexe();
+            String path = pathToFile.getText() + "/";
+            String LMForSave = (
+                            nomPrenom.getText() + "\n" + adresseSup.getText() + "\n" + adresseInf.getText() + "\n" + "\n"
+                            + nomEntreprise.getText() + "\n" + adresseSupEntreprise.getText() + "\n"
+                            + adresseInfEntreprise.getText() + "\n" + "\n" + villeDate.getText() + "\n" + "\n"
+                            + objet.getText() + "\n" + "\n" + madameMonsieur.getText() + "\n" +  corpTexte.getText()
+                            );
+            try {
+                String name = path + "LM-" + logginController.connectedUser.getNom()
+                + "-" + annuaireController.selectedEntreprise.getNom() + ".txt";
+                FileOutputStream fos = new FileOutputStream(name, true);
+                // true for append mode
+
+                //str stores the string which we have entered
+                byte[] b = LMForSave.getBytes(); //converts string into bytes
+                fos.write(b); //writes bytes into file
+                fos.close(); //close the file
+                downloadDone.setVisible(true);
+            }
+            catch(Exception e) {
+                System.out.println("Exception Occurred:");
+                e.printStackTrace();
+                wrongPath.setVisible(true);
+                indicationPath.setVisible(false);
+
+            }
+        } else {
+            emptyTextfield.setVisible(true);
+        }
     }
 
     @FXML void genererLettre(MouseEvent event) {
 
         if (!nombreDeSemaine.getText().isEmpty() && !debutStage.getText().isEmpty() && !premiereQualite.getText().isEmpty() && !deuxiemeQualite.getText().isEmpty()) {
             emptyTextfield.setVisible(false);
+            pathToFile.setVisible(true);
+            saveIcon.setVisible(true);
+            indicationPath.setVisible(!wrongPath.isVisible());
             String corpLettreMotivation = corpTexte.getText();
             String tourne="tourné";
             String honore="honoré";
             String ravi="ravi";
-            if (sexe().equals("Madame")) {
+            String sexe = logginController.connectedUser.getSexe();
+            if (sexe.equals("Madame")) {
                 tourne += "e";
                 honore += "e";
                 ravi += "e";
-            } else if (sexe().equals("Autre")){
+            } else if (sexe.equals("Autre")){
                 tourne += "·e";
                 honore += "·e";
                 ravi += "·e";
@@ -94,17 +154,15 @@ public class lettreMotivationController implements Initializable {
 
     }
 
-    @FXML
-    void retourAnnuaire(MouseEvent event) throws IOException {
-        main.nextScene("ficheEntreprise-view.fxml");
-    }
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        wrongPath.setVisible(false);
         emptyTextfield.setVisible(false);
+        pathToFile.setVisible(false);
+        saveIcon.setVisible(false);
         anchorScroll.setVisible(false);
+        indicationPath.setVisible(false);
+        downloadDone.setVisible(false);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         LocalDateTime now = LocalDateTime.now();
 
