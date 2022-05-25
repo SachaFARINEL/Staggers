@@ -138,8 +138,8 @@ public class adminCreaEntreprise implements Initializable {
     private TextField langage;
 
     @FXML
-    void deconnexion(MouseEvent event) {
-
+    void deconnexion(MouseEvent event) throws IOException {
+        main.nextScene("loggin-view.fxml");
     }
 
     @FXML
@@ -164,7 +164,8 @@ public class adminCreaEntreprise implements Initializable {
     }
 
     @FXML
-    void versProfil(MouseEvent event) {
+    void versProfil(MouseEvent event) throws IOException {
+        main.nextScene("profil-view.fxml");
 
     }
 

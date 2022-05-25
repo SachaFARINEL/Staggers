@@ -171,12 +171,25 @@ public class ficheEntrepriseController implements Initializable {
         mailContact.setText(annuaireController.selectedEntreprise.getEmail_contact());
 
         String affichageNbSalaries = "Taille de l'entreprise : " + annuaireController.selectedEntreprise.getNb_salarie() + " salariés";
-        String affichageNbStagiaireMax = "Capacité d'accueil : " + annuaireController.selectedEntreprise.getnb_stagiaire_max() + " stagiaires";
+        String affichageNbStagiaireMax = "Capacité d'accueil : " + annuaireController.selectedEntreprise.getnb_stagiaire_max() + " stagiaire";
+
+
+            if (!Objects.equals(annuaireController.selectedEntreprise.getnb_stagiaire_max(), "1")) {
+                affichageNbStagiaireMax += "s";
+            }
 
         tailleEntreprise.setText(affichageNbSalaries);
         nbStagiaireMax.setText(affichageNbStagiaireMax);
 
-        langageEntreprise.setText("Technologie principale : " + annuaireController.selectedEntreprise.getLangage());
+
+            String langage = annuaireController.selectedEntreprise.getLangage();
+            String[] splitedLangage = (langage.split(","));
+            String lan = "Langage";
+            if (splitedLangage.length > 1) {
+                lan += "s";
+            }
+
+        langageEntreprise.setText(lan +" : "  + annuaireController.selectedEntreprise.getLangage());
         description.setText(annuaireController.selectedEntreprise.getDescription());
         commentaireIsSent.setVisible(false);
         listViewCommentaire.setVisible(false);

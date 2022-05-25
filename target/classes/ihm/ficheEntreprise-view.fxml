@@ -58,7 +58,7 @@
          <children>
             <AnchorPane layoutX="342.0" layoutY="14.0" prefHeight="257.0" prefWidth="350.0" AnchorPane.rightAnchor="-60.0">
                <children>
-                  <Label alignment="CENTER" layoutX="43.0" layoutY="-1.0" prefHeight="30.0" prefWidth="238.0" text="Informations complémentaires" textAlignment="CENTER" textFill="#224957" AnchorPane.topAnchor="0.0">
+                  <Label alignment="CENTER" layoutX="43.0" layoutY="-1.0" prefHeight="30.0" prefWidth="259.0" text="Informations complémentaires" textAlignment="CENTER" textFill="#224957" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
