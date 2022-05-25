@@ -49,7 +49,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                     </font>
                 </Button>
-            <Label fx:id="admin" layoutX="39.0" layoutY="27.0" onMouseClicked="#versAdmin" style="-fx-cursor: hand;" text="Admin" textFill="#20df7f">
+            <Label fx:id="admin" layoutX="52.0" layoutY="27.0" onMouseClicked="#versAdmin" style="-fx-cursor: hand;" text="Admin" textFill="#20df7f">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
@@ -110,7 +110,7 @@
             <Label fx:id="wrongAdresse" alignment="CENTER" layoutX="129.0" layoutY="256.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="260.0" />
             <Label fx:id="wrongVille" alignment="CENTER" layoutX="248.0" layoutY="310.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" />
             <Label fx:id="wrongReponse" alignment="CENTER" layoutX="99.0" layoutY="394.0" prefHeight="17.0" prefWidth="312.0" textFill="RED" />
-            <Label layoutX="26.0" layoutY="284.0" text="Nombre de stagiare Max" />
+            <Label layoutX="26.0" layoutY="284.0" text="Nombre de stagiaire Max" />
             <ChoiceBox fx:id="nbStagiaire" layoutX="232.0" layoutY="280.0" prefHeight="25.0" prefWidth="137.0" />
             <TextField fx:id="description" alignment="CENTER" layoutX="232.0" layoutY="426.0" prefHeight="64.0" prefWidth="230.0" promptText="Description de l'entreprise" />
             <TextField fx:id="langage" alignment="CENTER" layoutX="51.0" layoutY="442.0" prefHeight="33.0" prefWidth="137.0" promptText="Langage utilisé" />
