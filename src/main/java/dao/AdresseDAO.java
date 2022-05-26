@@ -76,10 +76,12 @@ public class AdresseDAO extends DAO<Adresse> {
             pst.setInt(1, id);
             pst.executeUpdate();
             donnees.remove(id);
+
         } catch (SQLException e) {
             success = false;
             e.printStackTrace();
         }
+        System.out.println(success);
         return success;
     }
 
@@ -174,6 +176,7 @@ public class AdresseDAO extends DAO<Adresse> {
                 String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
+                int identifiant = rs.getInt(CLE_PRIMAIRE);
                 String numero = rs.getString(NUMERO);
                 String type_de_voie = rs.getString(TYPE_DE_VOIE);
                 String adresses = rs.getString(ADRESSE);
@@ -182,7 +185,7 @@ public class AdresseDAO extends DAO<Adresse> {
                 Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
                 Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
 
-                adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
+                adresse = new Adresse(identifiant, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
                 donnees.put(id, adresse);
 
             } catch (SQLException e) {

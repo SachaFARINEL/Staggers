@@ -16,7 +16,6 @@ public class Main extends Application {
     private static Stage stg;
 
 
-
     @Override
     public void start(Stage stage) throws IOException {
         stg = stage;

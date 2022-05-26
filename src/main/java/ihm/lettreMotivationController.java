@@ -16,63 +16,37 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
-import java.util.Scanner;
-
 public class lettreMotivationController implements Initializable {
 
     Main main = new Main();
 
     @FXML private Label adresseInf;
-
     @FXML private Label adresseInfEntreprise;
-
     @FXML private Label adresseSup;
-
     @FXML private Label adresseSupEntreprise;
-
     @FXML private Text corpTexte;
-
     @FXML private Label nomEntreprise;
-
     @FXML private Label nomPrenom;
-
     @FXML private Label villeDate;
-
     @FXML private AnchorPane anchorScroll;
-
     @FXML private TextField nombreDeSemaine;
-
     @FXML private TextField debutStage;
-
     @FXML private TextField premiereQualite;
-
     @FXML private TextField deuxiemeQualite;
-
     @FXML private Text emptyTextfield;
-
     @FXML private ImageView saveIcon;
-
     @FXML private Label objet;
-
     @FXML private Label madameMonsieur;
-
     @FXML private Label wrongPath;
-
     @FXML private TextField pathToFile;
-
     @FXML private Label indicationPath;
-
     @FXML private Label downloadDone;
 
-    @FXML
-    void retourAnnuaire(MouseEvent event) throws IOException {
+    @FXML void retourAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("ficheEntreprise-view.fxml");
     }
 
-    @FXML
-    void save(MouseEvent event) {
+    @FXML void save(MouseEvent event) {
         if (!nombreDeSemaine.getText().isEmpty() && !debutStage.getText().isEmpty() && !premiereQualite.getText().isEmpty() && !deuxiemeQualite.getText().isEmpty()) {
             emptyTextfield.setVisible(false);
             wrongPath.setVisible(false);
@@ -88,7 +62,7 @@ public class lettreMotivationController implements Initializable {
                             );
             try {
                 String name = path + "LM-" + logginController.connectedUser.getNom()
-                + "-" + annuaireController.selectedEntreprise.getNom() + ".txt";
+                + "-" + annuaireController.selectedEntreprise.getNom() + ".doc";
                 FileOutputStream fos = new FileOutputStream(name, true);
                 // true for append mode
 
@@ -171,8 +145,8 @@ public class lettreMotivationController implements Initializable {
         adresseInf.setText(logginController.connectedAdresse.getCode_postal() + ", " + logginController.connectedAdresse.getVille());
 
         nomEntreprise.setText(annuaireController.selectedEntreprise.getNom());
-        adresseSupEntreprise.setText(ficheEntrepriseController.adresseSelectEntreprise.getNumero() + " " + ficheEntrepriseController.adresseSelectEntreprise.getType_de_voie() + " " + ficheEntrepriseController.adresseSelectEntreprise.getAdresse());
-        adresseInfEntreprise.setText(ficheEntrepriseController.adresseSelectEntreprise.getCode_postal() + ", " + ficheEntrepriseController.adresseSelectEntreprise.getVille());
+        adresseSupEntreprise.setText(annuaireController.adresseSelectEntreprise.getNumero() + " " + annuaireController.adresseSelectEntreprise.getType_de_voie() + " " + annuaireController.adresseSelectEntreprise.getAdresse());
+        adresseInfEntreprise.setText(annuaireController.adresseSelectEntreprise.getCode_postal() + ", " + annuaireController.adresseSelectEntreprise.getVille());
 
         villeDate.setText("Fait à Vannes, le " + dtf.format(now));
 

@@ -29,148 +29,73 @@ import staggers.Utilisateur;
 
 public class adminCreaEntreprise implements Initializable {
 
-    Main main = new Main();
-
     private final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
 
     private final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
 
-    @FXML
-    private TextField adresse;
+    Main main = new Main();
 
-    @FXML
-    private Label annuaire;
+    @FXML private TextField adresse;
+    @FXML private Label annuaire;
+    @FXML private TextField codePostal;
+    @FXML private Label conseils;
+    @FXML private Button deco;
+    @FXML private TextField email;
+    @FXML private TextField email_contact;
+    @FXML private Label fil_actualite;
+    @FXML private Label admin;
+    @FXML private ChoiceBox<?> nbSalarie;
+    @FXML private ChoiceBox<?> nbStagiaire;
+    @FXML private TextField nom;
+    @FXML private TextField nom_contact;
+    @FXML private TextField num_contact;
+    @FXML private TextField num_tel;
+    @FXML private TextField numero;
+    @FXML private Label profil;
+    @FXML private AnchorPane retourLoggin;
+    @FXML private ImageView retourLogginArrow;
+    @FXML private TextField typeDeVoie;
+    @FXML private Button valider;
+    @FXML private TextField ville;
+    @FXML private Label wrongAdresse;
+    @FXML private Label wrongCodePostal;
+    @FXML private Label wrongDate;
+    @FXML private Label wrongEmail;
+    @FXML private Label wrongNom;
+    @FXML private Label wrongPassword;
+    @FXML private Label wrongPrenom;
+    @FXML private Label wrongReponse;
+    @FXML private Label wrongTelephone;
+    @FXML private Label wrongVille;
+    @FXML private TextField description;
+    @FXML private TextField langage;
 
-    @FXML
-    private TextField codePostal;
-
-    @FXML
-    private Label conseils;
-
-    @FXML
-    private Button deco;
-
-    @FXML
-    private TextField email;
-
-    @FXML
-    private TextField email_contact;
-
-    @FXML
-    private Label fil_actualite;
-
-    @FXML
-    private Label admin;
-
-    @FXML
-    private ChoiceBox<?> nbSalarie;
-
-    @FXML
-    private ChoiceBox<?> nbStagiaire;
-
-    @FXML
-    private TextField nom;
-
-    @FXML
-    private TextField nom_contact;
-
-    @FXML
-    private TextField num_contact;
-
-    @FXML
-    private TextField num_tel;
-
-    @FXML
-    private TextField numero;
-
-    @FXML
-    private Label profil;
-
-    @FXML
-    private AnchorPane retourLoggin;
-
-    @FXML
-    private ImageView retourLogginArrow;
-
-    @FXML
-    private TextField typeDeVoie;
-
-    @FXML
-    private Button valider;
-
-    @FXML
-    private TextField ville;
-
-    @FXML
-    private Label wrongAdresse;
-
-    @FXML
-    private Label wrongCodePostal;
-
-    @FXML
-    private Label wrongDate;
-
-    @FXML
-    private Label wrongEmail;
-
-    @FXML
-    private Label wrongNom;
-
-    @FXML
-    private Label wrongPassword;
-
-    @FXML
-    private Label wrongPrenom;
-
-    @FXML
-    private Label wrongReponse;
-
-    @FXML
-    private Label wrongTelephone;
-
-    @FXML
-    private Label wrongVille;
-
-    @FXML
-    private TextField description;
-
-    @FXML
-    private TextField langage;
-
-    @FXML
-    void deconnexion(MouseEvent event) throws IOException {
+    @FXML void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML
-    void retourLoggin(MouseEvent event) {
+    @FXML void retourLoggin(MouseEvent event) {
 
     }
 
-
-    @FXML
-    void versActualite(MouseEvent event) throws IOException {
+    @FXML void versActualite(MouseEvent event) throws IOException {
         main.nextScene("accueil-view.fxml");
     }
 
-    @FXML
-    void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML
-    void versConseil(MouseEvent event) {
+    @FXML void versConseil(MouseEvent event) {
 
     }
 
-    @FXML
-    void versProfil(MouseEvent event) throws IOException {
+    @FXML void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
 
     }
 
-    @FXML
-    void versAdmin(MouseEvent event) {
+    @FXML void versAdmin(MouseEvent event) {
 
     }
 
@@ -263,7 +188,6 @@ public class adminCreaEntreprise implements Initializable {
             AdresseDAO.getInstance().createEntAdmin(entAdresse);
 
             try {
-                Main main = new Main();
                 main.nextScene("accueil-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();

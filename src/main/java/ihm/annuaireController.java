@@ -26,59 +26,48 @@ import static java.lang.Integer.parseInt;
 public class annuaireController implements Initializable  {
 
     static Entreprise selectedEntreprise;
+    static Adresse adresseSelectEntreprise;
+
     private final String[] arrayChoix = {"nom", "ville", "langage"};
+
     List<Entreprise> listeEntreprise = EntrepriseDAO.getInstance().readAll();
 
     Main main = new Main();
 
-
-    @FXML
-    private TextField searchBox;
-    @FXML
-    public ImageView loupe;
-    @FXML
-    private ListView<?> myListView;
-    @FXML
-    public ChoiceBox<String> rechercheBy;
-    @FXML
-    private Label noResult;
-    @FXML
-    private Label admin;
+    @FXML private TextField searchBox;
+    @FXML public ImageView loupe;
+    @FXML private ListView<?> myListView;
+    @FXML public ChoiceBox<String> rechercheBy;
+    @FXML private Label noResult;
+    @FXML private Label admin;
 
 
-    @FXML
-    void deconnexion(MouseEvent event) throws IOException {
+    @FXML void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML
-    void versActualite(MouseEvent event) throws IOException {
+    @FXML void versActualite(MouseEvent event) throws IOException {
         main.nextScene("accueil-view.fxml");
 
     }
 
-    @FXML
-    void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
 
     }
 
-    @FXML
-    void versConseil(MouseEvent event) {
+    @FXML void versConseil(MouseEvent event) {
 
     }
 
-    @FXML
-    void versAdmin(MouseEvent event) throws IOException {
+    @FXML void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("admin-crea-entreprise-view.fxml");
     }
-    @FXML
-    void versProfil(MouseEvent event) throws IOException {
+    @FXML void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil2-view.fxml");
     }
 
-    @FXML
-    void getFavoris(MouseEvent event) {
+    @FXML void getFavoris(MouseEvent event) {
         ObservableList<String> entrepriseInListView = (ObservableList<String>) myListView.getItems();
         List<Favoris> listeFavoris = FavorisDAO.getInstance().readAllWithId(logginController.connectedUser.getId());
         entrepriseInListView.clear();
@@ -90,8 +79,7 @@ public class annuaireController implements Initializable  {
         }
     }
 
-    @FXML
-    void rechercheLIKE(MouseEvent event) {
+    @FXML void rechercheLIKE(MouseEvent event) {
         ObservableList<String> entrepriseInListView = (ObservableList<String>) myListView.getItems();
         String dataUser = searchBox.getText();
         if (rechercheBy.getValue().equals("nom")) {
@@ -132,6 +120,7 @@ public class annuaireController implements Initializable  {
         String[] listViewSelectedEntreprise = textSelectedCellule.split(" ");
         int idSelectedEntreprise =  parseInt(listViewSelectedEntreprise[0]);
         selectedEntreprise = EntrepriseDAO.getInstance().read(idSelectedEntreprise);
+        adresseSelectEntreprise = AdresseDAO.getInstance().getAdresseWithId("id_entreprise",annuaireController.selectedEntreprise.getId());
     }
 
     public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
@@ -187,11 +176,7 @@ public class annuaireController implements Initializable  {
         maListe.addAll(getEntreprise(listeEntreprise));
         rechercheBy.getItems().addAll(arrayChoix);
         noResult.setVisible(false);
-        if (logginController.connectedUser.isEst_admin()) {
-            admin.setVisible(true);
-        } else {
-            admin.setVisible(false);
-        }
+        admin.setVisible(logginController.connectedUser.isEst_admin());
 
 
     }

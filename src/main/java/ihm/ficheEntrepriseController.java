@@ -34,53 +34,32 @@ public class ficheEntrepriseController implements Initializable {
     private final int id_utilisateur = logginController.connectedUser.getId();
     private final int id_selectedEntreprise = annuaireController.selectedEntreprise.getId();
 
-    static Adresse adresseSelectEntreprise = AdresseDAO.getInstance().getAdresseWithId("id_entreprise",annuaireController.selectedEntreprise.getId());
     List<Commentaire> listeCommentaire = CommentaireDAO.getInstance().readAll(id_selectedEntreprise);
 
     Main main = new Main();
 
-    @FXML
-    private Label nomEntreprise;
-    @FXML
-    private ImageView isFavoris;
-    @FXML
-    public TextArea commentaire;
-    @FXML
-    public Button buttonSendCommentaire;
-    @FXML
-    private Label commentaireIsSent;
-    @FXML
-    public Label telEntreprise;
-    @FXML
-    public Label debutAdresseEntreprise;
-    @FXML
-    public Label finAdresseEntreprise;
-    @FXML
-    public Label nomContact;
-    @FXML
-    public Label telContact;
-    @FXML
-    public Label mailContact;
-    @FXML
-    public Label mailEntreprise;
-    @FXML
-    public Label tailleEntreprise;
-    @FXML
-    public Label nbStagiaireMax;
-    @FXML
-    public Label langageEntreprise;
-    @FXML
-    private TextArea description;
-    @FXML
-    private AnchorPane mainAnchor;
-    @FXML
-    private ListView<?> listViewCommentaire;
-    @FXML
-    public Button buttonCommentaire;
-    @FXML private ImageView letter;
+    @FXML private Label nomEntreprise;
+    @FXML private ImageView isFavoris;
+    @FXML public TextArea commentaire;
+    @FXML public Button buttonSendCommentaire;
+    @FXML private Label commentaireIsSent;
+    @FXML public Label telEntreprise;
+    @FXML public Label debutAdresseEntreprise;
+    @FXML public Label finAdresseEntreprise;
+    @FXML public Label nomContact;
+    @FXML public Label telContact;
+    @FXML public Label mailContact;
+    @FXML public Label mailEntreprise;
+    @FXML public Label tailleEntreprise;
+    @FXML public Label nbStagiaireMax;
+    @FXML public Label langageEntreprise;
+    @FXML private TextArea description;
+    @FXML private AnchorPane mainAnchor;
+    @FXML private ListView<?> listViewCommentaire;
+    @FXML public Button buttonCommentaire;
+    @FXML private ImageView deleteIcon;
 
-    @FXML
-    void changeStar(MouseEvent event) {
+    @FXML void changeStar(MouseEvent event) {
         Favoris favoris = new Favoris(id_utilisateur,id_selectedEntreprise);
         if (FavorisDAO.getInstance().isFavoris(logginController.connectedUser.getId(), annuaireController.selectedEntreprise.getId())) {
             isFavoris.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("img/emptyStar.png"))));
@@ -91,13 +70,11 @@ public class ficheEntrepriseController implements Initializable {
         }
     }
 
-    @FXML
-    void retourAnnuaire(MouseEvent event) throws IOException {
+    @FXML void retourAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML
-    public void sendCommentaire(MouseEvent mouseEvent) {
+    @FXML public void sendCommentaire(MouseEvent mouseEvent) {
         if (!commentaire.getText().isEmpty()) {
             Commentaire com = new Commentaire(id_utilisateur, id_selectedEntreprise, commentaire.getText(), LocalDateTime.now());
             CommentaireDAO.getInstance().create(com);
@@ -115,6 +92,18 @@ public class ficheEntrepriseController implements Initializable {
                     }));
             timeline.play();
 
+        }
+    }
+
+    @FXML void doLetter(MouseEvent event) throws IOException {
+        main.nextScene("lettreMotivation-view.fxml");
+    }
+
+    @FXML void deleteEntreprise(MouseEvent event) throws IOException {
+        if (logginController.connectedUser.isEst_admin()) {
+            AdresseDAO.getInstance().delete(annuaireController.adresseSelectEntreprise);
+            EntrepriseDAO.getInstance().delete(annuaireController.selectedEntreprise);
+            main.nextScene("annuaire-view.fxml");
         }
     }
 
@@ -152,20 +141,14 @@ public class ficheEntrepriseController implements Initializable {
 
     }
 
-    @FXML
-    void doLetter(MouseEvent event) throws IOException {
-        main.nextScene("lettreMotivation-view.fxml");
-    }
-
-
-        @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         nomEntreprise.setText(annuaireController.selectedEntreprise.getNom());
         telEntreprise.setText(annuaireController.selectedEntreprise.getNum_tel());
         mailEntreprise.setText(annuaireController.selectedEntreprise.getEmail());
-        debutAdresseEntreprise.setText(adresseSelectEntreprise.getNumero() + " " + adresseSelectEntreprise.getType_de_voie() + " " + adresseSelectEntreprise.getAdresse());
-        finAdresseEntreprise.setText(adresseSelectEntreprise.getCode_postal() + ", " + adresseSelectEntreprise.getVille());
+        debutAdresseEntreprise.setText(annuaireController.adresseSelectEntreprise.getNumero() + " " + annuaireController.adresseSelectEntreprise.getType_de_voie() + " " + annuaireController.adresseSelectEntreprise.getAdresse());
+        finAdresseEntreprise.setText(annuaireController.adresseSelectEntreprise.getCode_postal() + ", " + annuaireController.adresseSelectEntreprise.getVille());
         nomContact.setText(annuaireController.selectedEntreprise.getnom_contact());
         telContact.setText(annuaireController.selectedEntreprise.getNum_contact());
         mailContact.setText(annuaireController.selectedEntreprise.getEmail_contact());
@@ -203,7 +186,10 @@ public class ficheEntrepriseController implements Initializable {
         ObservableList<String> maListe = (ObservableList<String>) listViewCommentaire.getItems();
         maListe.addAll(printACommentaire(listeCommentaire));
 
-
+            deleteIcon.setVisible(false);
+        if (logginController.connectedUser.isEst_admin()) {
+            deleteIcon.setVisible(true);
+        }
 
         }
 

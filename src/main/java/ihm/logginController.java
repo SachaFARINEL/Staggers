@@ -28,51 +28,38 @@ public class logginController {
     static Utilisateur connectedUser;
     static Adresse connectedAdresse;
 
-    @FXML
-    private Button connexion;
+    Main main = new Main();
 
-    @FXML
-    private Label createAccount;
+    @FXML private Button connexion;
+    @FXML private Label createAccount;
+    @FXML private Label errorLogin;
+    @FXML private Label forgotPassword;
+    @FXML private PasswordField password;
+    @FXML private TextField username;
 
-    @FXML
-    private Label errorLogin;
+    @FXML void sendForgotPassword(MouseEvent event) throws IOException {
 
-    @FXML
-    private Label forgotPassword;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private TextField username;
-
-    @FXML
-    void sendForgotPassword(MouseEvent event) throws IOException {
-        Main main = new Main();
         main.nextScene("recuperation-view.fxml");
     }
 
-    @FXML
-    void sendForm(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+    @FXML void sendForm(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         checkLogin();
     }
 
 
-    @FXML
-    public void buttonPressed(KeyEvent e) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+    @FXML public void buttonPressed(KeyEvent e) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         if (e.getCode().toString().equals("ENTER")) {
             checkLogin();
         }
     }
 
-    @FXML
-    void sendInscription(MouseEvent event) throws IOException {
-        Main main = new Main();
+    @FXML void sendInscription(MouseEvent event) throws IOException {
+
         main.nextScene("inscription-view.fxml");
     }
 
     private void checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
-        Main main = new Main();
+
         String usernameSent = username.getText().toString();
         String passwordSent = password.getText().toString();
 

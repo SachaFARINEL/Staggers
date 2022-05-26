@@ -14,52 +14,28 @@ public class accueilController implements Initializable {
 
     Main main = new Main();
 
-    @FXML
-    private Label annuaire;
+    @FXML private Label admin;
+    @FXML private Label bienvenue;
 
-    @FXML
-    private Label conseils;
-
-    @FXML
-    private Button deco;
-
-    @FXML
-    private Label fil_actualite;
-
-    @FXML
-    private Label profil;
-
-    @FXML
-    private Label admin;
-
-    @FXML
-    private Label bienvenue;
-
-    @FXML
-    void deconnexion(MouseEvent event) throws IOException {
+    @FXML void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML
-    void versActualite(MouseEvent event) throws IOException {
+    @FXML void versActualite(MouseEvent event) throws IOException {
         main.nextScene("accueil-view.fxml");
     }
 
-    @FXML
-    void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML
-    void versConseil(MouseEvent event) {
+    @FXML void versConseil(MouseEvent event) {
     }
 
-    @FXML
-    void versProfil(MouseEvent event) throws IOException {
+    @FXML void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil2-view.fxml");
     }
-    @FXML
-    void versAdmin(MouseEvent event) throws IOException {
+    @FXML void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("admin-crea-entreprise-view.fxml");
     }
 
@@ -67,10 +43,6 @@ public class accueilController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bienvenue.setText("Hey, " + logginController.connectedUser.getPrenom());
 
-        if (logginController.connectedUser.isEst_admin()) {
-           admin.setVisible(true);
-        } else {
-            admin.setVisible(false);
-        }
+        admin.setVisible(logginController.connectedUser.isEst_admin());
     }
 }

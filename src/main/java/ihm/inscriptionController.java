@@ -34,98 +34,40 @@ import java.util.ResourceBundle;
 
 public class inscriptionController implements Initializable {
 
-
     private final String[] arraySexe = {"Monsieur", "Madame", "Autre"};
+
     Main main = new Main();
 
-    @FXML
-    private TextField adresse;
+    @FXML private TextField adresse;
+    @FXML private TextField codePostal;
+    @FXML private TextField email;
+    @FXML private TextField nom;
+    @FXML private TextField numero;
+    @FXML private TextField password;
+    @FXML private DatePicker dateNaissance;
+    @FXML private TextField reponseQuestion;
+    @FXML private TextField passwordConfirmation;
+    @FXML private TextField prenom;
+    @FXML private ChoiceBox<String> sexe;
+    @FXML private TextField telephone;
+    @FXML private TextField typeDeVoie;
+    @FXML private TextField ville;
+    @FXML private Label wrongAdresse;
+    @FXML private Label wrongCodePostal;
+    @FXML private Label wrongDate;
+    @FXML private Label wrongEmail;
+    @FXML private Label wrongNom;
+    @FXML private Label wrongPassword;
+    @FXML private Label wrongPrenom;
+    @FXML private Label wrongReponse;
+    @FXML private Label wrongTelephone;
+    @FXML private Label wrongVille;
+    @FXML private Button valider;
+    @FXML private Label labelInscription;
 
-    @FXML
-    private TextField codePostal;
-
-    @FXML
-    private TextField email;
-
-    @FXML
-    private TextField nom;
-
-    @FXML
-    private TextField numero;
-
-    @FXML
-    private TextField password;
-
-    @FXML
-    private DatePicker dateNaissance;
-
-    @FXML
-    private TextField reponseQuestion;
-
-    @FXML
-    private TextField passwordConfirmation;
-
-    @FXML
-    private TextField prenom;
-
-    @FXML
-    private ChoiceBox<String> sexe;
-
-    @FXML
-    private TextField telephone;
-
-    @FXML
-    private TextField typeDeVoie;
-
-    @FXML
-    private TextField ville;
-
-    @FXML
-    private Label wrongAdresse;
-
-    @FXML
-    private Label wrongCodePostal;
-
-    @FXML
-    private Label wrongDate;
-
-    @FXML
-    private Label wrongEmail;
-
-    @FXML
-    private Label wrongNom;
-
-    @FXML
-    private Label wrongPassword;
-
-    @FXML
-    private Label wrongPrenom;
-
-
-    @FXML
-    private Label wrongReponse;
-
-    @FXML
-    private Label wrongTelephone;
-
-    @FXML
-    private Label wrongVille;
-
-    @FXML
-    private Button valider;
-
-    @FXML
-    private Label labelInscription;
-
-    public inscriptionController() throws ParseException {
-    }
-
-    @FXML
-    void retourLoggin(MouseEvent event) throws IOException {
-        Main main = new Main();
+    @FXML void retourLoggin(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
-
 
     private boolean checkIfEmpty() {
         boolean isNotEmpty = true;
@@ -238,8 +180,7 @@ public class inscriptionController implements Initializable {
     }
 
 
-    @FXML
-    void sendInscription(){
+    @FXML void sendInscription(){
         if (isMotDePasseConfirmed() && checkIfEmpty() && emailNotInDatabase()) {
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText().trim();
@@ -277,12 +218,8 @@ public class inscriptionController implements Initializable {
                         }
                     }));
             timeline.play();
-
         }
-
     }
-
-
 
 
     @Override

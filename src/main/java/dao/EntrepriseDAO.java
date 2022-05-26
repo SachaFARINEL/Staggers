@@ -98,7 +98,19 @@ public class EntrepriseDAO extends DAO<Entreprise> {
 
     @Override
     public boolean delete(Entreprise obj) {
-        return false;
+        boolean success = true;
+        try {
+            int id = obj.getId();
+            String requete = "DELETE FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            donnees.remove(id);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
     }
 
     @Override

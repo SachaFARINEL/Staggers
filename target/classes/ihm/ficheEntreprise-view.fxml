@@ -52,6 +52,11 @@
                   <Image url="@../img/letter.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="deleteIcon" fitHeight="30.0" fitWidth="30.0" layoutX="447.0" layoutY="18.0" onMouseClicked="#deleteEntreprise" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@../img/delete.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="mainAnchor" layoutX="32.0" layoutY="174.0" prefHeight="395.0" prefWidth="680.0">
