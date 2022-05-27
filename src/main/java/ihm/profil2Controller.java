@@ -26,6 +26,7 @@ public class profil2Controller implements Initializable {
 
         Main main = new Main();
 
+        @FXML private Label admin;
         @FXML private Label wrongEmail;
         @FXML private Label wrongPassword;
         @FXML private TextField numero;
@@ -68,7 +69,7 @@ public class profil2Controller implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-
+            admin.setVisible(logginController.connectedUser.isEst_admin());
             nom.setText(logginController.connectedUser.getNom());
             prenom.setText(logginController.connectedUser.getPrenom());
             email.setText(logginController.connectedUser.getEmail());
@@ -104,6 +105,9 @@ public class profil2Controller implements Initializable {
 
         }
 
+        @FXML void versAdmin(MouseEvent event) throws IOException {
+                main.nextScene("panneauAdmin-view.fxml");
+        }
 
         @FXML void versProfil(MouseEvent event) throws IOException {
 
