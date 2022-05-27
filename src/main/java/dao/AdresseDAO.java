@@ -1,7 +1,6 @@
 package dao;
 
 import staggers.Adresse;
-import staggers.Entreprise;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -147,6 +146,7 @@ public class AdresseDAO extends DAO<Adresse> {
             String requete = "SELECT * FROM " + TABLE + " WHERE " + colonne + " = " + id;
             ResultSet rs = Connexion.executeQuery(requete);
             rs.next();
+            int idAdr = rs.getInt(CLE_PRIMAIRE);
             String numero = rs.getString(NUMERO);
             String type_de_voie = rs.getString(TYPE_DE_VOIE);
             String adresses = rs.getString(ADRESSE);
@@ -154,9 +154,7 @@ public class AdresseDAO extends DAO<Adresse> {
             String code_postal = rs.getString(CODE_POSTAL);
             Integer id_utilisateur = Math.toIntExact(rs.getLong(ID_UTILISATEUR));
             Integer id_entreprise = Math.toIntExact(rs.getLong(ID_ENTREPRISE));
-
-            adresse = new Adresse(id, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
-
+            adresse = new Adresse(idAdr, numero, type_de_voie, adresses, ville, code_postal, id_utilisateur, id_entreprise);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -250,6 +248,29 @@ public class AdresseDAO extends DAO<Adresse> {
             e.printStackTrace();
         }
         return succes;
+    }
+
+    public boolean updateWithoutIdUtilisateur(Adresse obj) {
+        boolean success = true;
+        int id = obj.getId();
+        try {
+            String requete = "UPDATE " + TABLE + " SET " + NUMERO + " = ?, " + TYPE_DE_VOIE + " = ?, " + ADRESSE + " = ? , " + VILLE + " = ?, " + CODE_POSTAL + " = ?, " + ID_ENTREPRISE + " = ? " +
+                    "WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setString(1, obj.getNumero());
+            pst.setString(2, obj.getType_de_voie());
+            pst.setString(3, obj.getAdresse());
+            pst.setString(4, obj.getVille());
+            pst.setString(5, obj.getCode_postal());
+            pst.setInt(6, obj.getId_entreprise());
+            pst.setInt(7, id);
+            pst.executeUpdate();
+            donnees.put(id, obj);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
     }
 
 

@@ -32,9 +32,9 @@ import staggers.Utilisateur;
 
 public class adminCreaEntreprise implements Initializable {
 
-    private final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
-
-    private final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
+    static public final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
+    static public final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
+    static public final String[] arrayLangage = {"HTML et CSS", "JavaScript", "PHP", "Ruby", "Java", "Swift", "C#, C ou C++", "Python", "Julia", "Scala"};
 
     Main main = new Main();
 

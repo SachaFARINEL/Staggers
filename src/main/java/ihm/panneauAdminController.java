@@ -9,10 +9,6 @@ public class panneauAdminController {
 
     Main main = new Main();
 
-    @FXML void addEntreprise(MouseEvent event) throws IOException {
-        main.nextScene("admin-crea-entreprise-view.fxml");
-    }
-
     @FXML void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
@@ -36,4 +32,13 @@ public class panneauAdminController {
     @FXML void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil2-view.fxml");
     }
+
+    @FXML void addEntreprise(MouseEvent event) throws IOException {
+        main.nextScene("admin-crea-entreprise-view.fxml");
+    }
+
+    @FXML public void editEntreprise(MouseEvent mouseEvent) throws IOException {
+        main.nextScene("editEntreprise-view.fxml");
+    }
+
 }

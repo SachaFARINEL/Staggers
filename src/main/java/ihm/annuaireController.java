@@ -61,8 +61,9 @@ public class annuaireController implements Initializable  {
     }
 
     @FXML void versAdmin(MouseEvent event) throws IOException {
-        main.nextScene("admin-crea-entreprise-view.fxml");
+        main.nextScene("panneauAdmin-view.fxml");
     }
+
     @FXML void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil2-view.fxml");
     }
