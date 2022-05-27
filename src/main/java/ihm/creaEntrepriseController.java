@@ -2,7 +2,6 @@ package ihm;
 
 import dao.AdresseDAO;
 import dao.EntrepriseDAO;
-import dao.UtilisateurDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
@@ -10,27 +9,19 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ImageInput;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Entreprise;
-import staggers.Utilisateur;
 
-public class adminCreaEntreprise implements Initializable {
+public class creaEntrepriseController implements Initializable {
 
     static public final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
     static public final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};

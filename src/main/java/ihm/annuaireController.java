@@ -65,7 +65,7 @@ public class annuaireController implements Initializable  {
     }
 
     @FXML void versProfil(MouseEvent event) throws IOException {
-        main.nextScene("profil2-view.fxml");
+        main.nextScene("profil-view.fxml");
     }
 
     @FXML void getFavoris(MouseEvent event) {

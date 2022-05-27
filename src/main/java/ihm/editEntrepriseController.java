@@ -11,14 +11,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Entreprise;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class editEntrepriseController<AnchorPane> implements Initializable {
@@ -81,7 +79,7 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
     }
 
     @FXML void versProfil(MouseEvent event) throws IOException {
-        main.nextScene("profil2-view.fxml");
+        main.nextScene("profil-view.fxml");
     }
 
     @FXML void backPanneau(MouseEvent event) throws IOException {
@@ -159,9 +157,9 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
         ObservableList<String> selectNbSalarie = (ObservableList<String>) choiceBoxNbSalarie.getItems();
         ObservableList<String> selectNbStagiaire = (ObservableList<String>) choiceBoxNbStagiaire.getItems();
         ObservableList<String> selectLangage = (ObservableList<String>) choiceBoxLangage.getItems();
-        selectNbSalarie.addAll(adminCreaEntreprise.arrayNbSalarie);
-        selectNbStagiaire.addAll(adminCreaEntreprise.arrayNbStagiaire);
-        selectLangage.addAll(adminCreaEntreprise.arrayLangage);
+        selectNbSalarie.addAll(creaEntrepriseController.arrayNbSalarie);
+        selectNbStagiaire.addAll(creaEntrepriseController.arrayNbStagiaire);
+        selectLangage.addAll(creaEntrepriseController.arrayLangage);
 
     }
 }

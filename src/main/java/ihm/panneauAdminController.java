@@ -30,11 +30,11 @@ public class panneauAdminController {
     }
 
     @FXML void versProfil(MouseEvent event) throws IOException {
-        main.nextScene("profil2-view.fxml");
+        main.nextScene("profil-view.fxml");
     }
 
     @FXML void addEntreprise(MouseEvent event) throws IOException {
-        main.nextScene("admin-crea-entreprise-view.fxml");
+        main.nextScene("creaEntreprise-view.fxml");
     }
 
     @FXML public void editEntreprise(MouseEvent mouseEvent) throws IOException {

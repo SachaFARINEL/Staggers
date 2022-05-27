@@ -40,7 +40,7 @@ public class accueilController implements Initializable {
     }
 
     @FXML void versProfil(MouseEvent event) throws IOException {
-        main.nextScene("profil2-view.fxml");
+        main.nextScene("profil-view.fxml");
     }
     @FXML void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
