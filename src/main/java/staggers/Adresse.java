@@ -1,7 +1,7 @@
 package staggers;
 
 public class Adresse {
-    //test
+
     private int id;
     private String numero;
     private String type_de_voie;
@@ -33,8 +33,9 @@ public class Adresse {
         this.id_utilisateur = id_utilisateur;
         this.id_entreprise = id_entreprise;
     }
+
     public Adresse(String numero, String type_de_voie, String adresse, String ville, String code_postal,
-                    Integer id_entreprise) {
+                   Integer id_entreprise) {
         this.numero = numero;
         this.type_de_voie = type_de_voie;
         this.adresse = adresse;
@@ -43,7 +44,7 @@ public class Adresse {
         this.id_entreprise = id_entreprise;
     }
 
-    public Adresse(int id,String numero, String type_de_voie, String adresse, String ville, String code_postal,
+    public Adresse(int id, String numero, String type_de_voie, String adresse, String ville, String code_postal,
                    Integer id_entreprise) {
         this.id = id;
         this.numero = numero;
@@ -53,6 +54,7 @@ public class Adresse {
         this.code_postal = code_postal;
         this.id_entreprise = id_entreprise;
     }
+
 
     public int getId() {
         return id;

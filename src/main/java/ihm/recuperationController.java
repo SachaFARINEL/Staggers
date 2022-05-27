@@ -17,18 +17,27 @@ import java.io.IOException;
 public class recuperationController {
     Main main = new Main();
 
-    @FXML void sendLoggin(MouseEvent event) throws IOException {
+    @FXML
+    void sendLoggin(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML private Label errorLogin;
-    @FXML private Label question;
-    @FXML private TextField identifiant;
-    @FXML private PasswordField newPassword;
-    @FXML private PasswordField confirmationNewPassword;
-    @FXML private TextField reponse;
-    @FXML private Button valider;
-    @FXML private Label mdpIdentique;
+    @FXML
+    private Label errorLogin;
+    @FXML
+    private Label question;
+    @FXML
+    private TextField identifiant;
+    @FXML
+    private PasswordField newPassword;
+    @FXML
+    private PasswordField confirmationNewPassword;
+    @FXML
+    private TextField reponse;
+    @FXML
+    private Button valider;
+    @FXML
+    private Label mdpIdentique;
 
     private boolean isNewMotDePasseConfirmed() {
         boolean mdpConfirmed = true;
@@ -41,7 +50,8 @@ public class recuperationController {
         return mdpConfirmed;
     }
 
-    @FXML void sendForm(ActionEvent event) throws IOException {
+    @FXML
+    void sendForm(ActionEvent event) throws IOException {
         String usernameSent = identifiant.getText().toString();
         String passwordSent = newPassword.getText().toString();
         String reponseSecretDatabase = UtilisateurDAO.getInstance().getWithEmail("question_secrete", usernameSent);

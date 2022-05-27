@@ -114,8 +114,31 @@
                 <Label fx:id="wrongAdresse" alignment="CENTER" layoutX="129.0" layoutY="256.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="260.0" />
                 <Label fx:id="wrongVille" alignment="CENTER" layoutX="248.0" layoutY="310.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" />
                 <Label fx:id="wrongReponse" alignment="CENTER" layoutX="99.0" layoutY="394.0" prefHeight="17.0" prefWidth="312.0" textFill="RED" />
+         <Label fx:id="profilUpdated" alignment="CENTER" layoutX="6.0" layoutY="8.0" prefHeight="58.0" prefWidth="480.0" text="Profil mis à jour ! " textAlignment="CENTER" textFill="#29c34b">
+            <font>
+               <Font name="Roboto Condensed Bold" size="48.0" />
+            </font>
+         </Label>
 
 
         </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="118.0" prefHeight="499.0" prefWidth="223.0">
+         <children>
+            <ImageView fx:id="imageGauche" fitHeight="338.0" fitWidth="279.0" layoutY="161.0">
+               <image>
+                  <Image url="@../img/User%2006b.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="851.0" layoutY="111.0" prefHeight="499.0" prefWidth="223.0">
+         <children>
+            <ImageView fx:id="imageDroite" fitHeight="338.0" fitWidth="279.0" layoutX="-55.0" layoutY="161.0">
+               <image>
+                  <Image url="@../img/User%2007a.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
     </children>
 </Pane>

@@ -5,7 +5,7 @@ public class Conseil {
     private int id;
     private String conseils;
 
-    public Conseil(int id, String conseils){
+    public Conseil(int id, String conseils) {
         this.id = id;
         this.conseils = conseils;
     }

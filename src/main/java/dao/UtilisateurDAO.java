@@ -151,7 +151,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 boolean est_admin = rs.getBoolean(EST_ADMIN);
                 String role = rs.getString(ROLE);
                 String question_secrete = rs.getString(QUESTION_SECRETE);
-                utilisateur = new Utilisateur(idUser,promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+                utilisateur = new Utilisateur(idUser, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
                 donnees.put(id, utilisateur);
 
             } catch (SQLException e) {
@@ -161,7 +161,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return utilisateur;
     }
 
-    public String getWithEmail(String recherche,  String mail) {
+    public String getWithEmail(String recherche, String mail) {
         String reponseRequete = null;
         System.out.println("Recherche dans la BD");
         try {
@@ -175,48 +175,69 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return reponseRequete;
     }
 
-    public void updatePassword (String newMotDePasse, String email) {
-            boolean success = true;
-            try {
-                String requete = "UPDATE " + TABLE + " SET " + MOT_DE_PASSE + " = ?" + " WHERE " + EMAIL + " = ?";
-                PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
-                pst.setString(1, hashPass(newMotDePasse));
-                pst.setString(2, email);
-                pst.executeUpdate();
-            } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
-                success = false;
-                e.printStackTrace();
-            }
+    public void updatePassword(String newMotDePasse, String email) {
+        boolean success = true;
+        try {
+            String requete = "UPDATE " + TABLE + " SET " + MOT_DE_PASSE + " = ?" + " WHERE " + EMAIL + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setString(1, hashPass(newMotDePasse));
+            pst.setString(2, email);
+            pst.executeUpdate();
+        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+            success = false;
+            e.printStackTrace();
+        }
     }
 
 
     public Utilisateur getUserWithMail(String mail) {
         Utilisateur utilisateur = null;
-            try {
-                String requete = "SELECT * FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
-                ResultSet rs = Connexion.executeQuery(requete);
-                rs.next();
-                int id = rs.getInt(CLE_PRIMAIRE);
-                int promo = rs.getInt(PROMO);
-                String nom = rs.getString(NOM);
-                String prenom = rs.getString(PRENOM);
-                LocalDateTime date_naissance = rs.getObject(DATE_NAISSANCE, LocalDateTime.class);
-                String email = rs.getString(EMAIL);
-                String num_tel = rs.getString(NUM_TEL);
-                boolean admis_stage = rs.getBoolean(ADMIS_STAGE);
-                String sexe = rs.getString(SEXE);
-                String mot_de_passe = rs.getString(MOT_DE_PASSE);
-                boolean est_admin = rs.getBoolean(EST_ADMIN);
-                String role = rs.getString(ROLE);
-                String question_secrete = rs.getString(QUESTION_SECRETE);
-                utilisateur = new Utilisateur(id,promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+        try {
+            String requete = "SELECT * FROM " + TABLE + " WHERE " + EMAIL + " = '" + mail + "'";
+            ResultSet rs = Connexion.executeQuery(requete);
+            rs.next();
+            int id = rs.getInt(CLE_PRIMAIRE);
+            int promo = rs.getInt(PROMO);
+            String nom = rs.getString(NOM);
+            String prenom = rs.getString(PRENOM);
+            LocalDateTime date_naissance = rs.getObject(DATE_NAISSANCE, LocalDateTime.class);
+            String email = rs.getString(EMAIL);
+            String num_tel = rs.getString(NUM_TEL);
+            boolean admis_stage = rs.getBoolean(ADMIS_STAGE);
+            String sexe = rs.getString(SEXE);
+            String mot_de_passe = rs.getString(MOT_DE_PASSE);
+            boolean est_admin = rs.getBoolean(EST_ADMIN);
+            String role = rs.getString(ROLE);
+            String question_secrete = rs.getString(QUESTION_SECRETE);
+            utilisateur = new Utilisateur(id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return utilisateur;
     }
 
+    public boolean updateProfilUtilisateur(Utilisateur obj) {
+        boolean success = true;
+        int id = obj.getId();
+        try {
+            String requete = "UPDATE " + TABLE + " SET " + NOM + " = ?, " + PRENOM + " = ? , " + DATE_NAISSANCE + " = ?, " + EMAIL + " = ?, " + NUM_TEL + " = ?, " + SEXE + " = ? WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setString(1, obj.getNom());
+            pst.setString(2, obj.getPrenom());
+            pst.setObject(3, obj.getDate_naissance());
+            pst.setString(4, obj.getEmail());
+            pst.setString(5, obj.getNum_tel());
+            pst.setString(6, obj.getSexe());
+            pst.setInt(7, id);
+            pst.executeUpdate();
+            donnees.put(id, obj);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
+    }
 
 
 }

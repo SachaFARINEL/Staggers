@@ -131,7 +131,7 @@ public class CommentaireDAO extends DAO<Commentaire> {
 
     public List<Commentaire> readAll(int id_entrepriseSelected) {
         Commentaire commentaire = null;
-        List<Commentaire> listeCommentaire =null;
+        List<Commentaire> listeCommentaire = null;
         try {
             String requete = "SELECT * FROM " + TABLE + " WHERE id_entreprise = " + id_entrepriseSelected;
             ResultSet rs = Connexion.executeQuery(requete);

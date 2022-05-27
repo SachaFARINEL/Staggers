@@ -38,29 +38,50 @@ public class ficheEntrepriseController implements Initializable {
 
     Main main = new Main();
 
-    @FXML private Label nomEntreprise;
-    @FXML private ImageView isFavoris;
-    @FXML public TextArea commentaire;
-    @FXML public Button buttonSendCommentaire;
-    @FXML private Label commentaireIsSent;
-    @FXML public Label telEntreprise;
-    @FXML public Label debutAdresseEntreprise;
-    @FXML public Label finAdresseEntreprise;
-    @FXML public Label nomContact;
-    @FXML public Label telContact;
-    @FXML public Label mailContact;
-    @FXML public Label mailEntreprise;
-    @FXML public Label tailleEntreprise;
-    @FXML public Label nbStagiaireMax;
-    @FXML public Label langageEntreprise;
-    @FXML private TextArea description;
-    @FXML private AnchorPane mainAnchor;
-    @FXML private ListView<?> listViewCommentaire;
-    @FXML public Button buttonCommentaire;
-    @FXML private ImageView deleteIcon;
+    @FXML
+    private Label nomEntreprise;
+    @FXML
+    private ImageView isFavoris;
+    @FXML
+    public TextArea commentaire;
+    @FXML
+    public Button buttonSendCommentaire;
+    @FXML
+    private Label commentaireIsSent;
+    @FXML
+    public Label telEntreprise;
+    @FXML
+    public Label debutAdresseEntreprise;
+    @FXML
+    public Label finAdresseEntreprise;
+    @FXML
+    public Label nomContact;
+    @FXML
+    public Label telContact;
+    @FXML
+    public Label mailContact;
+    @FXML
+    public Label mailEntreprise;
+    @FXML
+    public Label tailleEntreprise;
+    @FXML
+    public Label nbStagiaireMax;
+    @FXML
+    public Label langageEntreprise;
+    @FXML
+    private TextArea description;
+    @FXML
+    private AnchorPane mainAnchor;
+    @FXML
+    private ListView<?> listViewCommentaire;
+    @FXML
+    public Button buttonCommentaire;
+    @FXML
+    private ImageView deleteIcon;
 
-    @FXML void changeStar(MouseEvent event) {
-        Favoris favoris = new Favoris(id_utilisateur,id_selectedEntreprise);
+    @FXML
+    void changeStar(MouseEvent event) {
+        Favoris favoris = new Favoris(id_utilisateur, id_selectedEntreprise);
         if (FavorisDAO.getInstance().isFavoris(logginController.connectedUser.getId(), annuaireController.selectedEntreprise.getId())) {
             isFavoris.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("img/emptyStar.png"))));
             FavorisDAO.getInstance().delete(favoris);
@@ -70,11 +91,13 @@ public class ficheEntrepriseController implements Initializable {
         }
     }
 
-    @FXML void retourAnnuaire(MouseEvent event) throws IOException {
+    @FXML
+    void retourAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML public void sendCommentaire(MouseEvent mouseEvent) {
+    @FXML
+    public void sendCommentaire(MouseEvent mouseEvent) {
         if (!commentaire.getText().isEmpty()) {
             Commentaire com = new Commentaire(id_utilisateur, id_selectedEntreprise, commentaire.getText(), LocalDateTime.now());
             CommentaireDAO.getInstance().create(com);
@@ -95,11 +118,13 @@ public class ficheEntrepriseController implements Initializable {
         }
     }
 
-    @FXML void doLetter(MouseEvent event) throws IOException {
+    @FXML
+    void doLetter(MouseEvent event) throws IOException {
         main.nextScene("lettreMotivation-view.fxml");
     }
 
-    @FXML void deleteEntreprise(MouseEvent event) throws IOException {
+    @FXML
+    void deleteEntreprise(MouseEvent event) throws IOException {
         if (logginController.connectedUser.isEst_admin()) {
             AdresseDAO.getInstance().delete(annuaireController.adresseSelectEntreprise);
             EntrepriseDAO.getInstance().delete(annuaireController.selectedEntreprise);
@@ -157,22 +182,22 @@ public class ficheEntrepriseController implements Initializable {
         String affichageNbStagiaireMax = "Capacité d'accueil : " + annuaireController.selectedEntreprise.getnb_stagiaire_max() + " stagiaire";
 
 
-            if (!Objects.equals(annuaireController.selectedEntreprise.getnb_stagiaire_max(), "1")) {
-                affichageNbStagiaireMax += "s";
-            }
+        if (!Objects.equals(annuaireController.selectedEntreprise.getnb_stagiaire_max(), "1")) {
+            affichageNbStagiaireMax += "s";
+        }
 
         tailleEntreprise.setText(affichageNbSalaries);
         nbStagiaireMax.setText(affichageNbStagiaireMax);
 
 
-            String langage = annuaireController.selectedEntreprise.getLangage();
-            String[] splitedLangage = (langage.split(","));
-            String lan = "Langage";
-            if (splitedLangage.length > 1) {
-                lan += "s";
-            }
+        String langage = annuaireController.selectedEntreprise.getLangage();
+        String[] splitedLangage = (langage.split(","));
+        String lan = "Langage";
+        if (splitedLangage.length > 1) {
+            lan += "s";
+        }
 
-        langageEntreprise.setText(lan +" : "  + annuaireController.selectedEntreprise.getLangage());
+        langageEntreprise.setText(lan + " : " + annuaireController.selectedEntreprise.getLangage());
         description.setText(annuaireController.selectedEntreprise.getDescription());
         commentaireIsSent.setVisible(false);
         listViewCommentaire.setVisible(false);
@@ -186,15 +211,12 @@ public class ficheEntrepriseController implements Initializable {
         ObservableList<String> maListe = (ObservableList<String>) listViewCommentaire.getItems();
         maListe.addAll(printACommentaire(listeCommentaire));
 
-            deleteIcon.setVisible(false);
+        deleteIcon.setVisible(false);
         if (logginController.connectedUser.isEst_admin()) {
             deleteIcon.setVisible(true);
         }
 
-        }
-
-
-
+    }
 
 
 }

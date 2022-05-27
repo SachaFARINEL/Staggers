@@ -13,23 +13,18 @@ public class Commentaire {
 
 
     public Commentaire(int id, int id_utilisateur, int id_entreprise, String com, LocalDateTime date) {
-
         this.id = id;
         this.id_utilisateur = id_utilisateur;
         this.id_entreprise = id_entreprise;
         this.com = com;
         this.date = date;
-
     }
 
     public Commentaire(int id_utilisateur, int id_entreprise, String com, LocalDateTime date) {
-
-
         this.id_utilisateur = id_utilisateur;
         this.id_entreprise = id_entreprise;
         this.com = com;
         this.date = date;
-
     }
 
     public int getId() {

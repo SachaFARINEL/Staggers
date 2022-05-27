@@ -9,35 +9,43 @@ public class panneauAdminController {
 
     Main main = new Main();
 
-    @FXML void deconnexion(MouseEvent event) throws IOException {
+    @FXML
+    void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML void versActualite(MouseEvent event) throws IOException {
+    @FXML
+    void versActualite(MouseEvent event) throws IOException {
         main.nextScene("accueil-view.fxml");
     }
 
-    @FXML void versAdmin(MouseEvent event) throws IOException {
+    @FXML
+    void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
     }
 
-    @FXML void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML
+    void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML void versConseil(MouseEvent event) {
+    @FXML
+    void versConseil(MouseEvent event) {
 
     }
 
-    @FXML void versProfil(MouseEvent event) throws IOException {
+    @FXML
+    void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
     }
 
-    @FXML void addEntreprise(MouseEvent event) throws IOException {
+    @FXML
+    void addEntreprise(MouseEvent event) throws IOException {
         main.nextScene("creaEntreprise-view.fxml");
     }
 
-    @FXML public void editEntreprise(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    public void editEntreprise(MouseEvent mouseEvent) throws IOException {
         main.nextScene("editEntreprise-view.fxml");
     }
 

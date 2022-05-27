@@ -29,50 +29,74 @@ public class creaEntrepriseController implements Initializable {
 
     Main main = new Main();
 
-    @FXML private TextField adresse;
-    @FXML private TextField codePostal;
-    @FXML private TextField email;
-    @FXML private TextField email_contact;
-    @FXML private ChoiceBox<?> nbSalarie;
-    @FXML private ChoiceBox<?> nbStagiaire;
-    @FXML private TextField nom;
-    @FXML private TextField nom_contact;
-    @FXML private TextField num_contact;
-    @FXML private TextField num_tel;
-    @FXML private TextField numero;
-    @FXML private TextField typeDeVoie;
-    @FXML private TextField ville;
-    @FXML private TextField description;
-    @FXML private TextField langage;
-    @FXML private Label titreFiche;
-    @FXML private Label confirmationEntreprise;
+    @FXML
+    private TextField adresse;
+    @FXML
+    private TextField codePostal;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField email_contact;
+    @FXML
+    private ChoiceBox<?> nbSalarie;
+    @FXML
+    private ChoiceBox<?> nbStagiaire;
+    @FXML
+    private TextField nom;
+    @FXML
+    private TextField nom_contact;
+    @FXML
+    private TextField num_contact;
+    @FXML
+    private TextField num_tel;
+    @FXML
+    private TextField numero;
+    @FXML
+    private TextField typeDeVoie;
+    @FXML
+    private TextField ville;
+    @FXML
+    private TextField description;
+    @FXML
+    private TextField langage;
+    @FXML
+    private Label titreFiche;
+    @FXML
+    private Label confirmationEntreprise;
 
-    @FXML void deconnexion(MouseEvent event) throws IOException {
+    @FXML
+    void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML void retourPanneau(MouseEvent event) throws IOException {
+    @FXML
+    void retourPanneau(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
     }
 
-    @FXML void versActualite(MouseEvent event) throws IOException {
+    @FXML
+    void versActualite(MouseEvent event) throws IOException {
         main.nextScene("accueil-view.fxml");
     }
 
-    @FXML void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML
+    void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML void versConseil(MouseEvent event) {
+    @FXML
+    void versConseil(MouseEvent event) {
 
     }
 
-    @FXML void versProfil(MouseEvent event) throws IOException {
+    @FXML
+    void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
 
     }
 
-    @FXML void versAdmin(MouseEvent event) throws IOException {
+    @FXML
+    void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
     }
 

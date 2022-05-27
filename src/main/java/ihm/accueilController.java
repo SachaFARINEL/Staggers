@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import staggers.Entreprise;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -20,29 +21,39 @@ public class accueilController implements Initializable {
 
     Main main = new Main();
 
-    @FXML private Label admin;
-    @FXML private Label bienvenue;
-    @FXML private TableView <Entreprise> tableauEntreprise;
+    @FXML
+    private Label admin;
+    @FXML
+    private Label bienvenue;
+    @FXML
+    private TableView<Entreprise> tableauEntreprise;
 
-    @FXML void deconnexion(MouseEvent event) throws IOException {
+    @FXML
+    void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML void versActualite(MouseEvent event) throws IOException {
+    @FXML
+    void versActualite(MouseEvent event) throws IOException {
         main.nextScene("accueil-view.fxml");
     }
 
-    @FXML void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML
+    void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML void versConseil(MouseEvent event) {
+    @FXML
+    void versConseil(MouseEvent event) {
     }
 
-    @FXML void versProfil(MouseEvent event) throws IOException {
+    @FXML
+    void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
     }
-    @FXML void versAdmin(MouseEvent event) throws IOException {
+
+    @FXML
+    void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
     }
 
@@ -71,10 +82,7 @@ public class accueilController implements Initializable {
 //        entrepriseFavoris.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("nom"));
 
 
-
-
     }
-
 
 
 }

@@ -97,8 +97,8 @@ public class AdresseDAO extends DAO<Adresse> {
             pst.setString(3, obj.getAdresse());
             pst.setString(4, obj.getVille());
             pst.setString(5, obj.getCode_postal());
-            pst.setLong(6, obj.getId_utilisateur());
-            pst.setLong(7, obj.getId_entreprise());
+            pst.setInt(6, obj.getId_utilisateur());
+            pst.setInt(7, obj.getId_entreprise());
             pst.setInt(8, id);
             pst.executeUpdate();
             donnees.put(id, obj);
@@ -256,6 +256,28 @@ public class AdresseDAO extends DAO<Adresse> {
         try {
             String requete = "UPDATE " + TABLE + " SET " + NUMERO + " = ?, " + TYPE_DE_VOIE + " = ?, " + ADRESSE + " = ? , " + VILLE + " = ?, " + CODE_POSTAL + " = ?, " + ID_ENTREPRISE + " = ? " +
                     "WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setString(1, obj.getNumero());
+            pst.setString(2, obj.getType_de_voie());
+            pst.setString(3, obj.getAdresse());
+            pst.setString(4, obj.getVille());
+            pst.setString(5, obj.getCode_postal());
+            pst.setInt(6, obj.getId_entreprise());
+            pst.setInt(7, id);
+            pst.executeUpdate();
+            donnees.put(id, obj);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    public boolean updateWithoutIdEntreprise(Adresse obj) {
+        boolean success = true;
+        int id = obj.getId();
+        try {
+            String requete = "UPDATE " + TABLE + " SET " + NUMERO + " = ?, " + TYPE_DE_VOIE + " = ?, " + ADRESSE + " = ? , " + VILLE + " = ?, " + CODE_POSTAL + " = ?, " + ID_UTILISATEUR + " = ? WHERE " + CLE_PRIMAIRE + " = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
             pst.setString(1, obj.getNumero());
             pst.setString(2, obj.getType_de_voie());

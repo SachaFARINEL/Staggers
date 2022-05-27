@@ -166,7 +166,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
 
     public List<Entreprise> readAll() {
         Entreprise entreprise = null;
-        List<Entreprise> listeEntreprise =null;
+        List<Entreprise> listeEntreprise = null;
         try {
             String requete = "SELECT * FROM " + TABLE;
             ResultSet rs = Connexion.executeQuery(requete);
@@ -183,7 +183,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         return listeEntreprise;
     }
 
-    public String getWithEmailEnt(String recherche,  String mail) {
+    public String getWithEmailEnt(String recherche, String mail) {
         String reponseRequete = null;
         System.out.println("Recherche dans la BD");
         try {
@@ -199,7 +199,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
 
     public List<Entreprise> chercherEntrepriseParNomLIKE(String dataUser) {
         Entreprise entreprise = null;
-        List<Entreprise> listeEntreprise =null;
+        List<Entreprise> listeEntreprise = null;
         try {
             String requete = "SELECT * FROM " + TABLE + " WHERE " + NOM + " LIKE '" + dataUser + "%'";
             ResultSet rs = Connexion.executeQuery(requete);
@@ -218,7 +218,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
 
     public List<Entreprise> chercherEntrepriseParLangageLIKE(String dataUser) {
         Entreprise entreprise = null;
-        List<Entreprise> listeEntreprise =null;
+        List<Entreprise> listeEntreprise = null;
         try {
             String requete = "SELECT * FROM " + TABLE + " WHERE " + LANGAGE + " LIKE '%" + dataUser + "%'";
             ResultSet rs = Connexion.executeQuery(requete);
@@ -234,7 +234,6 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         }
         return listeEntreprise;
     }
-
 
 
 }

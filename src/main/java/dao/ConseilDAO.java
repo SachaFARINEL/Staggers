@@ -14,7 +14,7 @@ public class ConseilDAO extends DAO<Conseil> {
     private static final String CLE_PRIMAIRE = "id";
 
 
-    private static final String CONSEIL = "conseil" ;
+    private static final String CONSEIL = "conseil";
 
 
     private static ConseilDAO instance = null;
@@ -54,23 +54,22 @@ public class ConseilDAO extends DAO<Conseil> {
         return succes;
 
 
-
     }
 
     @Override
     public boolean delete(Conseil obj) {
-            boolean success = true;
-            try{
-                int id = obj.getId();
-                String requete = "DELETE FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = ?";
-                PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
-                pst.setInt(1, id);
-                pst.executeUpdate();
-                donnees.remove(id);
-            }catch (SQLException e) {
-                success = false;
-                e.printStackTrace();
-            }
+        boolean success = true;
+        try {
+            int id = obj.getId();
+            String requete = "DELETE FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            donnees.remove(id);
+        } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
         return success;
     }
 
@@ -94,7 +93,6 @@ public class ConseilDAO extends DAO<Conseil> {
         }
         return success;
     }
-
 
 
     @Override

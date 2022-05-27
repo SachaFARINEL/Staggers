@@ -30,30 +30,40 @@ public class logginController {
 
     Main main = new Main();
 
-    @FXML private Button connexion;
-    @FXML private Label createAccount;
-    @FXML private Label errorLogin;
-    @FXML private Label forgotPassword;
-    @FXML private PasswordField password;
-    @FXML private TextField username;
+    @FXML
+    private Button connexion;
+    @FXML
+    private Label createAccount;
+    @FXML
+    private Label errorLogin;
+    @FXML
+    private Label forgotPassword;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private TextField username;
 
-    @FXML void sendForgotPassword(MouseEvent event) throws IOException {
+    @FXML
+    void sendForgotPassword(MouseEvent event) throws IOException {
 
         main.nextScene("recuperation-view.fxml");
     }
 
-    @FXML void sendForm(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+    @FXML
+    void sendForm(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         checkLogin();
     }
 
 
-    @FXML public void buttonPressed(KeyEvent e) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+    @FXML
+    public void buttonPressed(KeyEvent e) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         if (e.getCode().toString().equals("ENTER")) {
             checkLogin();
         }
     }
 
-    @FXML void sendInscription(MouseEvent event) throws IOException {
+    @FXML
+    void sendInscription(MouseEvent event) throws IOException {
 
         main.nextScene("inscription-view.fxml");
     }

@@ -20,33 +20,56 @@ public class lettreMotivationController implements Initializable {
 
     Main main = new Main();
 
-    @FXML private Label adresseInf;
-    @FXML private Label adresseInfEntreprise;
-    @FXML private Label adresseSup;
-    @FXML private Label adresseSupEntreprise;
-    @FXML private Text corpTexte;
-    @FXML private Label nomEntreprise;
-    @FXML private Label nomPrenom;
-    @FXML private Label villeDate;
-    @FXML private AnchorPane anchorScroll;
-    @FXML private TextField nombreDeSemaine;
-    @FXML private TextField debutStage;
-    @FXML private TextField premiereQualite;
-    @FXML private TextField deuxiemeQualite;
-    @FXML private Text emptyTextfield;
-    @FXML private ImageView saveIcon;
-    @FXML private Label objet;
-    @FXML private Label madameMonsieur;
-    @FXML private Label wrongPath;
-    @FXML private TextField pathToFile;
-    @FXML private Label indicationPath;
-    @FXML private Label downloadDone;
+    @FXML
+    private Label adresseInf;
+    @FXML
+    private Label adresseInfEntreprise;
+    @FXML
+    private Label adresseSup;
+    @FXML
+    private Label adresseSupEntreprise;
+    @FXML
+    private Text corpTexte;
+    @FXML
+    private Label nomEntreprise;
+    @FXML
+    private Label nomPrenom;
+    @FXML
+    private Label villeDate;
+    @FXML
+    private AnchorPane anchorScroll;
+    @FXML
+    private TextField nombreDeSemaine;
+    @FXML
+    private TextField debutStage;
+    @FXML
+    private TextField premiereQualite;
+    @FXML
+    private TextField deuxiemeQualite;
+    @FXML
+    private Text emptyTextfield;
+    @FXML
+    private ImageView saveIcon;
+    @FXML
+    private Label objet;
+    @FXML
+    private Label madameMonsieur;
+    @FXML
+    private Label wrongPath;
+    @FXML
+    private TextField pathToFile;
+    @FXML
+    private Label indicationPath;
+    @FXML
+    private Label downloadDone;
 
-    @FXML void retourAnnuaire(MouseEvent event) throws IOException {
+    @FXML
+    void retourAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("ficheEntreprise-view.fxml");
     }
 
-    @FXML void save(MouseEvent event) {
+    @FXML
+    void save(MouseEvent event) {
         if (!nombreDeSemaine.getText().isEmpty() && !debutStage.getText().isEmpty() && !premiereQualite.getText().isEmpty() && !deuxiemeQualite.getText().isEmpty()) {
             emptyTextfield.setVisible(false);
             wrongPath.setVisible(false);
@@ -55,14 +78,14 @@ public class lettreMotivationController implements Initializable {
 
             String path = pathToFile.getText() + "/";
             String LMForSave = (
-                            nomPrenom.getText() + "\n" + adresseSup.getText() + "\n" + adresseInf.getText() + "\n" + "\n"
+                    nomPrenom.getText() + "\n" + adresseSup.getText() + "\n" + adresseInf.getText() + "\n" + "\n"
                             + nomEntreprise.getText() + "\n" + adresseSupEntreprise.getText() + "\n"
                             + adresseInfEntreprise.getText() + "\n" + "\n" + villeDate.getText() + "\n" + "\n"
-                            + objet.getText() + "\n" + "\n" + madameMonsieur.getText() + "\n" +  corpTexte.getText()
-                            );
+                            + objet.getText() + "\n" + "\n" + madameMonsieur.getText() + "\n" + corpTexte.getText()
+            );
             try {
                 String name = path + "LM-" + logginController.connectedUser.getNom()
-                + "-" + annuaireController.selectedEntreprise.getNom() + ".doc";
+                        + "-" + annuaireController.selectedEntreprise.getNom() + ".doc";
                 FileOutputStream fos = new FileOutputStream(name, true);
                 // true for append mode
 
@@ -71,8 +94,7 @@ public class lettreMotivationController implements Initializable {
                 fos.write(b); //writes bytes into file
                 fos.close(); //close the file
                 downloadDone.setVisible(true);
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("Exception Occurred:");
                 e.printStackTrace();
                 wrongPath.setVisible(true);
@@ -84,7 +106,8 @@ public class lettreMotivationController implements Initializable {
         }
     }
 
-    @FXML void genererLettre(MouseEvent event) {
+    @FXML
+    void genererLettre(MouseEvent event) {
 
         if (!nombreDeSemaine.getText().isEmpty() && !debutStage.getText().isEmpty() && !premiereQualite.getText().isEmpty() && !deuxiemeQualite.getText().isEmpty()) {
             emptyTextfield.setVisible(false);
@@ -92,22 +115,22 @@ public class lettreMotivationController implements Initializable {
             saveIcon.setVisible(true);
             indicationPath.setVisible(!wrongPath.isVisible());
             String corpLettreMotivation = corpTexte.getText();
-            String tourne="tourné";
-            String honore="honoré";
-            String ravi="ravi";
+            String tourne = "tourné";
+            String honore = "honoré";
+            String ravi = "ravi";
             String sexe = logginController.connectedUser.getSexe();
             if (sexe.equals("Madame")) {
                 tourne += "e";
                 honore += "e";
                 ravi += "e";
-            } else if (sexe.equals("Autre")){
+            } else if (sexe.equals("Autre")) {
                 tourne += "·e";
                 honore += "·e";
                 ravi += "·e";
             }
             String nbSemaine = nombreDeSemaine.getText().toLowerCase();
             String debutStg = debutStage.getText().toLowerCase();
-            String firstPerk = premiereQualite.getText().substring(0,1).toUpperCase() + premiereQualite.getText().substring(1).toLowerCase();
+            String firstPerk = premiereQualite.getText().substring(0, 1).toUpperCase() + premiereQualite.getText().substring(1).toLowerCase();
             String secondPerk = deuxiemeQualite.getText().toLowerCase();
             String nomPrenom = logginController.connectedUser.getNom() + " " + logginController.connectedUser.getPrenom();
             String corp = corpLettreMotivation
@@ -118,8 +141,7 @@ public class lettreMotivationController implements Initializable {
                     .replaceAll("%dateDebut%", debutStg)
                     .replaceAll("%premiereQualite%", firstPerk)
                     .replaceAll("%deuxiemeQualite%", secondPerk)
-                    .replaceAll("%NOMPRENOM%", nomPrenom )
-                    ;
+                    .replaceAll("%NOMPRENOM%", nomPrenom);
             corpTexte.setText(corp);
             anchorScroll.setVisible(true);
         } else {

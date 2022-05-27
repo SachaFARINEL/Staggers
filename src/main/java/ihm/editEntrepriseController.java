@@ -27,62 +27,92 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
 
     Main main = new Main();
 
-    @FXML private Label modificationDone;
-    @FXML private Label modifierUneEntreprise;
+    @FXML
+    private Label modificationDone;
+    @FXML
+    private Label modifierUneEntreprise;
 
-    @FXML private TextField textfieldNom;
-    @FXML private TextArea textAreaDescription;
-    @FXML private TextField textfieldEmail;
-    @FXML private TextField textfieldEmailMailContact;
-    @FXML private TextField textfieldNomContact;
-    @FXML private TextField textfieldNumContact;
-    @FXML private TextField textfieldTel;
+    @FXML
+    private TextField textfieldNom;
+    @FXML
+    private TextArea textAreaDescription;
+    @FXML
+    private TextField textfieldEmail;
+    @FXML
+    private TextField textfieldEmailMailContact;
+    @FXML
+    private TextField textfieldNomContact;
+    @FXML
+    private TextField textfieldNumContact;
+    @FXML
+    private TextField textfieldTel;
 
-    @FXML private ChoiceBox<String> choiceBoxLangage;
-    @FXML private ChoiceBox<String> choiceBoxNbSalarie;
-    @FXML private ChoiceBox<String> choiceBoxNbStagiaire;
+    @FXML
+    private ChoiceBox<String> choiceBoxLangage;
+    @FXML
+    private ChoiceBox<String> choiceBoxNbSalarie;
+    @FXML
+    private ChoiceBox<String> choiceBoxNbStagiaire;
 
-    @FXML private TextField adresseAdresse;
-    @FXML private TextField adresseCodePostal;
-    @FXML private TextField adresseNumero;
-    @FXML private TextField adresseTypeDeVoie;
-    @FXML private TextField adresseVille;
+    @FXML
+    private TextField adresseAdresse;
+    @FXML
+    private TextField adresseCodePostal;
+    @FXML
+    private TextField adresseNumero;
+    @FXML
+    private TextField adresseTypeDeVoie;
+    @FXML
+    private TextField adresseVille;
 
 
-    @FXML private TableView<Entreprise> table;
-    @FXML private TableColumn<Entreprise, String> id;
-    @FXML private TableColumn<Entreprise, String> nom;
-    @FXML private TableColumn<Entreprise, String> mail;
-    @FXML private TableColumn<Entreprise, String> tel;
+    @FXML
+    private TableView<Entreprise> table;
+    @FXML
+    private TableColumn<Entreprise, String> id;
+    @FXML
+    private TableColumn<Entreprise, String> nom;
+    @FXML
+    private TableColumn<Entreprise, String> mail;
+    @FXML
+    private TableColumn<Entreprise, String> tel;
 
-    @FXML private TableColumn<Adresse, String> adresse;
+    @FXML
+    private TableColumn<Adresse, String> adresse;
 
 
-    @FXML void deconnexion(MouseEvent event) throws IOException {
+    @FXML
+    void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML void versActualite(MouseEvent event) throws IOException {
+    @FXML
+    void versActualite(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML void versAdmin(MouseEvent event) throws IOException {
+    @FXML
+    void versAdmin(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
     }
 
-    @FXML void versAnnuaire(MouseEvent event) throws IOException {
+    @FXML
+    void versAnnuaire(MouseEvent event) throws IOException {
         main.nextScene("annuaire-view.fxml");
     }
 
-    @FXML void versConseil(MouseEvent event) {
+    @FXML
+    void versConseil(MouseEvent event) {
 
     }
 
-    @FXML void versProfil(MouseEvent event) throws IOException {
+    @FXML
+    void versProfil(MouseEvent event) throws IOException {
         main.nextScene("profil-view.fxml");
     }
 
-    @FXML void backPanneau(MouseEvent event) throws IOException {
+    @FXML
+    void backPanneau(MouseEvent event) throws IOException {
         main.nextScene("panneauAdmin-view.fxml");
     }
 
@@ -111,10 +141,11 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
 
     }
 
-    @FXML void updateEntreprise(MouseEvent event) {
+    @FXML
+    void updateEntreprise(MouseEvent event) {
         Entreprise updatedEntreprise = new Entreprise(adminSelectedEntreprise.getId(), textfieldNom.getText(), textfieldEmail.getText(), textfieldTel.getText(), textfieldNomContact.getText(),
-            textfieldEmailMailContact.getText(), textfieldNumContact.getText(), choiceBoxNbSalarie.getValue(),
-            choiceBoxNbStagiaire.getValue(), textAreaDescription.getText(), choiceBoxLangage.getValue() );
+                textfieldEmailMailContact.getText(), textfieldNumContact.getText(), choiceBoxNbSalarie.getValue(),
+                choiceBoxNbStagiaire.getValue(), textAreaDescription.getText(), choiceBoxLangage.getValue());
 
         Adresse updatedAdresse = new Adresse(adminSelectedEntrepriseAdresse.getId(), adresseNumero.getText(), adresseTypeDeVoie.getText(), adresseAdresse.getText(), adresseVille.getText(),
                 adresseCodePostal.getText(), adminSelectedEntreprise.getId());
@@ -138,7 +169,6 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
             timeline.play();
 
         }
-
 
 
     }

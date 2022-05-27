@@ -90,9 +90,9 @@ public class FavorisDAO extends DAO<Favoris> {
 
     public List<Favoris> readAllWithId(int id_utilisateur) {
         Favoris favoris;
-        List<Favoris> listeFavoris =null;
+        List<Favoris> listeFavoris = null;
         try {
-            String requete = "SELECT * FROM " + TABLE + " WHERE " + ID_UTILISATEUR + " = " + id_utilisateur ;
+            String requete = "SELECT * FROM " + TABLE + " WHERE " + ID_UTILISATEUR + " = " + id_utilisateur;
             ResultSet rs = Connexion.executeQuery(requete);
             listeFavoris = new ArrayList<Favoris>();
             boolean hasNext = rs.next();
@@ -109,7 +109,7 @@ public class FavorisDAO extends DAO<Favoris> {
         return listeFavoris;
     }
 
-    public boolean isFavoris (int id_utilisateur, int id_entreprise) {
+    public boolean isFavoris(int id_utilisateur, int id_entreprise) {
         boolean isFavoris = false;
         try {
             String requete = "SELECT * FROM " + TABLE + " WHERE " + ID_UTILISATEUR + " = " + id_utilisateur + " AND " + ID_ENTREPRISE + " = " + id_entreprise;
