@@ -60,7 +60,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
             pst.setString(8, obj.getSexe());
-            pst.setString(9, hashPass(obj.getMot_de_passe()));
+            pst.setString(9, obj.getMot_de_passe());
             pst.setBoolean(10, obj.isEst_admin());
             pst.setString(11, obj.getRole());
             pst.setString(12, obj.getQuestion_secrete());
@@ -73,7 +73,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
                 obj.setId(rs.getInt(1));
             }
             donnees.put(obj.getId(), obj);
-        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+        } catch (SQLException e) {
             success = false;
             e.printStackTrace();
         }
@@ -112,14 +112,14 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
             pst.setString(8, obj.getSexe());
-            pst.setString(9, hashPass(obj.getMot_de_passe()));
+            pst.setString(9, obj.getMot_de_passe());
             pst.setBoolean(10, obj.isEst_admin());
             pst.setString(11, obj.getRole());
             pst.setString(12, obj.getQuestion_secrete());
             pst.setInt(13, id);
             pst.executeUpdate();
             donnees.put(id, obj);
-        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+        } catch (SQLException e) {
             success = false;
             e.printStackTrace();
         }

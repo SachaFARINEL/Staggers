@@ -23,9 +23,13 @@ import staggers.Utilisateur;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+
+import static utils.Utils.hashPass;
 
 public class profilController implements Initializable {
 
@@ -129,48 +133,182 @@ public class profilController implements Initializable {
 
     }
 
-    @FXML
-    void sendInscription(ActionEvent event) {
-        wrongPassword.setVisible(false);
+    private boolean checkIfEmpty() {
+        boolean isNotEmpty = true;
+        String sexeSent = sexe.getValue();
+        String nomSent = nom.getText();
+        String prenomSent = prenom.getText();
         LocalDate dateNaissanceSent = dateNaissance.getValue();
-        LocalDateTime dateNaiss = dateNaissanceSent.atTime(0, 0);
-        if (password.getText().equals("") && passwordConfirmation.getText().equals("")) {
+        String emailSent = email.getText();
+        String telephoneSent = telephone.getText();
+        String numeroSent = numero.getText();
+        String voieSent = typeDeVoie.getText();
+        String adresseSent = adresse.getText();
+        String codePostalSent = codePostal.getText();
+        String villeSent = ville.getText();
 
-            Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), nom.getText(), prenom.getText(),
-                    dateNaiss, email.getText(), telephone.getText(), sexe.getValue());
-            Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
-                    adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
-
-            if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().updateProfilUtilisateurWithoutPassword(changedUtilisateur)) {
-                labelMonprofil.setVisible(false);
-                profilUpdated.setVisible(true);
-                logginController.connectedUser = changedUtilisateur;
-                logginController.connectedAdresse = changedAdresse;
-            }
-
-        } else if (password.getText().equals(passwordConfirmation.getText())) {
-            Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), nom.getText(), prenom.getText(),
-                    dateNaiss, email.getText(), telephone.getText(), sexe.getValue(), password.getText());
-            Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
-                    adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
-            if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().updateProfilUtilisateurWithPassword(changedUtilisateur)) {
-                labelMonprofil.setVisible(false);
-                profilUpdated.setVisible(true);
-                logginController.connectedUser = changedUtilisateur;
-                logginController.connectedAdresse = changedAdresse;
-            }
-        } else {
-            wrongPassword.setVisible(true);
-            wrongPassword.setText("Les deux mots de passe ne sont pas identiques");
+        if (sexeSent.isEmpty()) {
+            isNotEmpty = false;
         }
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(1000),
-                ae -> {
-                    labelMonprofil.setVisible(true);
-                    profilUpdated.setVisible(false);
-                }));
-        timeline.play();
+        if (nomSent.isEmpty()) {
+            wrongNom.setText("Nom obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongNom.setText("");
+        }
+        if (prenomSent.isEmpty()) {
+            wrongPrenom.setText("Prenom obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongPassword.setText("");
+
+        }
+        if (dateNaissanceSent == null) {
+            wrongDate.setText("Date de naissance obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongDate.setText("");
+
+        }
+        if (emailSent.isEmpty()) {
+            wrongEmail.setText("Email obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongEmail.setText("");
+        }
+        if (telephoneSent.isEmpty()) {
+            wrongTelephone.setText("Téléphone obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongTelephone.setText("");
+
+        }
+        if (numeroSent.isEmpty() || voieSent.isEmpty() || adresseSent.isEmpty()) {
+            wrongAdresse.setText("Adresse complète obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongAdresse.setText("");
+
+        }
+        if (codePostalSent.isEmpty()) {
+            wrongCodePostal.setText("Code postal obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongCodePostal.setText(null);
+
+        }
+        if (villeSent.isEmpty()) {
+            wrongVille.setText("Ville obligatoire");
+            isNotEmpty = false;
+        } else {
+            wrongVille.setText("");
+
+        }
+        return isNotEmpty;
     }
+
+    private boolean isMotDePasseConfirmed() {
+        boolean mdpConfirmed = true;
+        if (!password.getText().equals(passwordConfirmation.getText())) {
+            mdpConfirmed = false;
+            wrongPassword.setText("Les mots de passe ne sont pas identiques");
+        } else {
+            wrongPassword.setText("");
+        }
+        return mdpConfirmed;
+    }
+
+    @FXML
+    void updateProfil(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        if (checkIfEmpty()) {
+            wrongPassword.setVisible(false);
+
+            LocalDate dateNaissanceSent = dateNaissance.getValue();
+            LocalDateTime dateNaiss = dateNaissanceSent.atTime(0, 0);
+            String MDP;
+            if (password.getText().isEmpty() && passwordConfirmation.getText().isEmpty()) {
+                MDP = logginController.connectedUser.getMot_de_passe();
+            } else {
+                MDP = hashPass(password.getText());
+            }
+
+            if (password.getText().equals(passwordConfirmation.getText())) {
+                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(), nom.getText(), prenom.getText(),
+                        dateNaiss, email.getText(), telephone.getText(), logginController.connectedUser.isAdmis_stage(), sexe.getValue(), MDP,
+                        logginController.connectedUser.isEst_admin(), logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
+
+                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
+                        adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
+                if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().update(changedUtilisateur)) {
+                    labelMonprofil.setVisible(false);
+                    profilUpdated.setVisible(true);
+                    logginController.connectedUser = changedUtilisateur;
+                    logginController.connectedAdresse = changedAdresse;
+                    Timeline timeline = new Timeline(new KeyFrame(
+                            Duration.millis(1000),
+                            ae -> {
+                                labelMonprofil.setVisible(true);
+                                profilUpdated.setVisible(false);
+                            }));
+                    timeline.play();
+                }
+
+            } else {
+                wrongPassword.setVisible(true);
+                wrongPassword.setText("Les deux mots de passe ne sont pas identiques");
+            }
+        }
+    }
+
+
+//            if (password.getText().isEmpty() && passwordConfirmation.getText().isEmpty()) {
+//
+//                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(), nom.getText(), prenom.getText(),
+//                        dateNaiss, email.getText(), telephone.getText(), logginController.connectedUser.isAdmis_stage(), sexe.getValue(), logginController.connectedUser.getMot_de_passe(),
+//                        logginController.connectedUser.isEst_admin(), logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
+//
+//                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
+//                        adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
+//
+//                if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().updateProfilUtilisateurWithoutPassword(changedUtilisateur)) {
+//                    labelMonprofil.setVisible(false);
+//                    profilUpdated.setVisible(true);
+//                    logginController.connectedUser = changedUtilisateur;
+//                    logginController.connectedAdresse = changedAdresse;
+//                }
+//                Timeline timeline = new Timeline(new KeyFrame(
+//                        Duration.millis(1000),
+//                        ae -> {
+//                            labelMonprofil.setVisible(true);
+//                            profilUpdated.setVisible(false);
+//                        }));
+//                timeline.play();
+//            } else if (isMotDePasseConfirmed()) {
+//                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), nom.getText(), prenom.getText(),
+//                        dateNaiss, email.getText(), telephone.getText(), sexe.getValue(), password.getText());
+//                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
+//                        adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
+//                if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().updateProfilUtilisateurWithPassword(changedUtilisateur)) {
+//                    labelMonprofil.setVisible(false);
+//                    profilUpdated.setVisible(true);
+//                    logginController.connectedUser = changedUtilisateur;
+//                    logginController.connectedAdresse = changedAdresse;
+//                }
+//                Timeline timeline = new Timeline(new KeyFrame(
+//                        Duration.millis(1000),
+//                        ae -> {
+//                            labelMonprofil.setVisible(true);
+//                            profilUpdated.setVisible(false);
+//                        }));
+//                timeline.play();
+//            } else {
+//                wrongPassword.setVisible(true);
+//                wrongPassword.setText("Les deux mots de passe ne sont pas identiques");
+//            }
+//        }
+
+
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

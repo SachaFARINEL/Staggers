@@ -14,9 +14,13 @@ import staggers.Adresse;
 import staggers.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+
+import static utils.Utils.hashPass;
 
 public class inscriptionController implements Initializable {
 
@@ -194,7 +198,7 @@ public class inscriptionController implements Initializable {
 
 
     @FXML
-    void sendInscription() {
+    void sendInscription() throws NoSuchAlgorithmException, InvalidKeySpecException {
         if (isMotDePasseConfirmed() && checkIfEmpty() && emailNotInDatabase()) {
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText().trim();
@@ -204,7 +208,7 @@ public class inscriptionController implements Initializable {
 
             String emailSent = email.getText();
             String telephoneSent = telephone.getText();
-            String passwordSent = password.getText();
+            String passwordSent = hashPass(password.getText());
             String numeroSent = numero.getText();
             String voieSent = typeDeVoie.getText();
             String adresseSent = adresse.getText();
