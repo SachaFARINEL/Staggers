@@ -112,14 +112,14 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.setString(6, obj.getNum_tel());
             pst.setBoolean(7, obj.isAdmis_stage());
             pst.setString(8, obj.getSexe());
-            pst.setString(9, obj.getMot_de_passe());
+            pst.setString(9, hashPass(obj.getMot_de_passe()));
             pst.setBoolean(10, obj.isEst_admin());
             pst.setString(11, obj.getRole());
             pst.setString(12, obj.getQuestion_secrete());
             pst.setInt(13, id);
             pst.executeUpdate();
             donnees.put(id, obj);
-        } catch (SQLException e) {
+        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             success = false;
             e.printStackTrace();
         }
@@ -217,7 +217,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return utilisateur;
     }
 
-    public boolean updateProfilUtilisateur(Utilisateur obj) {
+    public boolean updateProfilUtilisateurWithoutPassword(Utilisateur obj) {
         boolean success = true;
         int id = obj.getId();
         try {
@@ -233,6 +233,29 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             pst.executeUpdate();
             donnees.put(id, obj);
         } catch (SQLException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    public boolean updateProfilUtilisateurWithPassword(Utilisateur obj) {
+        boolean success = true;
+        int id = obj.getId();
+        try {
+            String requete = "UPDATE " + TABLE + " SET " + NOM + " = ?, " + PRENOM + " = ? , " + DATE_NAISSANCE + " = ?, " + EMAIL + " = ?, " + NUM_TEL + " = ?, " + SEXE + " = ?,  " + MOT_DE_PASSE + " = ? WHERE " + CLE_PRIMAIRE + " = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+            pst.setString(1, obj.getNom());
+            pst.setString(2, obj.getPrenom());
+            pst.setObject(3, obj.getDate_naissance());
+            pst.setString(4, obj.getEmail());
+            pst.setString(5, obj.getNum_tel());
+            pst.setString(6, obj.getSexe());
+            pst.setString(7, hashPass(obj.getMot_de_passe()));
+            pst.setInt(8, id);
+            pst.executeUpdate();
+            donnees.put(id, obj);
+        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             success = false;
             e.printStackTrace();
         }

@@ -62,6 +62,17 @@ public class Utilisateur {
         this.sexe = sexe;
     }
 
+    public Utilisateur(int id, String nom, String prenom, LocalDateTime date_naissance, String email, String num_tel, String sexe, String mot_de_passe) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.date_naissance = date_naissance;
+        this.email = email;
+        this.num_tel = num_tel;
+        this.sexe = sexe;
+        this.mot_de_passe = mot_de_passe;
+    }
+
     public int getId() {
         return id;
     }
