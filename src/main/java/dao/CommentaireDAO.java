@@ -1,8 +1,6 @@
 package dao;
 
 import staggers.Commentaire;
-import staggers.Entreprise;
-
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

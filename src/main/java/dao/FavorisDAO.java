@@ -1,20 +1,12 @@
 package dao;
 
-import staggers.Entreprise;
 import staggers.Favoris;
-import staggers.Utilisateur;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import static utils.Utils.hashPass;
 
 public class FavorisDAO extends DAO<Favoris> {
 

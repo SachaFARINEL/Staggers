@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import staggers.Adresse;
 import staggers.Entreprise;
 import staggers.Favoris;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;

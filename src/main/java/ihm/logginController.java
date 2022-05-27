@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Utilisateur;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

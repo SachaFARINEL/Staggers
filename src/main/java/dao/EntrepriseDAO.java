@@ -1,17 +1,12 @@
 package dao;
 
 import staggers.Entreprise;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import static utils.Utils.hashPass;
-
 
 public class EntrepriseDAO extends DAO<Entreprise> {
 

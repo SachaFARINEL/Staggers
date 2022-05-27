@@ -7,10 +7,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -19,8 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Utilisateur;
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
@@ -46,13 +41,9 @@ public class profilController implements Initializable {
     @FXML
     private TextField numero;
     @FXML
-    private AnchorPane retourLoggin;
-    @FXML
     private DatePicker dateNaissance;
     @FXML
     private Label wrongNom;
-    @FXML
-    private ImageView retourLogginArrow;
     @FXML
     private ChoiceBox<String> sexe;
     @FXML
@@ -68,17 +59,11 @@ public class profilController implements Initializable {
     @FXML
     private Label wrongPrenom;
     @FXML
-    private Label wrongReponse;
-    @FXML
     private TextField prenom;
     @FXML
     private TextField email;
     @FXML
-    private Button valider;
-    @FXML
     private TextField ville;
-    @FXML
-    private Label labelInscription;
     @FXML
     private TextField telephone;
     @FXML
@@ -92,10 +77,7 @@ public class profilController implements Initializable {
     @FXML
     private Label wrongVille;
     @FXML
-    private TextField reponseQuestion;
-    @FXML
     private Label wrongTelephone;
-
     @FXML
     private Label labelMonprofil;
     @FXML
@@ -225,90 +207,34 @@ public class profilController implements Initializable {
 
             LocalDate dateNaissanceSent = dateNaissance.getValue();
             LocalDateTime dateNaiss = dateNaissanceSent.atTime(0, 0);
-            String MDP;
-            if (password.getText().isEmpty() && passwordConfirmation.getText().isEmpty()) {
-                MDP = logginController.connectedUser.getMot_de_passe();
-            } else {
-                MDP = hashPass(password.getText());
-            }
 
             if (password.getText().equals(passwordConfirmation.getText())) {
-                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(), nom.getText(), prenom.getText(),
-                        dateNaiss, email.getText(), telephone.getText(), logginController.connectedUser.isAdmis_stage(), sexe.getValue(), MDP,
-                        logginController.connectedUser.isEst_admin(), logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
+                String MDP;
+                if (password.getText().isEmpty() && passwordConfirmation.getText().isEmpty()) {
+                    MDP = logginController.connectedUser.getMot_de_passe();
+                } else {
+                    MDP = hashPass(password.getText());
+                }
+                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(), nom.getText(), prenom.getText(), dateNaiss, email.getText(), telephone.getText(), logginController.connectedUser.isAdmis_stage(), sexe.getValue(), MDP, logginController.connectedUser.isEst_admin(), logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
 
-                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
-                        adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
+                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(), adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
                 if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().update(changedUtilisateur)) {
                     labelMonprofil.setVisible(false);
                     profilUpdated.setVisible(true);
                     logginController.connectedUser = changedUtilisateur;
                     logginController.connectedAdresse = changedAdresse;
-                    Timeline timeline = new Timeline(new KeyFrame(
-                            Duration.millis(1000),
-                            ae -> {
-                                labelMonprofil.setVisible(true);
-                                profilUpdated.setVisible(false);
-                            }));
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
+                        labelMonprofil.setVisible(true);
+                        profilUpdated.setVisible(false);
+                    }));
                     timeline.play();
                 }
-
             } else {
                 wrongPassword.setVisible(true);
                 wrongPassword.setText("Les deux mots de passe ne sont pas identiques");
             }
         }
     }
-
-
-//            if (password.getText().isEmpty() && passwordConfirmation.getText().isEmpty()) {
-//
-//                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(), nom.getText(), prenom.getText(),
-//                        dateNaiss, email.getText(), telephone.getText(), logginController.connectedUser.isAdmis_stage(), sexe.getValue(), logginController.connectedUser.getMot_de_passe(),
-//                        logginController.connectedUser.isEst_admin(), logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
-//
-//                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
-//                        adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
-//
-//                if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().updateProfilUtilisateurWithoutPassword(changedUtilisateur)) {
-//                    labelMonprofil.setVisible(false);
-//                    profilUpdated.setVisible(true);
-//                    logginController.connectedUser = changedUtilisateur;
-//                    logginController.connectedAdresse = changedAdresse;
-//                }
-//                Timeline timeline = new Timeline(new KeyFrame(
-//                        Duration.millis(1000),
-//                        ae -> {
-//                            labelMonprofil.setVisible(true);
-//                            profilUpdated.setVisible(false);
-//                        }));
-//                timeline.play();
-//            } else if (isMotDePasseConfirmed()) {
-//                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), nom.getText(), prenom.getText(),
-//                        dateNaiss, email.getText(), telephone.getText(), sexe.getValue(), password.getText());
-//                Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(),
-//                        adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
-//                if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().updateProfilUtilisateurWithPassword(changedUtilisateur)) {
-//                    labelMonprofil.setVisible(false);
-//                    profilUpdated.setVisible(true);
-//                    logginController.connectedUser = changedUtilisateur;
-//                    logginController.connectedAdresse = changedAdresse;
-//                }
-//                Timeline timeline = new Timeline(new KeyFrame(
-//                        Duration.millis(1000),
-//                        ae -> {
-//                            labelMonprofil.setVisible(true);
-//                            profilUpdated.setVisible(false);
-//                        }));
-//                timeline.play();
-//            } else {
-//                wrongPassword.setVisible(true);
-//                wrongPassword.setText("Les deux mots de passe ne sont pas identiques");
-//            }
-//        }
-
-
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

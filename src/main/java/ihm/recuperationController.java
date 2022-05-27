@@ -5,7 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -25,8 +24,6 @@ public class recuperationController {
     @FXML
     private Label errorLogin;
     @FXML
-    private Label question;
-    @FXML
     private TextField identifiant;
     @FXML
     private PasswordField newPassword;
@@ -35,13 +32,11 @@ public class recuperationController {
     @FXML
     private TextField reponse;
     @FXML
-    private Button valider;
-    @FXML
     private Label mdpIdentique;
 
     private boolean isNewMotDePasseConfirmed() {
         boolean mdpConfirmed = true;
-        if (!newPassword.getText().toString().equals(confirmationNewPassword.getText().toString())) {
+        if (!newPassword.getText().equals(confirmationNewPassword.getText())) {
             mdpConfirmed = false;
             mdpIdentique.setText("Les mots de passe ne sont pas identiques");
         } else {
@@ -51,11 +46,11 @@ public class recuperationController {
     }
 
     @FXML
-    void sendForm(ActionEvent event) throws IOException {
-        String usernameSent = identifiant.getText().toString();
-        String passwordSent = newPassword.getText().toString();
+    void sendForm(ActionEvent event) {
+        String usernameSent = identifiant.getText();
+        String passwordSent = newPassword.getText();
         String reponseSecretDatabase = UtilisateurDAO.getInstance().getWithEmail("question_secrete", usernameSent);
-        if (isNewMotDePasseConfirmed() && reponse.getText().toString().equals(reponseSecretDatabase)) {
+        if (isNewMotDePasseConfirmed() && reponse.getText().equals(reponseSecretDatabase)) {
             errorLogin.setStyle("-fx-text-fill: #20DF7F;");
             errorLogin.setText("Changement de mot de passe réussie ! Retour à l'authentification");
             UtilisateurDAO.getInstance().updatePassword(passwordSent, usernameSent);
