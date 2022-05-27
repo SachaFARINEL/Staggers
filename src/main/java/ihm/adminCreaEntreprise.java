@@ -3,6 +3,8 @@ package ihm;
 import dao.AdresseDAO;
 import dao.EntrepriseDAO;
 import dao.UtilisateurDAO;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 
@@ -23,6 +25,7 @@ import javafx.scene.effect.ImageInput;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Entreprise;
 import staggers.Utilisateur;
@@ -36,14 +39,9 @@ public class adminCreaEntreprise implements Initializable {
     Main main = new Main();
 
     @FXML private TextField adresse;
-    @FXML private Label annuaire;
     @FXML private TextField codePostal;
-    @FXML private Label conseils;
-    @FXML private Button deco;
     @FXML private TextField email;
     @FXML private TextField email_contact;
-    @FXML private Label fil_actualite;
-    @FXML private Label admin;
     @FXML private ChoiceBox<?> nbSalarie;
     @FXML private ChoiceBox<?> nbStagiaire;
     @FXML private TextField nom;
@@ -51,31 +49,19 @@ public class adminCreaEntreprise implements Initializable {
     @FXML private TextField num_contact;
     @FXML private TextField num_tel;
     @FXML private TextField numero;
-    @FXML private Label profil;
-    @FXML private AnchorPane retourLoggin;
-    @FXML private ImageView retourLogginArrow;
     @FXML private TextField typeDeVoie;
-    @FXML private Button valider;
     @FXML private TextField ville;
-    @FXML private Label wrongAdresse;
-    @FXML private Label wrongCodePostal;
-    @FXML private Label wrongDate;
-    @FXML private Label wrongEmail;
-    @FXML private Label wrongNom;
-    @FXML private Label wrongPassword;
-    @FXML private Label wrongPrenom;
-    @FXML private Label wrongReponse;
-    @FXML private Label wrongTelephone;
-    @FXML private Label wrongVille;
     @FXML private TextField description;
     @FXML private TextField langage;
+    @FXML private Label titreFiche;
+    @FXML private Label confirmationEntreprise;
 
     @FXML void deconnexion(MouseEvent event) throws IOException {
         main.nextScene("loggin-view.fxml");
     }
 
-    @FXML void retourLoggin(MouseEvent event) {
-
+    @FXML void retourPanneau(MouseEvent event) throws IOException {
+        main.nextScene("panneauAdmin-view.fxml");
     }
 
     @FXML void versActualite(MouseEvent event) throws IOException {
@@ -95,27 +81,27 @@ public class adminCreaEntreprise implements Initializable {
 
     }
 
-    @FXML void versAdmin(MouseEvent event) {
-
+    @FXML void versAdmin(MouseEvent event) throws IOException {
+        main.nextScene("panneauAdmin-view.fxml");
     }
 
-    private boolean checkIfEmpty() throws ParseException {
+    private boolean checkIfEmpty() {
         boolean isNotEmpty = true;
-        String nomSent = nom.getText().toString();
-        String numTelSent = num_tel.getText().toString();
-        String nomContactSent = nom_contact.getText().toString();
-        String numContactSent = num_contact.getText().toString();
-        String emailSent = email.getText().toString();
-        String emailContact = email_contact.getText().toString();
+        String nomSent = nom.getText();
+        String numTelSent = num_tel.getText();
+        String nomContactSent = nom_contact.getText();
+        String numContactSent = num_contact.getText();
+        String emailSent = email.getText();
+        String emailContact = email_contact.getText();
         String nbSalarieSent = nbSalarie.getValue().toString();
         String nbStagiaireSent = nbStagiaire.getValue().toString();
         String numeroSent = numero.getText();
-        String voieSent = typeDeVoie.getText().toString();
-        String adresseSent = adresse.getText().toString();
-        String codePostalSent = codePostal.getText().toString();
-        String villeSent = ville.getText().toString();
-        String descriptionSent = description.getText().toString();
-        String langageSent = langage.getText().toString();
+        String voieSent = typeDeVoie.getText();
+        String adresseSent = adresse.getText();
+        String codePostalSent = codePostal.getText();
+        String villeSent = ville.getText();
+        String descriptionSent = description.getText();
+        String langageSent = langage.getText();
 
         if (nomSent.isEmpty()) {
             isNotEmpty = false;
@@ -160,24 +146,24 @@ public class adminCreaEntreprise implements Initializable {
         return isNotEmpty;
     }
 
-    public void sendCreationEnt(ActionEvent event) throws ParseException {
+    public void sendCreationEnt(ActionEvent event) {
         if (checkIfEmpty()) {
 
-            String nomSent = nom.getText().toString();
-            String numTelSent = num_tel.getText().toString();
-            String nomContactSent = nom_contact.getText().toString();
-            String numContactSent = num_contact.getText().toString();
-            String emailSent = email.getText().toString();
-            String emailContact = email_contact.getText().toString();
+            String nomSent = nom.getText();
+            String numTelSent = num_tel.getText();
+            String nomContactSent = nom_contact.getText();
+            String numContactSent = num_contact.getText();
+            String emailSent = email.getText();
+            String emailContact = email_contact.getText();
             String nbSalarieSent = nbSalarie.getValue().toString();
             String nbStagiaireSent = nbStagiaire.getValue().toString();
-            String voieSent = typeDeVoie.getText().toString();
-            String numeroSent = numero.getText().toString();
-            String adresseSent = adresse.getText().toString();
-            String codePostalSent = codePostal.getText().toString();
-            String villeSent = ville.getText().toString();
-            String descriptionSent = description.getText().toString();
-            String langageSent = langage.getText().toString();
+            String voieSent = typeDeVoie.getText();
+            String numeroSent = numero.getText();
+            String adresseSent = adresse.getText();
+            String codePostalSent = codePostal.getText();
+            String villeSent = ville.getText();
+            String descriptionSent = description.getText();
+            String langageSent = langage.getText();
 
             Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent, emailContact, numContactSent, nbSalarieSent, nbStagiaireSent, descriptionSent, langageSent);
             EntrepriseDAO.getInstance().create(entreprise);
@@ -187,12 +173,18 @@ public class adminCreaEntreprise implements Initializable {
             Adresse entAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idEnt);
             AdresseDAO.getInstance().createEntAdmin(entAdresse);
 
-            try {
-                main.nextScene("accueil-view.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ;
+            titreFiche.setVisible(false);
+            confirmationEntreprise.setVisible(true);
+            Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.millis(1000),
+                    ae -> {
+                        try {
+                            main.nextScene("panneauAdmin-view.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }));
+            timeline.play();
         }
 
     }
@@ -202,7 +194,7 @@ public class adminCreaEntreprise implements Initializable {
 
         ObservableList<String> selectNbSalarie = (ObservableList<String>) nbSalarie.getItems();
         ObservableList<String> selectNbStagiaire = (ObservableList<String>) nbStagiaire.getItems();
-
+        confirmationEntreprise.setVisible(false);
         selectNbSalarie.addAll(arrayNbSalarie);
         selectNbStagiaire.addAll(arrayNbStagiaire);
 

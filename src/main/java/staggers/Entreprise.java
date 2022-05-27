@@ -46,6 +46,12 @@ import java.util.Date;
             this.langage = langage;
         }
 
+        public Entreprise(String nom) {
+
+            this.nom = nom;
+
+        }
+
         public int getId() {
             return id;
         }

@@ -88,3 +88,9 @@
     -fx-text-inner-color: black;
     -fx-background-radius: 10, 10;
 }
+
+.addEntreprise:hover {
+    -fx-background-color: #20DF7F;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
