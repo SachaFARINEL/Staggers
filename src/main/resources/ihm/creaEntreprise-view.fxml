@@ -118,7 +118,8 @@
             <Label layoutX="26.0" layoutY="284.0" text="Nombre de stagiaire Max" />
             <ChoiceBox fx:id="nbStagiaire" layoutX="232.0" layoutY="280.0" prefHeight="25.0" prefWidth="137.0" />
             <TextField fx:id="description" alignment="CENTER" layoutX="232.0" layoutY="426.0" prefHeight="64.0" prefWidth="230.0" promptText="Description de l'entreprise" />
-            <TextField fx:id="langage" alignment="CENTER" layoutX="51.0" layoutY="442.0" prefHeight="33.0" prefWidth="137.0" promptText="Langage utilisé" />
+            <ChoiceBox fx:id="langagePrincipal" layoutX="46.0" layoutY="446.0" prefWidth="150.0" />
+            <Label layoutX="31.0" layoutY="418.0" text="Langage principale de l'entreprise" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="retourLoggin" layoutX="63.0" layoutY="15.0" prefHeight="51.0" prefWidth="57.0" style="-fx-cursor: hand;" />

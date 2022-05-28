@@ -6,9 +6,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -23,7 +25,8 @@ public class creaEntrepriseController implements Initializable {
 
     static public final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
     static public final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
-    static public final String[] arrayLangage = {"HTML et CSS", "JavaScript", "PHP", "Ruby", "Java", "Swift", "C#, C ou C++", "Python", "Julia", "Scala"};
+    static public final String[] arrayLangage = {"JavaScript", "PHP", "Ruby", "Java", "Swift", "C#", "C", "C++",
+            "Python", "Julia", "Scala"};
 
     Main main = new Main();
 
@@ -40,6 +43,8 @@ public class creaEntrepriseController implements Initializable {
     @FXML
     private ChoiceBox<?> nbStagiaire;
     @FXML
+    private ChoiceBox<?> langagePrincipal;
+    @FXML
     private TextField nom;
     @FXML
     private TextField nom_contact;
@@ -55,8 +60,6 @@ public class creaEntrepriseController implements Initializable {
     private TextField ville;
     @FXML
     private TextField description;
-    @FXML
-    private TextField langage;
     @FXML
     private Label titreFiche;
     @FXML
@@ -114,7 +117,7 @@ public class creaEntrepriseController implements Initializable {
         String codePostalSent = codePostal.getText();
         String villeSent = ville.getText();
         String descriptionSent = description.getText();
-        String langageSent = langage.getText();
+        String langageSent = langagePrincipal.getValue().toString();
 
         if (nomSent.isEmpty()) {
             isNotEmpty = false;
@@ -176,7 +179,7 @@ public class creaEntrepriseController implements Initializable {
             String codePostalSent = codePostal.getText();
             String villeSent = ville.getText();
             String descriptionSent = description.getText();
-            String langageSent = langage.getText();
+            String langageSent = langagePrincipal.getValue().toString();
 
             Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent, emailContact, numContactSent, nbSalarieSent, nbStagiaireSent, descriptionSent, langageSent);
             EntrepriseDAO.getInstance().create(entreprise);
@@ -205,12 +208,13 @@ public class creaEntrepriseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        confirmationEntreprise.setVisible(false);
         ObservableList<String> selectNbSalarie = (ObservableList<String>) nbSalarie.getItems();
         ObservableList<String> selectNbStagiaire = (ObservableList<String>) nbStagiaire.getItems();
-        confirmationEntreprise.setVisible(false);
+        ObservableList<String> selectLangage = (ObservableList<String>) langagePrincipal.getItems();
         selectNbSalarie.addAll(arrayNbSalarie);
         selectNbStagiaire.addAll(arrayNbStagiaire);
-
+        selectLangage.addAll(arrayLangage);
     }
 
 }
