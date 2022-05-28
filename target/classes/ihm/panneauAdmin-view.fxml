@@ -58,32 +58,50 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="43.0" layoutY="153.0" onMouseClicked="#addEntreprise" prefHeight="162.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-cursor: hand; -fx-background-color: white;" styleClass="addEntreprise">
+      <AnchorPane layoutX="3.0" layoutY="200.0" prefHeight="200.0" prefWidth="1058.0">
          <children>
-            <ImageView fitHeight="87.0" fitWidth="121.0" layoutX="59.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/addEntreprise.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="10.0" layoutY="120.0" prefHeight="27.0" prefWidth="181.0" text="Ajouter une entreprise">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="272.0" layoutY="153.0" onMouseClicked="#editEntreprise" prefHeight="162.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-cursor: hand; -fx-background-color: white;" styleClass="addEntreprise">
-         <children>
-            <ImageView fitHeight="87.0" fitWidth="121.0" layoutX="59.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/editEntreprise.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="27.0" layoutY="121.0" text="Modifier entreprise">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <AnchorPane layoutX="31.0" layoutY="19.0" onMouseClicked="#addEntreprise" prefHeight="162.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-cursor: hand; -fx-background-color: white;" styleClass="addEntreprise" AnchorPane.leftAnchor="50.0">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="121.0" layoutX="59.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/addEntreprise.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="10.0" layoutY="120.0" prefHeight="27.0" prefWidth="181.0" text="Ajouter une entreprise">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="429.0" layoutY="19.0" onMouseClicked="#editEntreprise" prefHeight="162.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-cursor: hand; -fx-background-color: white;" styleClass="addEntreprise" AnchorPane.leftAnchor="429.0">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="121.0" layoutX="59.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/editEntreprise.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="27.0" layoutY="121.0" text="Modifier entreprise">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="780.0" layoutY="19.0" onMouseClicked="#voirUser" prefHeight="162.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-cursor: hand; -fx-background-color: white;" styleClass="addEntreprise" AnchorPane.rightAnchor="50.0">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="121.0" layoutX="59.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/viewUser.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="4.0" layoutY="121.0" prefHeight="27.0" prefWidth="191.0" text="Voir les stagiaires">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

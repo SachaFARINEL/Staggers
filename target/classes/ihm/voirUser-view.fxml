@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.voirUserController">
+    <children>
+        <AnchorPane prefHeight="81.0" prefWidth="1064.0" style="-fx-background-color: #4C6B77;">
+            <children>
+                <Label fx:id="fil_actualite" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="conseils" layoutX="612.0" layoutY="26.0" onMouseClicked="#versConseil" style="-fx-cursor: hand;" text="Conseils" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="profil" layoutX="736.0" layoutY="26.0" onMouseClicked="#versProfil" style="-fx-cursor: hand;" text="Mon profil" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="56.0" fitWidth="93.0" layoutX="469.0" layoutY="13.0">
+                    <image>
+                        <Image url="@../img/Logo.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="annuaire" layoutX="337.0" layoutY="26.0" onMouseClicked="#versAnnuaire" style="-fx-cursor: hand;" text="Annuaire" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="deco" layoutX="934.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#deconnexion" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Se déconnecter" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                </Button>
+                <Label fx:id="admin" layoutX="52.0" layoutY="27.0" onMouseClicked="#versAdmin" style="-fx-cursor: hand;" text="Admin" textFill="#20df7f">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="514.0" prefHeight="86.0" prefWidth="1064.0">
+            <children>
+                <ImageView fitHeight="73.0" fitWidth="1064.0" layoutY="14.0">
+                    <image>
+                        <Image url="@../img/Vectors.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <TableView fx:id="table" layoutX="21.0" layoutY="143.0" onMouseClicked="#getSelectedRow" prefHeight="375.0" prefWidth="560.0">
+            <columns>
+                <TableColumn fx:id="nom" prefWidth="94.0" text="Nom" />
+                <TableColumn fx:id="prenom" prefWidth="98.0" text="Prenom" />
+                <TableColumn fx:id="mail" prefWidth="140.0" text="E-mail" />
+            <TableColumn fx:id="numTel" prefWidth="139.0" text="Numéro de téléphone" />
+            <TableColumn fx:id="isAdmis" prefWidth="90.0" text="a un stage ?" />
+            </columns>
+        </TableView>
+        <AnchorPane layoutX="985.0" layoutY="95.0" onMouseClicked="#backPanneau" prefHeight="42.0" prefWidth="44.0" style="-fx-cursor: hand;">
+            <children>
+                <ImageView fitHeight="45.0" fitWidth="45.0" rotate="195.0" style="-fx-cursor: hand;">
+                    <image>
+                        <Image url="@../img/Group%201.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+      <Label fx:id="labelStage" alignment="CENTER" layoutX="24.0" layoutY="100.0" prefHeight="35.0" prefWidth="993.0" text="Voir les stagiaires de la promo" textFill="#4c6b77">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="changeStage" alignment="CENTER" layoutX="672.0" layoutY="256.0" prefHeight="134.0" prefWidth="283.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="validateButton" layoutX="746.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#valider" text="Valider le changement" />
+      <Label fx:id="utilisateurUpdated" alignment="CENTER" layoutX="36.0" layoutY="100.0" prefHeight="35.0" prefWidth="993.0" textFill="#2bc64d">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+    </children>
+</Pane>
