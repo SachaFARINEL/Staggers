@@ -48,4 +48,10 @@ public class panneauAdminController {
         main.nextScene("editEntreprise-view.fxml");
     }
 
+    @FXML
+    void voirUser(MouseEvent event) throws IOException {
+        main.nextScene("voirUser-view.fxml");
+
+    }
+
 }

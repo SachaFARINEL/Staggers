@@ -1,10 +1,14 @@
 package dao;
 
+import staggers.Entreprise;
 import staggers.Utilisateur;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static utils.Utils.hashPass;
 
@@ -212,6 +216,38 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
             e.printStackTrace();
         }
         return utilisateur;
+    }
+
+    public List<Utilisateur> readAll() {
+        Utilisateur utilisateur = null;
+        List<Utilisateur> listeUtilisateurs = null;
+        try {
+            String requete = "SELECT * FROM " + TABLE;
+            ResultSet rs = Connexion.executeQuery(requete);
+            listeUtilisateurs = new ArrayList<Utilisateur>();
+            boolean hasNext = rs.next();
+            while (hasNext) {
+                int id = rs.getInt(CLE_PRIMAIRE);
+                int promo = rs.getInt(PROMO);
+                String nom = rs.getString(NOM);
+                String prenom = rs.getString(PRENOM);
+                LocalDateTime date_naissance = rs.getObject(DATE_NAISSANCE, LocalDateTime.class);
+                String email = rs.getString(EMAIL);
+                String num_tel = rs.getString(NUM_TEL);
+                boolean admis_stage = rs.getBoolean(ADMIS_STAGE);
+                String sexe = rs.getString(SEXE);
+                String mot_de_passe = rs.getString(MOT_DE_PASSE);
+                boolean est_admin = rs.getBoolean(EST_ADMIN);
+                String role = rs.getString(ROLE);
+                String question_secrete = rs.getString(QUESTION_SECRETE);
+                utilisateur = new Utilisateur(id, promo, nom, prenom, date_naissance, email, num_tel, admis_stage, sexe, mot_de_passe, est_admin, role, question_secrete);
+                listeUtilisateurs.add(utilisateur);
+                hasNext = rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeUtilisateurs;
     }
 
 }

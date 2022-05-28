@@ -1,5 +1,7 @@
 package staggers;
 
+import dao.AdresseDAO;
+
 import java.util.Date;
 
 public class Entreprise {

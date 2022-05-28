@@ -1,15 +1,12 @@
 package ihm;
 
-import dao.EntrepriseDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import staggers.Entreprise;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,8 +19,6 @@ public class accueilController implements Initializable {
     private Label admin;
     @FXML
     private Label bienvenue;
-    @FXML
-    private TableView<Entreprise> tableauEntreprise;
 
     @FXML
     void deconnexion(MouseEvent event) throws IOException {
@@ -56,7 +51,19 @@ public class accueilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        bienvenue.setText("Hey, " + logginController.connectedUser.getPrenom());
+        String trouve = "trouvé";
+        if (logginController.connectedUser.getSexe().equals("Madame")) {
+            trouve += "e";
+        } else if (logginController.connectedUser.getSexe().equals("Autre")) {
+            trouve += "⸱e";
+        }
+        if(logginController.connectedUser.isAdmis_stage()) {
+            bienvenue.setText("Hey, " + logginController.connectedUser.getPrenom() + ". Vous avez " + trouve + " votre stage !");
+        } else {
+            bienvenue.setText("Hey, " + logginController.connectedUser.getPrenom() + ". Continuez vos efforts pour trouver votre stage");
+
+        }
+
         admin.setVisible(logginController.connectedUser.isEst_admin());
 
     }

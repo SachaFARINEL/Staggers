@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Entreprise;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -142,15 +143,14 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
 
     @FXML
     void updateEntreprise(MouseEvent event) {
-        Entreprise updatedEntreprise = new Entreprise(adminSelectedEntreprise.getId(), textfieldNom.getText(), textfieldEmail.getText(), textfieldTel.getText(), textfieldNomContact.getText(),
-                textfieldEmailMailContact.getText(), textfieldNumContact.getText(), choiceBoxNbSalarie.getValue(),
-                choiceBoxNbStagiaire.getValue(), textAreaDescription.getText(), choiceBoxLangage.getValue());
+        Entreprise updatedEntreprise = new Entreprise(adminSelectedEntreprise.getId(), textfieldNom.getText(), textfieldEmail.getText(),
+                textfieldTel.getText(), textfieldNomContact.getText(), textfieldEmailMailContact.getText(), textfieldNumContact.getText(),
+                choiceBoxNbSalarie.getValue(), choiceBoxNbStagiaire.getValue(), textAreaDescription.getText(), choiceBoxLangage.getValue());
 
-        Adresse updatedAdresse = new Adresse(adminSelectedEntrepriseAdresse.getId(), adresseNumero.getText(), adresseTypeDeVoie.getText(), adresseAdresse.getText(), adresseVille.getText(),
-                adresseCodePostal.getText(), adminSelectedEntreprise.getId());
+        Adresse updatedAdresse = new Adresse(adminSelectedEntrepriseAdresse.getId(), adresseNumero.getText(), adresseTypeDeVoie.getText(),
+                adresseAdresse.getText(), adresseVille.getText(), adresseCodePostal.getText(), adminSelectedEntreprise.getId());
 
-        if (AdresseDAO.getInstance().updateWithoutIdUtilisateur(updatedAdresse) && EntrepriseDAO.getInstance().update(updatedEntreprise)
-        ) {
+        if (AdresseDAO.getInstance().updateWithoutIdUtilisateur(updatedAdresse) && EntrepriseDAO.getInstance().update(updatedEntreprise)) {
             ObservableList<Entreprise> data = FXCollections.observableArrayList(EntrepriseDAO.getInstance().readAll());
             id.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("id"));
             nom.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("nom"));
@@ -159,12 +159,10 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
             table.setItems((ObservableList<Entreprise>) data);
             modifierUneEntreprise.setVisible(false);
             modificationDone.setVisible(true);
-            Timeline timeline = new Timeline(new KeyFrame(
-                    Duration.millis(1000),
-                    ae -> {
-                        modificationDone.setVisible(false);
-                        modifierUneEntreprise.setVisible(true);
-                    }));
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
+                modificationDone.setVisible(false);
+                modifierUneEntreprise.setVisible(true);
+            }));
             timeline.play();
 
         }
@@ -176,16 +174,16 @@ public class editEntrepriseController<AnchorPane> implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modificationDone.setVisible(false);
         ObservableList<Entreprise> data = FXCollections.observableArrayList(EntrepriseDAO.getInstance().readAll());
-        id.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("id"));
-        nom.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("nom"));
-        mail.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("email"));
-        tel.setCellValueFactory(new PropertyValueFactory<Entreprise, String>("num_tel"));
-        table.setItems((ObservableList<Entreprise>) data);
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        mail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tel.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
+        table.setItems(data);
 
         anchorEdit.setVisible(false);
-        ObservableList<String> selectNbSalarie = (ObservableList<String>) choiceBoxNbSalarie.getItems();
-        ObservableList<String> selectNbStagiaire = (ObservableList<String>) choiceBoxNbStagiaire.getItems();
-        ObservableList<String> selectLangage = (ObservableList<String>) choiceBoxLangage.getItems();
+        ObservableList<String> selectNbSalarie = choiceBoxNbSalarie.getItems();
+        ObservableList<String> selectNbStagiaire = choiceBoxNbStagiaire.getItems();
+        ObservableList<String> selectLangage = choiceBoxLangage.getItems();
         selectNbSalarie.addAll(creaEntrepriseController.arrayNbSalarie);
         selectNbStagiaire.addAll(creaEntrepriseController.arrayNbStagiaire);
         selectLangage.addAll(creaEntrepriseController.arrayLangage);

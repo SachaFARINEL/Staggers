@@ -55,7 +55,6 @@ public class Adresse {
         this.id_entreprise = id_entreprise;
     }
 
-
     public int getId() {
         return id;
     }

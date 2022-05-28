@@ -25,8 +25,7 @@ public class creaEntrepriseController implements Initializable {
 
     static public final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
     static public final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
-    static public final String[] arrayLangage = {"JavaScript", "PHP", "Ruby", "Java", "Swift", "C#", "C", "C++",
-            "Python", "Julia", "Scala"};
+    static public final String[] arrayLangage = {"JavaScript", "PHP", "Ruby", "Java", "Swift", "C#", "C", "C++", "Python", "Julia", "Scala"};
 
     Main main = new Main();
 
@@ -39,11 +38,11 @@ public class creaEntrepriseController implements Initializable {
     @FXML
     private TextField email_contact;
     @FXML
-    private ChoiceBox<?> nbSalarie;
+    private ChoiceBox<String> nbSalarie;
     @FXML
-    private ChoiceBox<?> nbStagiaire;
+    private ChoiceBox<String> nbStagiaire;
     @FXML
-    private ChoiceBox<?> langagePrincipal;
+    private ChoiceBox<String> langagePrincipal;
     @FXML
     private TextField nom;
     @FXML
@@ -109,15 +108,15 @@ public class creaEntrepriseController implements Initializable {
         String numContactSent = num_contact.getText();
         String emailSent = email.getText();
         String emailContact = email_contact.getText();
-        String nbSalarieSent = nbSalarie.getValue().toString();
-        String nbStagiaireSent = nbStagiaire.getValue().toString();
+        String nbSalarieSent = nbSalarie.getValue();
+        String nbStagiaireSent = nbStagiaire.getValue();
         String numeroSent = numero.getText();
         String voieSent = typeDeVoie.getText();
         String adresseSent = adresse.getText();
         String codePostalSent = codePostal.getText();
         String villeSent = ville.getText();
         String descriptionSent = description.getText();
-        String langageSent = langagePrincipal.getValue().toString();
+        String langageSent = langagePrincipal.getValue();
 
         if (nomSent.isEmpty()) {
             isNotEmpty = false;
@@ -162,7 +161,7 @@ public class creaEntrepriseController implements Initializable {
         return isNotEmpty;
     }
 
-    public void sendCreationEnt(ActionEvent event) {
+    public void sendCreationEnt() {
         if (checkIfEmpty()) {
 
             String nomSent = nom.getText();
@@ -171,15 +170,15 @@ public class creaEntrepriseController implements Initializable {
             String numContactSent = num_contact.getText();
             String emailSent = email.getText();
             String emailContact = email_contact.getText();
-            String nbSalarieSent = nbSalarie.getValue().toString();
-            String nbStagiaireSent = nbStagiaire.getValue().toString();
+            String nbSalarieSent = nbSalarie.getValue();
+            String nbStagiaireSent = nbStagiaire.getValue();
             String voieSent = typeDeVoie.getText();
             String numeroSent = numero.getText();
             String adresseSent = adresse.getText();
             String codePostalSent = codePostal.getText();
             String villeSent = ville.getText();
             String descriptionSent = description.getText();
-            String langageSent = langagePrincipal.getValue().toString();
+            String langageSent = langagePrincipal.getValue();
 
             Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent, emailContact, numContactSent, nbSalarieSent, nbStagiaireSent, descriptionSent, langageSent);
             EntrepriseDAO.getInstance().create(entreprise);
@@ -191,15 +190,13 @@ public class creaEntrepriseController implements Initializable {
 
             titreFiche.setVisible(false);
             confirmationEntreprise.setVisible(true);
-            Timeline timeline = new Timeline(new KeyFrame(
-                    Duration.millis(1000),
-                    ae -> {
-                        try {
-                            main.nextScene("panneauAdmin-view.fxml");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }));
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
+                try {
+                    main.nextScene("panneauAdmin-view.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }));
             timeline.play();
         }
 
@@ -209,9 +206,9 @@ public class creaEntrepriseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         confirmationEntreprise.setVisible(false);
-        ObservableList<String> selectNbSalarie = (ObservableList<String>) nbSalarie.getItems();
-        ObservableList<String> selectNbStagiaire = (ObservableList<String>) nbStagiaire.getItems();
-        ObservableList<String> selectLangage = (ObservableList<String>) langagePrincipal.getItems();
+        ObservableList<String> selectNbSalarie = nbSalarie.getItems();
+        ObservableList<String> selectNbStagiaire = nbStagiaire.getItems();
+        ObservableList<String> selectLangage = langagePrincipal.getItems();
         selectNbSalarie.addAll(arrayNbSalarie);
         selectNbStagiaire.addAll(arrayNbStagiaire);
         selectLangage.addAll(arrayLangage);

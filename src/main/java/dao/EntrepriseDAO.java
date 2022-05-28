@@ -1,5 +1,6 @@
 package dao;
 
+import staggers.Adresse;
 import staggers.Entreprise;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +24,10 @@ public class EntrepriseDAO extends DAO<Entreprise> {
     private static final String NB_STAGIAIRE_MAX = "nb_stagiaire_max";
     private static final String DESCRIPTION = "description";
     private static final String LANGAGE = "langage";
+
+    // ----
+    private static final String ADRESSE = "adresse";
+    // ----
 
 
     private static EntrepriseDAO instance = null;

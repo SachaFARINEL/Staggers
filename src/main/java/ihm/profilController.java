@@ -215,7 +215,10 @@ public class profilController implements Initializable {
                 } else {
                     MDP = hashPass(password.getText());
                 }
-                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(), nom.getText(), prenom.getText(), dateNaiss, email.getText(), telephone.getText(), logginController.connectedUser.isAdmis_stage(), sexe.getValue(), MDP, logginController.connectedUser.isEst_admin(), logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
+                Utilisateur changedUtilisateur = new Utilisateur(logginController.connectedUser.getId(), logginController.connectedUser.getPromo(),
+                        nom.getText(), prenom.getText(), dateNaiss, email.getText(), telephone.getText(),
+                        logginController.connectedUser.isAdmis_stage(), sexe.getValue().trim(), MDP, logginController.connectedUser.isEst_admin(),
+                        logginController.connectedUser.getRole(), logginController.connectedUser.getQuestion_secrete());
 
                 Adresse changedAdresse = new Adresse(logginController.connectedAdresse.getId(), numero.getText(), typeDeVoie.getText(), adresse.getText(), ville.getText(), codePostal.getText(), logginController.connectedUser.getId());
                 if (AdresseDAO.getInstance().updateWithoutIdEntreprise(changedAdresse) && UtilisateurDAO.getInstance().update(changedUtilisateur)) {
