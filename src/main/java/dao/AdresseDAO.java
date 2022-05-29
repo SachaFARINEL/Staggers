@@ -1,6 +1,7 @@
 package dao;
 
 import staggers.Adresse;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public class AdresseDAO extends DAO<Adresse> {
         } else {
             System.out.println("Recherche dans la BD");
             try {
-                String requete = "SELECT * FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = " + id;
+                String requete = "SELECT * FROM " + TABLE + " WHERE " + ID_UTILISATEUR + " = " + id;
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
                 String numero = rs.getString(NUMERO);
