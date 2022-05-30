@@ -27,6 +27,7 @@ public class inscriptionController implements Initializable {
     private final String[] arraySexe = {"Monsieur", "Madame", "Autre"};
 
     private final Integer[] arrayPromo = {2020, 2021, 2022, 2023};
+    private final String[] arrayPromoString = {"2020/2021", "2021/2022", "2022/2023", "2023/2024"};
 
     Main main = new Main();
 
@@ -53,7 +54,8 @@ public class inscriptionController implements Initializable {
     @FXML
     private ChoiceBox<String> sexe;
     @FXML
-    private ChoiceBox<Integer> promo;
+    //private ChoiceBox<Integer> promo;
+    private ChoiceBox<String> promo;
     @FXML
     private TextField telephone;
     @FXML
@@ -94,7 +96,6 @@ public class inscriptionController implements Initializable {
 
     private boolean checkIfEmpty() {
         boolean isNotEmpty = true;
-        int promoSent = promo.getValue();
         String sexeSent = sexe.getValue();
         String nomSent = nom.getText();
         String prenomSent = prenom.getText();
@@ -109,10 +110,6 @@ public class inscriptionController implements Initializable {
         String codePostalSent = codePostal.getText();
         String villeSent = ville.getText();
         String reponseSent = reponseQuestion.getText();
-
-        if (equals(promoSent)) {
-            isNotEmpty = false;
-        }
 
         if (sexeSent.isEmpty()) {
             isNotEmpty = false;
@@ -211,7 +208,9 @@ public class inscriptionController implements Initializable {
     @FXML
     void sendInscription() throws NoSuchAlgorithmException, InvalidKeySpecException {
         if (isMotDePasseConfirmed() && checkIfEmpty() && emailNotInDatabase()) {
-            int promoSent = promo.getValue();
+            int promoSent = Integer.parseInt(promo.getValue().split("/")[1]);
+            System.out.println(promoSent);
+            //int promoSent = promo.getValue();
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText().trim();
             String prenomSent = prenom.getText().trim();
@@ -227,13 +226,14 @@ public class inscriptionController implements Initializable {
             String codePostalSent = codePostal.getText();
             String villeSent = ville.getText();
             String reponseSent = reponseQuestion.getText();
+            System.out.println(codePostalSent);
 
             Utilisateur user = new Utilisateur(promoSent, nomSent, prenomSent, dateNaiss, emailSent, telephoneSent,
                     false, sexeSent, passwordSent, false, "stagiaire", reponseSent);
             UtilisateurDAO.getInstance().create(user);
 
             Integer idUser = Integer.parseInt(UtilisateurDAO.getInstance().getWithEmail("id", emailSent));
-            Adresse userAdresse = new Adresse(0, numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idUser, null);
+            Adresse userAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idUser, null);
             AdresseDAO.getInstance().create(userAdresse);
             labelInscription.setText("Inscription réussie");
             labelInscription.setTextFill(Color.web("#20DF7F"));
@@ -256,7 +256,9 @@ public class inscriptionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         sexe.getItems().addAll(arraySexe);
-        promo.getItems().addAll(arrayPromo);
+
+        //promo.getItems().addAll(arrayPromo);
+        promo.getItems().addAll(arrayPromoString);
     }
 
 
