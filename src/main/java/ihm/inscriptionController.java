@@ -26,6 +26,8 @@ public class inscriptionController implements Initializable {
 
     private final String[] arraySexe = {"Monsieur", "Madame", "Autre"};
 
+    private final Integer[] arrayPromo = {2020, 2021, 2022, 2023};
+
     Main main = new Main();
 
     @FXML
@@ -50,6 +52,8 @@ public class inscriptionController implements Initializable {
     private TextField prenom;
     @FXML
     private ChoiceBox<String> sexe;
+    @FXML
+    private ChoiceBox<Integer> promo;
     @FXML
     private TextField telephone;
     @FXML
@@ -80,6 +84,8 @@ public class inscriptionController implements Initializable {
     private Button valider;
     @FXML
     private Label labelInscription;
+    @FXML
+    private Label labelPromotion;
 
     @FXML
     void retourLoggin(MouseEvent event) throws IOException {
@@ -88,6 +94,7 @@ public class inscriptionController implements Initializable {
 
     private boolean checkIfEmpty() {
         boolean isNotEmpty = true;
+        int promoSent = promo.getValue();
         String sexeSent = sexe.getValue();
         String nomSent = nom.getText();
         String prenomSent = prenom.getText();
@@ -102,6 +109,10 @@ public class inscriptionController implements Initializable {
         String codePostalSent = codePostal.getText();
         String villeSent = ville.getText();
         String reponseSent = reponseQuestion.getText();
+
+        if (equals(promoSent)) {
+            isNotEmpty = false;
+        }
 
         if (sexeSent.isEmpty()) {
             isNotEmpty = false;
@@ -200,6 +211,7 @@ public class inscriptionController implements Initializable {
     @FXML
     void sendInscription() throws NoSuchAlgorithmException, InvalidKeySpecException {
         if (isMotDePasseConfirmed() && checkIfEmpty() && emailNotInDatabase()) {
+            int promoSent = promo.getValue();
             String sexeSent = sexe.getValue();
             String nomSent = nom.getText().trim();
             String prenomSent = prenom.getText().trim();
@@ -216,7 +228,7 @@ public class inscriptionController implements Initializable {
             String villeSent = ville.getText();
             String reponseSent = reponseQuestion.getText();
 
-            Utilisateur user = new Utilisateur(2022, nomSent, prenomSent, dateNaiss, emailSent, telephoneSent,
+            Utilisateur user = new Utilisateur(promoSent, nomSent, prenomSent, dateNaiss, emailSent, telephoneSent,
                     false, sexeSent, passwordSent, false, "stagiaire", reponseSent);
             UtilisateurDAO.getInstance().create(user);
 
@@ -242,7 +254,9 @@ public class inscriptionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         sexe.getItems().addAll(arraySexe);
+        promo.getItems().addAll(arrayPromo);
     }
 
 
