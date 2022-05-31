@@ -2,6 +2,7 @@ package ihm;
 
 import dao.AdresseDAO;
 import dao.EntrepriseDAO;
+import dao.LangageDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
@@ -9,23 +10,27 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import staggers.Adresse;
 import staggers.Entreprise;
+import staggers.Langage;
 
 public class creaEntrepriseController implements Initializable {
 
     static public final String[] arrayNbSalarie = {"Moins de 5", "Entre 6 et 9", "Entre 10 et 49", "50 et plus"};
     static public final String[] arrayNbStagiaire = {"1", "2", "3", "4 et plus"};
     static public final String[] arrayLangage = {"JavaScript", "PHP", "Ruby", "Java", "Swift", "C#", "C", "C++", "Python", "Julia", "Scala"};
+    List<Langage> listeLangagesSecondaires = new ArrayList<>();
 
     Main main = new Main();
 
@@ -41,8 +46,7 @@ public class creaEntrepriseController implements Initializable {
     private ChoiceBox<String> nbSalarie;
     @FXML
     private ChoiceBox<String> nbStagiaire;
-    @FXML
-    private ChoiceBox<String> langagePrincipal;
+
     @FXML
     private TextField nom;
     @FXML
@@ -63,6 +67,10 @@ public class creaEntrepriseController implements Initializable {
     private Label titreFiche;
     @FXML
     private Label confirmationEntreprise;
+    @FXML
+    public ListView<?> listeViewLangagesSecondaires;
+    public TextField langagePrincipal;
+    public TextField langagesSecondaires;
 
     @FXML
     void deconnexion(MouseEvent event) throws IOException {
@@ -116,7 +124,7 @@ public class creaEntrepriseController implements Initializable {
         String codePostalSent = codePostal.getText();
         String villeSent = ville.getText();
         String descriptionSent = description.getText();
-        String langageSent = langagePrincipal.getValue();
+        String langageSent = langagePrincipal.getText();
 
         if (nomSent.isEmpty()) {
             isNotEmpty = false;
@@ -162,56 +170,69 @@ public class creaEntrepriseController implements Initializable {
     }
 
     public void sendCreationEnt() {
-        if (checkIfEmpty()) {
+//        if (checkIfEmpty()) {
 
-            String nomSent = nom.getText();
-            String numTelSent = num_tel.getText();
-            String nomContactSent = nom_contact.getText();
-            String numContactSent = num_contact.getText();
-            String emailSent = email.getText();
-            String emailContact = email_contact.getText();
-            String nbSalarieSent = nbSalarie.getValue();
-            String nbStagiaireSent = nbStagiaire.getValue();
-            String voieSent = typeDeVoie.getText();
-            String numeroSent = numero.getText();
-            String adresseSent = adresse.getText();
-            String codePostalSent = codePostal.getText();
-            String villeSent = ville.getText();
-            String descriptionSent = description.getText();
-            String langageSent = langagePrincipal.getValue();
+        String nomSent = nom.getText();
+        String numTelSent = num_tel.getText();
+        String nomContactSent = nom_contact.getText();
+        String numContactSent = num_contact.getText();
+        String emailSent = email.getText();
+        String emailContact = email_contact.getText();
+        String nbSalarieSent = nbSalarie.getValue();
+        String nbStagiaireSent = nbStagiaire.getValue();
+        String voieSent = typeDeVoie.getText();
+        String numeroSent = numero.getText();
+        String adresseSent = adresse.getText();
+        String codePostalSent = codePostal.getText();
+        String villeSent = ville.getText();
+        String descriptionSent = description.getText();
+        String langageSent = langagePrincipal.getText();
 
-            Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent, emailContact, numContactSent, nbSalarieSent, nbStagiaireSent, descriptionSent, langageSent);
-            EntrepriseDAO.getInstance().create(entreprise);
 
-            Integer idEnt = Integer.parseInt((EntrepriseDAO.getInstance().getWithEmailEnt("id", emailSent)));
-            System.out.println(idEnt);
-            Adresse entAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idEnt);
-            AdresseDAO.getInstance().createEntAdmin(entAdresse);
+        Entreprise entreprise = new Entreprise(nomSent, emailSent, numTelSent, nomContactSent, emailContact, numContactSent, nbSalarieSent,
+                nbStagiaireSent, descriptionSent, langageSent, listeLangagesSecondaires);
+        EntrepriseDAO.getInstance().create(entreprise);
 
-            titreFiche.setVisible(false);
-            confirmationEntreprise.setVisible(true);
-            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
-                try {
-                    main.nextScene("panneauAdmin-view.fxml");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }));
-            timeline.play();
+        Integer idEnt = Integer.parseInt((EntrepriseDAO.getInstance().getWithEmailEnt("id", emailSent)));
+
+        Adresse entAdresse = new Adresse(numeroSent, voieSent, adresseSent, villeSent, codePostalSent, idEnt);
+        AdresseDAO.getInstance().createEntAdmin(entAdresse);
+
+        titreFiche.setVisible(false);
+        confirmationEntreprise.setVisible(true);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
+            try {
+                main.nextScene("panneauAdmin-view.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }));
+        timeline.play();
+    }
+
+    public void addLangageSecondaire() {
+        if (!langagesSecondaires.getText().isEmpty()) {
+            if (LangageDAO.getInstance().readWithLibelleLangage(langagesSecondaires.getText()) == null) {
+                Langage nouveauLangage = new Langage(langagesSecondaires.getText().trim().toUpperCase());
+                LangageDAO.getInstance().create(nouveauLangage);
+                listeLangagesSecondaires.add(LangageDAO.getInstance().readWithLibelleLangage(nouveauLangage.getLibelle()));
+            } else {
+                listeLangagesSecondaires.add(LangageDAO.getInstance().readWithLibelleLangage(langagesSecondaires.getText()));
+            }
+            ObservableList<String> maListe = (ObservableList<String>) listeViewLangagesSecondaires.getItems();
+            maListe.add(langagesSecondaires.getText().trim().toUpperCase());
+            langagesSecondaires.clear();
         }
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         confirmationEntreprise.setVisible(false);
         ObservableList<String> selectNbSalarie = nbSalarie.getItems();
         ObservableList<String> selectNbStagiaire = nbStagiaire.getItems();
-        ObservableList<String> selectLangage = langagePrincipal.getItems();
         selectNbSalarie.addAll(arrayNbSalarie);
         selectNbStagiaire.addAll(arrayNbStagiaire);
-        selectLangage.addAll(arrayLangage);
     }
+
 
 }

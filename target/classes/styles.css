@@ -6,6 +6,27 @@
 .button {
     -fx-background-color: #20DF7F
 }
+#promo {
+    -fx-mark-color: white;
+    -fx-background-color: #224957;
+    -fx-font: 14px "System";
+    -fx-background-radius: 10, 10;
+}
+#promo > .label {
+    -fx-text-fill: white;
+}
+#promo .context-menu {
+    -fx-background-color: #224957;
+    -fx-background-radius: 10, 10;
+}
+#promo .menu-item:focused {
+    -fx-background-color: #296763;
+}
+#promo .menu-item > .label {
+    -fx-pref-width: 65;
+    -fx-text-fill: white;
+    -fx-font: 12px "System";
+}
 #sexe {
     -fx-mark-color: white;
     -fx-background-color: #224957;
@@ -93,4 +114,7 @@
     -fx-background-color: #20DF7F;
     -fx-background-radius: 20;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.listeViewLangagesSecondaires .list-cell{
+    -fx-font-size:12.0;
 }

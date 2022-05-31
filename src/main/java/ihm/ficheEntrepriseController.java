@@ -17,9 +17,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import staggers.Commentaire;
 import staggers.Favoris;
+import staggers.Langage;
+
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -73,6 +77,8 @@ public class ficheEntrepriseController implements Initializable {
     public Button buttonCommentaire;
     @FXML
     private ImageView deleteIcon;
+    @FXML
+    private ListView<?> listeViewLangagesSecondaires;
 
     @FXML
     void changeStar(MouseEvent event) {
@@ -210,6 +216,13 @@ public class ficheEntrepriseController implements Initializable {
         if (logginController.connectedUser.isEst_admin()) {
             deleteIcon.setVisible(true);
         }
+
+        ObservableList<String> maListeLangage = (ObservableList<String>) listeViewLangagesSecondaires.getItems();
+        for (int i = 0; i < annuaireController.selectedEntreprise.getLangagesSecondaires().size(); i++) {
+            maListeLangage.add(annuaireController.selectedEntreprise.getLangagesSecondaires().get(i).getLibelle());
+        }
+
+
 
     }
 

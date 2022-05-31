@@ -1,7 +1,8 @@
 package dao;
 
-import staggers.Adresse;
 import staggers.Entreprise;
+import staggers.Langage;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,7 +57,8 @@ public class EntrepriseDAO extends DAO<Entreprise> {
         String nb_stagiaire_max = rs.getString(NB_STAGIAIRE_MAX);
         String description = rs.getString(DESCRIPTION);
         String langage = rs.getString(LANGAGE);
-        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description, langage);
+        entreprise = new Entreprise(id, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max, description,
+                langage);
         return entreprise;
     }
 
@@ -88,6 +90,7 @@ public class EntrepriseDAO extends DAO<Entreprise> {
                 obj.setId(rs.getInt(1));
             }
             donnees.put(obj.getId(), obj);
+            createLangageEntrepriseAssociation(obj);
         } catch (SQLException e) {
             success = false;
             e.printStackTrace();
@@ -131,7 +134,6 @@ public class EntrepriseDAO extends DAO<Entreprise> {
             pst.setString(9, obj.getDescription());
             pst.setString(10, obj.getLangage());
             pst.setInt(11, id);
-
             pst.executeUpdate();
             donnees.put(id, obj);
         } catch (SQLException e) {
@@ -153,8 +155,20 @@ public class EntrepriseDAO extends DAO<Entreprise> {
                 String requete = "SELECT * FROM " + TABLE + " WHERE " + CLE_PRIMAIRE + " = " + id;
                 ResultSet rs = Connexion.executeQuery(requete);
                 rs.next();
-
-                entreprise = getEntreprise(rs);
+                int idEnt = rs.getInt((CLE_PRIMAIRE));
+                String nom = rs.getString(NOM);
+                String email = rs.getString(EMAIL);
+                String num_tel = rs.getString(NUM_TEL);
+                String nom_contact = rs.getString(NOM_CONTACT);
+                String email_contact = rs.getString(EMAIL_CONTACT);
+                String num_contact = rs.getString(NUM_CONTACT);
+                String nb_salarie = rs.getString(NB_SALARIE);
+                String nb_stagiaire_max = rs.getString(NB_STAGIAIRE_MAX);
+                String description = rs.getString(DESCRIPTION);
+                String langage = rs.getString(LANGAGE);
+                List<Langage> langagesSecondaires = LangageDAO.getInstance().getListeLangage(id);
+                entreprise = new Entreprise(idEnt, nom, email, num_tel, nom_contact, email_contact, num_contact, nb_salarie, nb_stagiaire_max,
+                        description, langage, langagesSecondaires);
                 donnees.put(id, entreprise);
 
             } catch (SQLException e) {
@@ -233,6 +247,21 @@ public class EntrepriseDAO extends DAO<Entreprise> {
             e.printStackTrace();
         }
         return listeEntreprise;
+    }
+
+    public void createLangageEntrepriseAssociation(Entreprise obj) {
+        try {
+            for (int i = 0; i < obj.getLangagesSecondaires().size(); i++) {
+                String requete = "INSERT INTO ASSO_ENTREPRISE_LANGAGE (id_entreprise, id_langage) VALUES ( ?, ?)";
+                PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+                pst.setInt(1, obj.getId());
+                int idLangage = obj.getLangagesSecondaires().get(i).getId();
+                pst.setInt(2, idLangage);
+                pst.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

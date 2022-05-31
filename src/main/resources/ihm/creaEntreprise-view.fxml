@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,14 +13,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ihm.creaEntrepriseController">
     <children>
-      <ImageView fitHeight="381.0" fitWidth="1064.0" layoutX="4.0" layoutY="219.0">
-         <image>
-            <Image url="@../img/Cityscape.png" />
-         </image>
-      </ImageView>
         <AnchorPane prefHeight="81.0" prefWidth="1064.0" style="-fx-background-color: #4C6B77;">
             <children>
-                <Label fx:id="fil_actualite" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
+                <Label fx:id="fil_actuality" layoutX="163.0" layoutY="27.0" onMouseClicked="#versActualite" style="-fx-cursor: hand;" text="Fil d'actualité" textFill="WHITE">
                     <font>
                         <Font name="System Bold Italic" size="20.0" />
                     </font>
@@ -56,85 +52,95 @@
             </Label>
             </children>
         </AnchorPane>
-      <AnchorPane layoutX="292.0" layoutY="95.0" prefHeight="529.0" prefWidth="483.0">
+      <AnchorPane layoutX="35.0" layoutY="191.0" prefHeight="285.0" prefWidth="485.0">
          <children>
-            <Label fx:id="titreFiche" alignment="CENTER" layoutX="2.0" layoutY="8.0" prefHeight="44.0" prefWidth="498.0" text="Ajouter une entreprise" textAlignment="CENTER" textFill="#224957">
-               <font>
-                  <Font name="Roboto Condensed Bold" size="48.0" />
-               </font>
-            </Label>
-            <Label fx:id="confirmationEntreprise" alignment="CENTER" layoutX="-7.0" prefHeight="44.0" prefWidth="498.0" text="Entreprise ajoutée" textAlignment="CENTER" textFill="#2fb557" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Roboto Condensed Bold" size="48.0" />
-               </font>
-            </Label>
-            <AnchorPane layoutY="74.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+            <AnchorPane layoutY="74.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField fx:id="num_tel" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Numéro de l'entreprise" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="nom" layoutX="7.0" layoutY="3.0" prefHeight="29.0" prefWidth="230.0" promptText=" Nom entreprise" />
+                  <TextField fx:id="num_tel" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Numéro de l'entreprise" styleClass="text-fieldLettreMotivation" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="nom" layoutX="7.0" layoutY="3.0" prefHeight="29.0" prefWidth="230.0" promptText=" Nom entreprise" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="-2.0" layoutY="145.0" prefHeight="32.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+            <AnchorPane layoutX="-2.0" layoutY="145.0" prefHeight="32.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <TextField fx:id="nom_contact" layoutX="190.0" prefHeight="29.0" prefWidth="230.0" promptText="Nom de contact" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="num_contact" layoutX="254.0" layoutY="4.0" prefHeight="29.0" prefWidth="230.0" promptText="Numéro du contact" />
+                  <TextField fx:id="nom_contact" layoutX="190.0" prefHeight="29.0" prefWidth="230.0" promptText="Nom de contact" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="num_contact" layoutX="254.0" prefHeight="29.0" prefWidth="230.0" promptText="Numéro du contact" styleClass="text-fieldLettreMotivation" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="172.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
+            <AnchorPane layoutY="172.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <children>
-                  <TextField fx:id="email" layoutX="7.0" prefHeight="29.0" prefWidth="230.0" promptText=" Adresse mail de l'entreprise" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="email_contact" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse mail du contact" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="email" layoutX="7.0" prefHeight="29.0" prefWidth="230.0" promptText=" Adresse mail de l'entreprise" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="email_contact" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse mail du contact" styleClass="text-fieldLettreMotivation" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="223.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="225.0">
+            <AnchorPane layoutX="2.0" layoutY="219.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.topAnchor="150.0">
                <children>
-                  <ChoiceBox fx:id="nbSalarie" layoutX="231.0" layoutY="1.0" prefHeight="25.0" prefWidth="137.0" />
-                  <Label layoutX="29.0" layoutY="5.0" text="Nombre de salariés" />
+                  <TextField fx:id="numero" layoutY="2.0" prefHeight="25.0" prefWidth="77.0" promptText="N° de voie" styleClass="text-fieldLettreMotivation" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="typeDeVoie" layoutX="91.0" prefHeight="25.0" prefWidth="137.0" promptText="Type de voie" styleClass="text-fieldLettreMotivation" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="adresse" layoutX="252.0" layoutY="4.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse" styleClass="text-fieldLettreMotivation" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="4.0" layoutY="327.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.topAnchor="327.0">
+            <AnchorPane layoutX="1.0" layoutY="265.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.topAnchor="200.0">
                <children>
-                  <TextField fx:id="numero" layoutY="2.0" prefHeight="29.0" prefWidth="83.0" promptText="N° de voie" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="typeDeVoie" layoutX="90.0" layoutY="3.0" prefHeight="29.0" prefWidth="137.0" promptText="Type de voie" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="adresse" layoutX="252.0" layoutY="4.0" prefHeight="29.0" prefWidth="230.0" promptText="Adresse" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <TextField fx:id="codePostal" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Code postal" styleClass="text-fieldLettreMotivation" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="ville" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Ville" styleClass="text-fieldLettreMotivation" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="378.0" prefHeight="25.0" prefWidth="483.0" AnchorPane.topAnchor="378.0">
+            <AnchorPane layoutX="1.0" layoutY="240.0" prefHeight="64.0" prefWidth="483.0" AnchorPane.topAnchor="240.0">
                <children>
-                  <TextField fx:id="codePostal" layoutX="155.0" layoutY="1.0" prefHeight="29.0" prefWidth="230.0" promptText="Code postal" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0" />
-                  <TextField fx:id="ville" layoutX="333.0" prefHeight="29.0" prefWidth="230.0" promptText="Ville" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+                  <ChoiceBox fx:id="nbSalarie" layoutX="52.0" layoutY="25.0" prefHeight="25.0" prefWidth="230.0" AnchorPane.rightAnchor="252.0" AnchorPane.topAnchor="20.0" />
+                  <Label alignment="CENTER" layoutY="4.0" prefHeight="17.0" prefWidth="230.0" text="Nombre de salariés" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" layoutX="253.0" layoutY="5.0" prefHeight="17.0" prefWidth="230.0" text="Nombre de stagiaire Max" AnchorPane.topAnchor="0.0" />
+                  <ChoiceBox fx:id="nbStagiaire" layoutX="253.0" layoutY="22.0" prefHeight="25.0" prefWidth="230.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
-            <Label fx:id="wrongDate" alignment="CENTER" layoutX="99.0" layoutY="107.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" />
-            <Label fx:id="wrongEmail" alignment="CENTER" layoutX="4.0" layoutY="166.0" prefWidth="230.0" textFill="RED" AnchorPane.topAnchor="160.0" />
-            <Label fx:id="wrongTelephone" alignment="CENTER" layoutX="243.0" layoutY="166.0" prefWidth="230.0" textFill="RED" AnchorPane.topAnchor="160.0" />
-            <Label fx:id="wrongPassword" alignment="CENTER" layoutX="120.0" layoutY="217.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="210.0" />
-            <Label fx:id="wrongCodePostal" alignment="CENTER" layoutX="5.0" layoutY="307.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="310.0" />
-            <Label fx:id="wrongNom" alignment="CENTER" layoutX="248.0" layoutY="58.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="60.0" />
-            <Label fx:id="wrongPrenom" alignment="CENTER" layoutX="253.0" layoutY="107.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" />
-            <Label fx:id="wrongAdresse" alignment="CENTER" layoutX="129.0" layoutY="256.0" prefWidth="230.0" textFill="RED" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="260.0" />
-            <Label fx:id="wrongVille" alignment="CENTER" layoutX="248.0" layoutY="310.0" prefWidth="230.0" textFill="RED" AnchorPane.rightAnchor="5.0" />
-            <Label fx:id="wrongReponse" alignment="CENTER" layoutX="99.0" layoutY="394.0" prefHeight="17.0" prefWidth="312.0" textFill="RED" />
-            <Label layoutX="26.0" layoutY="284.0" text="Nombre de stagiaire Max" />
-            <ChoiceBox fx:id="nbStagiaire" layoutX="232.0" layoutY="280.0" prefHeight="25.0" prefWidth="137.0" />
-            <TextField fx:id="description" alignment="CENTER" layoutX="232.0" layoutY="426.0" prefHeight="64.0" prefWidth="230.0" promptText="Description de l'entreprise" />
-            <ChoiceBox fx:id="langagePrincipal" layoutX="46.0" layoutY="446.0" prefWidth="150.0" />
-            <Label layoutX="31.0" layoutY="418.0" text="Langage principale de l'entreprise" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="retourLoggin" layoutX="63.0" layoutY="15.0" prefHeight="51.0" prefWidth="57.0" style="-fx-cursor: hand;" />
-      <Button fx:id="valider" layoutX="887.0" layoutY="292.0" mnemonicParsing="false" onAction="#sendCreationEnt" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Valider">
+      <Button fx:id="valider" layoutX="493.0" layoutY="543.0" mnemonicParsing="false" onAction="#sendCreationEnt" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #20DF7F; -fx-cursor: hand;" text="Valider">
          <font>
             <Font name="Roboto Condensed" size="18.0" />
          </font>
       </Button>
-      <AnchorPane fx:id="retourPanneau" layoutX="929.0" layoutY="156.0" onMouseClicked="#retourPanneau" prefHeight="50.0" prefWidth="48.0" style="-fx-cursor: hand;">
+      <AnchorPane fx:id="retourPanneau" layoutX="982.0" layoutY="98.0" onMouseClicked="#retourPanneau" prefHeight="50.0" prefWidth="48.0" style="-fx-cursor: hand;">
          <children>
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="1.0" layoutY="3.0" rotate="195.0">
                <image>
                   <Image url="@../img/Group%201.png" />
                </image>
             </ImageView>
+         </children>
+      </AnchorPane>
+      <Label fx:id="confirmationEntreprise" alignment="CENTER" layoutX="277.0" layoutY="94.0" prefHeight="44.0" prefWidth="498.0" text="Entreprise ajoutée" textAlignment="CENTER" textFill="#2fb557">
+         <font>
+            <Font name="Roboto Condensed Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="titreFiche" alignment="CENTER" layoutX="283.0" layoutY="94.0" prefHeight="44.0" prefWidth="498.0" text="Ajouter une entreprise" textAlignment="CENTER" textFill="#224957">
+         <font>
+            <Font name="Roboto Condensed Bold" size="48.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="543.0" layoutY="191.0" prefHeight="304.0" prefWidth="487.0">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="472.0">
+               <children>
+                  <Label layoutY="4.0" text="Langage principale de l'entreprise" />
+                  <TextField fx:id="langagePrincipal" layoutX="209.0" prefHeight="25.0" prefWidth="217.0" styleClass="text-fieldLettreMotivation" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="472.0">
+               <children>
+                  <Label layoutY="4.0" text="Langages secondaires de l'entreprise" />
+                  <TextField fx:id="langagesSecondaires" layoutX="209.0" prefHeight="25.0" prefWidth="217.0" styleClass="text-fieldLettreMotivation" />
+                  <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="447.0" onMouseClicked="#addLangageSecondaire" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../img/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ListView id="listViewLangage" fx:id="listeViewLangagesSecondaires" layoutX="14.0" layoutY="76.0" prefHeight="126.0" prefWidth="472.0" styleClass="listeViewLangagesSecondaires" />
+            <TextField fx:id="description" alignment="CENTER" layoutX="14.0" layoutY="218.0" prefHeight="72.0" prefWidth="472.0" promptText="Description de l'entreprise" styleClass="text-fieldLettreMotivation" />
          </children>
       </AnchorPane>
     </children>

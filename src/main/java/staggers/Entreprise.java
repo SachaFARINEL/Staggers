@@ -1,8 +1,6 @@
 package staggers;
 
-import dao.AdresseDAO;
-
-import java.util.Date;
+import java.util.List;
 
 public class Entreprise {
 
@@ -17,6 +15,7 @@ public class Entreprise {
     private String nb_stagiaire_max;
     private String description;
     private String langage;
+    private List<Langage> langagesSecondaires;
 
     public Entreprise(int id, String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie, String nb_stagiaire_max, String description, String langage) {
         this.id = id;
@@ -46,9 +45,39 @@ public class Entreprise {
     }
 
     public Entreprise(String nom) {
-
         this.nom = nom;
+    }
 
+    public Entreprise(int id, String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact,
+                      String nb_salarie,
+                      String nb_stagiaire_max, String description, String langage, List<Langage> langagesSecondaires) {
+        this.id = id;
+        this.nom = nom;
+        this.email = email;
+        this.num_tel = num_tel;
+        this.nom_contact = nom_contact;
+        this.email_contact = email_contact;
+        this.num_contact = num_contact;
+        this.nb_salarie = nb_salarie;
+        this.nb_stagiaire_max = nb_stagiaire_max;
+        this.description = description;
+        this.langage = langage;
+        this.langagesSecondaires = langagesSecondaires;
+    }
+
+    public Entreprise(String nom, String email, String num_tel, String nom_contact, String email_contact, String num_contact, String nb_salarie,
+                      String nb_stagiaire_max, String description, String langage, List<Langage> langagesSecondaires) {
+        this.nom = nom;
+        this.email = email;
+        this.num_tel = num_tel;
+        this.nom_contact = nom_contact;
+        this.email_contact = email_contact;
+        this.num_contact = num_contact;
+        this.nb_salarie = nb_salarie;
+        this.nb_stagiaire_max = nb_stagiaire_max;
+        this.description = description;
+        this.langage = langage;
+        this.langagesSecondaires = langagesSecondaires;
     }
 
     public int getId() {
@@ -139,6 +168,14 @@ public class Entreprise {
         this.langage = langage;
     }
 
+    public List<Langage> getLangagesSecondaires() {
+        return langagesSecondaires;
+    }
+
+    public void setLangagesSecondaires(List<Langage> langagesSecondaires) {
+        this.langagesSecondaires = langagesSecondaires;
+    }
+
     @Override
     public String toString() {
         return "Entreprise{" +
@@ -149,12 +186,12 @@ public class Entreprise {
                 ", nom_contact='" + nom_contact + '\'' +
                 ", email_contact='" + email_contact + '\'' +
                 ", num_contact='" + num_contact + '\'' +
-                ", nb_salarie=" + nb_salarie +
-                ", nb_stagiaire_max=" + nb_stagiaire_max +
+                ", nb_salarie='" + nb_salarie + '\'' +
+                ", nb_stagiaire_max='" + nb_stagiaire_max + '\'' +
                 ", description='" + description + '\'' +
                 ", langage='" + langage + '\'' +
+                ", langagesSecondaires=" + langagesSecondaires +
                 '}';
     }
-
 }
 
